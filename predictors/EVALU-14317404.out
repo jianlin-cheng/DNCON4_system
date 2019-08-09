@@ -1,0 +1,100 @@
+/storage/htc/bdm/zhiye/DNCON4
+2019-08-09 13:27:16.150161: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-08-09 13:27:16.316828: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1392] Found device 0 with properties: 
+name: GeForce GTX 1080 Ti major: 6 minor: 1 memoryClockRate(GHz): 1.582
+pciBusID: 0000:82:00.0
+totalMemory: 10.92GiB freeMemory: 10.77GiB
+2019-08-09 13:27:16.317629: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1471] Adding visible gpu devices: 0
+2019-08-09 13:27:17.423402: I tensorflow/core/common_runtime/gpu/gpu_device.cc:952] Device interconnect StreamExecutor with strength 1 edge matrix:
+2019-08-09 13:27:17.424043: I tensorflow/core/common_runtime/gpu/gpu_device.cc:958]      0 
+2019-08-09 13:27:17.424761: I tensorflow/core/common_runtime/gpu/gpu_device.cc:971] 0:   N 
+2019-08-09 13:27:17.425580: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1084] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 10422 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1080 Ti, pci bus id: 0000:82:00.0, compute capability: 6.1)
+Model dir: /storage/htc/bdm/zhiye/DNCON4/models/pretrain/dres152_deepcov_plm/
+Find gloabl path : /storage/htc/bdm/zhiye/DNCON4/
+
+######################################
+佛祖保佑，永不迨机，永无bug，精度九十九
+######################################
+
+Total Number to predict =  33
+######## Loading existing weights  /storage/htc/bdm/zhiye/DNCON4/models/pretrain/dres152_deepcov_plm//model-train-weight-DNCON4_2dDIARES-best-val.h5
+start predict T1019s1 58
+start predict T1008 80
+start predict T1015s1 89
+start predict T0958 96
+start predict T0986s1 96
+start predict T0970 97
+start predict T0980s1 111
+start predict T0968s2 116
+start predict T0992 126
+start predict T0968s1 126
+start predict T1017s2 129
+start predict T1001 140
+start predict T0986s2 155
+start predict T0957s2 164
+start predict T0998 166
+start predict T0949 183
+start predict T1010 210
+start predict T0997 228
+start predict T1022s1 229
+start predict T0989 246
+start predict T0953s2 249
+start predict T1021s3 295
+start predict T0975 343
+start predict T0950 353
+start predict T1005 364
+start predict T0963 372
+start predict T0960 384
+start predict T0987 405
+start predict T0978 416
+start predict T0969 487
+start predict T1000 523
+start predict T0990 552
+start predict T0981 640
+Use coneva to evaluated. It may take 1 or 2 minutes.....
+
+(｡･ω･｡)ﾉ♡ (｡･ω･｡)ﾉ♡ (｡･ω･｡)ﾉ♡ (｡･ω･｡)ﾉ♡ (｡･ω･｡)ﾉ♡ (｡･ω･｡)ﾉ♡ (｡･ω･｡)ﾉ♡ (｡･ω･｡)ﾉ♡ (｡･ω･｡)ﾉ♡ (｡･ω･｡)ﾉ♡ (｡･ω･｡)ﾉ♡ (｡･ω･｡)ﾉ♡ (｡･ω･｡)ﾉ♡ (｡･ω･｡)ﾉ♡ (｡･ω･｡)ﾉ♡ (｡･ω･｡)ﾉ♡ (｡･ω･｡)ﾉ♡ (｡･ω･｡)ﾉ♡ (｡･ω･｡)ﾉ♡ (｡･ω･｡)ﾉ♡ (｡･ω･｡)ﾉ♡ (｡･ω･｡)ﾉ♡ (｡･ω･｡)ﾉ♡ (｡･ω･｡)ﾉ♡ (｡･ω･｡)ﾉ♡ (｡･ω･｡)ﾉ♡ (｡･ω･｡)ﾉ♡ (｡･ω･｡)ﾉ♡ (｡･ω･｡)ﾉ♡ (｡･ω･｡)ﾉ♡ (｡･ω･｡)ﾉ♡ (｡･ω･｡)ﾉ♡ (｡･ω･｡)ﾉ♡ Using TensorFlow backend.
+
+PRECISION                     Top-5     Top-L/10  Top-L/5   Top-L/2   Top-L     Top-2L    
+T1019s1.rr (precision)        60.00     66.67     50.00     24.14     15.52     9.48 T1019s1-D1.pdb
+T1008.rr (precision)          100.00    100.00    80.00     56.41     45.45     26.62 T1008-D1.pdb
+T1015s1.rr (precision)        100.00    100.00    94.44     61.36     47.73     26.14 T1015s1-D1.pdb
+T0958.rr (precision)          100.00    100.00    93.33     74.36     50.65     34.42 T0958-D1.pdb
+T0986s1.rr (precision)        100.00    88.89     77.78     52.17     33.70     21.20 T0986s1-D1.pdb
+T0970.rr (precision)          100.00    100.00    94.12     46.51     34.12     28.24 T0970-D1.pdb
+T0980s1.rr (precision)        100.00    100.00    80.95     42.31     27.88     17.79 T0980s1-D1.pdb
+T0968s2.rr (precision)        20.00     33.33     30.43     25.86     16.52     12.61 T0968s2-D1.pdb
+T0992.rr (precision)          100.00    100.00    100.00    81.48     69.16     43.93 T0992-D1.pdb
+T0968s1.rr (precision)        80.00     75.00     45.83     28.81     22.03     16.53 T0968s1-D1.pdb
+T1017s2.rr (precision)        100.00    92.31     80.00     41.27     25.60     15.20 T1017s2-D1.pdb
+T1001.rr (precision)          100.00    100.00    75.00     38.57     22.30     13.67 T1001-D1.pdb
+T0986s2.rr (precision)        20.00     37.50     54.84     46.15     44.52     31.61 T0986s2-D1.pdb
+T0957s2.rr (precision)        60.00     75.00     61.29     41.03     27.74     18.71 T0957s2-D1.pdb
+T0998.rr (precision)          100.00    94.12     54.55     32.53     18.67     11.75 T0998-D1.pdb
+T0949.rr (precision)          100.00    100.00    100.00    100.00    90.70     62.02 T0949-D1.pdb
+T1010.rr (precision)          100.00    95.24     90.48     73.33     58.57     39.05 T1010-D1.pdb
+T0997.rr (precision)          100.00    100.00    94.59     84.95     65.95     46.22 T0997-D1.pdb
+T1022s1.rr (precision)        100.00    100.00    96.77     78.21     63.46     41.67 T1022s1-D1.pdb
+T0989.rr (precision)          20.00     18.18     27.27     21.43     16.96     10.71 T0989-D2.pdb
+T0989.rr (precision)          100.00    100.00    85.19     46.27     29.85     20.52 T0989-D1.pdb
+T0953s2.rr (precision)        50.00     60.00     33.33     27.27     20.45     14.77 T0953s2-D1.pdb
+T1021s3.rr (precision)        60.00     50.00     31.58     24.49     17.53     10.82 T1021s3-D2.pdb
+T1021s3.rr (precision)        100.00    94.12     90.91     87.95     72.89     47.59 T1021s3-D1.pdb
+T0975.rr (precision)          100.00    60.71     53.57     47.52     35.59     23.67 T0975-D1.pdb
+T0950.rr (precision)          100.00    100.00    100.00    87.13     59.36     36.11 T0950-D1.pdb
+T1005.rr (precision)          100.00    96.97     89.23     75.46     56.44     33.44 T1005-D1.pdb
+T0963.rr (precision)          20.00     12.50     6.25      4.88      2.44      3.66 T0963-D2.pdb
+T0960.rr (precision)          0.00      0.00      5.88      2.38      7.14      5.36 T0960-D2.pdb
+T0987.rr (precision)          100.00    100.00    100.00    92.39     72.83     45.33 T0987-D1.pdb
+T0987.rr (precision)          100.00    90.00     87.18     80.61     56.12     36.48 T0987-D2.pdb
+T0978.rr (precision)          100.00    95.12     84.34     66.67     47.22     31.60 T0978-D1.pdb
+T0969.rr (precision)          100.00    100.00    94.37     85.88     64.69     45.62 T0969-D1.pdb
+T1000.rr (precision)          100.00    100.00    97.30     91.85     80.98     58.15 T1000-D2.pdb
+T0990.rr (precision)          80.00     61.90     46.51     29.91     20.19     14.55 T0990-D3.pdb
+T0990.rr (precision)          40.00     62.50     60.00     47.37     32.89     19.74 T0990-D1.pdb
+T0981.rr (precision)          0.00      5.00      4.88      10.78     17.24     15.27 T0981-D3.pdb
+AVERAGE                       78.65     77.43     68.98     52.96     40.30     26.76    
+
+END, Have Fun!
+
+slurmstepd: error: Exceeded step memory limit at some point.

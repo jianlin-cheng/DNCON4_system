@@ -1,0 +1,1675 @@
+# jackhmmer :: iteratively search a protein sequence against a protein database
+# HMMER 3.1b2 (February 2015); http://hmmer.org/
+# Copyright (C) 2015 Howard Hughes Medical Institute.
+# Freely distributed under the GNU General Public License (GPLv3).
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# query sequence file:             T0990.fasta
+# target sequence database:        /storage/htc/bdm/zhiye/DNCON4_db_tools/databases//uniref90/uniref90
+# maximum iterations set to:       3
+# per-seq hits tabular output:     T0990.tbl
+# show alignments in output:       no
+# sequence reporting threshold:    E-value <= 10
+# sequence inclusion threshold:    E-value <= 0.001
+# number of worker threads:        8
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Query:       T0990  [L=552]
+
+Scores for complete sequences (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence               Description
+    ------- ------ -----    ------- ------ -----   ---- --  --------               -----------
++         0 1245.5   4.5          0 1245.3   4.5    1.0  1  UniRef90_P07131         
++         0 1198.8   4.4          0 1198.6   4.4    1.0  1  UniRef90_D1GA90         
++         0 1099.5   5.3          0 1099.3   5.3    1.0  1  UniRef90_A0A1J0F5H1     
++         0 1086.9   3.6          0 1086.7   3.6    1.0  1  UniRef90_A0A142DXW2     
++         0 1085.1   4.9          0 1084.9   4.9    1.0  1  UniRef90_A0A1I9KZH3     
++         0 1083.8   3.5          0 1083.6   3.5    1.0  1  UniRef90_G8H3D9         
++         0 1047.4   4.2          0 1047.3   4.2    1.0  1  UniRef90_B6SE82         
++  6.5e-185  627.4   3.0   7.8e-185  627.1   3.0    1.0  1  UniRef90_P27585         
++  1.7e-178  606.2   2.1   1.9e-178  606.0   2.1    1.0  1  UniRef90_H9ZXS6         
++  3.8e-173  588.5   0.5   4.3e-173  588.4   0.5    1.0  1  UniRef90_A0A2L0VWK2     
++  2.5e-171  582.5   2.6   2.8e-171  582.4   2.6    1.0  1  UniRef90_A0A0G3ICM2     
++  5.5e-158  538.5   1.6   6.1e-158  538.4   1.6    1.0  1  UniRef90_Q4F9J4         
++  1.9e-135  464.1   1.0   2.2e-135  463.9   1.0    1.0  1  UniRef90_A0A0K1TPZ3     
++  1.1e-103  359.3   1.2   1.2e-103  359.2   1.2    1.0  1  UniRef90_Q4F9J9         
++  2.5e-100  348.2   2.0     3e-100  347.9   2.0    1.0  1  UniRef90_A0A097I4E7     
++   6.8e-96  333.5   0.1      8e-96  333.3   0.1    1.0  1  UniRef90_U5YIF4         
++   3.1e-94  328.1   0.5    3.7e-94  327.8   0.5    1.0  1  UniRef90_U5YJ76         
++   4.2e-94  327.6   0.1    5.1e-94  327.3   0.1    1.0  1  UniRef90_U5YJ79         
++   1.8e-90  315.7   0.3    2.1e-90  315.4   0.3    1.0  1  UniRef90_U5YIG0         
++   1.9e-90  315.6   1.3    2.2e-90  315.3   1.3    1.0  1  UniRef90_U3RF10         
++   3.4e-89  311.4   1.1    4.1e-89  311.1   1.1    1.0  1  UniRef90_W5QLW3         
++   7.3e-89  310.3   0.3    8.8e-89  310.1   0.3    1.0  1  UniRef90_U5YL47         
++   8.8e-89  310.0   1.2      1e-88  309.8   1.2    1.0  1  UniRef90_A0A097I4D5     
++   1.8e-88  309.0   0.6    2.2e-88  308.7   0.6    1.0  1  UniRef90_U5YL97         
++   1.8e-88  309.0   0.5    2.2e-88  308.7   0.5    1.0  1  UniRef90_U5YIF7         
++   2.4e-88  308.6   0.3    2.8e-88  308.4   0.3    1.0  1  UniRef90_A0A0A0REB4     
++   2.3e-85  298.8   0.8    2.8e-85  298.5   0.8    1.0  1  UniRef90_U5NTQ0         
++   1.6e-81  286.1   0.5      2e-81  285.8   0.5    1.0  1  UniRef90_Q03068         
++   4.3e-75  264.9   4.6    5.2e-75  264.6   4.6    1.0  1  UniRef90_H9ZXR6         
++   5.1e-70  248.1   5.2      6e-70  247.9   5.2    1.0  1  UniRef90_H9ZXQ6         
++   2.1e-68  242.8   0.2    2.5e-68  242.5   0.2    1.0  1  UniRef90_W5QLY2         
++   1.6e-66  236.6   0.2    1.8e-66  236.4   0.2    1.0  1  UniRef90_UPI0008DC9A27  
++   3.9e-64  228.7   0.3    4.7e-64  228.4   0.3    1.0  1  UniRef90_U5XLH1         
++   1.2e-62  223.7   2.8    1.5e-62  223.4   2.8    1.0  1  UniRef90_Q9WAT6         
++   1.2e-55  200.7   0.0    1.4e-55  200.4   0.0    1.0  1  UniRef90_W5QM01         
++   1.4e-48  177.3   0.4    1.5e-48  177.2   0.4    1.0  1  UniRef90_Q19LA1         
++   1.1e-33  128.2   0.2    1.3e-33  128.0   0.2    1.0  1  UniRef90_B5L4L2         
++     3e-32  123.5   0.3    3.4e-32  123.3   0.3    1.0  1  UniRef90_S6CLS3         
++   1.8e-29  114.3   0.3    2.4e-29  113.9   0.3    1.1  1  UniRef90_Q2Q1D7         
++   5.2e-29  112.7   1.3    7.2e-29  112.3   1.3    1.1  1  UniRef90_U5NDB1         
++   7.2e-29  112.3   1.2    1.5e-12   58.4   0.5    2.0  2  UniRef90_A0A193PKL6     
++   4.5e-28  109.7   0.5      1e-27  108.4   0.5    1.5  1  UniRef90_X5DC14         
++   4.8e-28  109.6   0.2    1.3e-27  108.1   0.2    1.6  1  UniRef90_E1AA92         
++   1.4e-27  108.0   0.2    3.7e-13   60.4   0.1    2.1  2  UniRef90_M4MBJ1         
++   5.1e-26  102.9   0.2    9.5e-26  102.0   0.2    1.4  1  UniRef90_A0A162BSL3     
++   7.1e-26  102.4   0.6    1.1e-25  101.8   0.6    1.2  1  UniRef90_Q2YH52         
++   6.4e-25   99.2   0.1    1.6e-12   58.3   0.0    2.1  2  UniRef90_A0A0H4MK89     
++   3.6e-24   96.8   0.1    5.8e-24   96.1   0.1    1.3  1  UniRef90_A0A0H4M5B6     
++   4.3e-22   89.9   0.3    5.3e-22   89.6   0.3    1.1  1  UniRef90_A0A077JF23     
++   5.3e-21   86.3   5.5      9e-21   85.5   5.5    1.3  1  UniRef90_T1SRJ5         
++   2.3e-20   84.2   2.2    6.6e-20   82.7   2.2    1.6  1  UniRef90_M1GNJ9         
++   7.9e-20   82.4   0.4    1.2e-19   81.8   0.4    1.2  1  UniRef90_G8DP05         
++   2.3e-19   80.9   6.2    4.8e-19   79.8   6.2    1.4  1  UniRef90_A0A173G2W6     
++   3.7e-16   70.3   1.8    6.1e-06   36.6   0.8    2.0  2  UniRef90_Q65796         
++   1.3e-15   68.5   0.1    1.4e-15   68.4   0.1    1.0  1  UniRef90_Q9JGE7         
++   7.8e-13   59.4   0.1    9.3e-13   59.1   0.1    1.0  1  UniRef90_A2TLM7         
++   5.9e-12   56.4   1.0    1.1e-11   55.6   1.0    1.4  1  UniRef90_M1H209         
++   8.3e-11   52.7   0.3    1.1e-10   52.3   0.3    1.0  1  UniRef90_X5DRK9         
++   1.4e-09   48.6   0.0    4.7e-09   46.9   0.0    1.7  1  UniRef90_Q9DSP4         
++   1.8e-09   48.2   0.2      5e-09   46.8   0.2    1.6  1  UniRef90_A0A0H4M3V5     
++   8.5e-09   46.0   0.5      1e-08   45.7   0.5    1.1  1  UniRef90_W8PCU9         
++   7.2e-07   39.7   0.0      1e-06   39.1   0.0    1.2  1  UniRef90_A0A023PLD8     
+  ------ inclusion threshold ------
+       0.17   21.9   0.0    9.9e+03    6.2   0.0    3.3  3  UniRef90_UPI0006B0B7A2  
+       0.87   19.6   0.0        1.2   19.2   0.0    1.1  1  UniRef90_UPI00087F8832  
+          3   17.8   0.1        4.2   17.3   0.1    1.1  1  UniRef90_K6WX29         
+        7.6   16.5   0.0        7.6   16.5   0.0    1.2  1  UniRef90_A0A258WRU6     
+        7.9   16.4   0.0         12   15.8   0.0    1.2  1  UniRef90_UPI000BBF1646  
+        9.2   16.2   0.1         15   15.5   0.1    1.2  1  UniRef90_UPI000BBEA142  
+        9.4   16.2   0.0         10   16.1   0.0    1.0  1  UniRef90_A0A202DPA9     
+
+
+Domain annotation for each sequence:
+>> UniRef90_P07131  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ! 1245.3   4.5         0         0       1     552 []       1     552 []       1     552 [] 1.00
+
+>> UniRef90_D1GA90  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ! 1198.6   4.4         0         0       1     552 []       1     552 []       1     552 [] 1.00
+
+>> UniRef90_A0A1J0F5H1  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ! 1099.3   5.3         0         0       1     551 [.       1     551 [.       1     552 [] 1.00
+
+>> UniRef90_A0A142DXW2  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ! 1086.7   3.6         0         0       1     552 []       1     552 []       1     552 [] 1.00
+
+>> UniRef90_A0A1I9KZH3  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ! 1084.9   4.9         0         0       1     550 [.       1     550 [.       1     552 [] 1.00
+
+>> UniRef90_G8H3D9  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ! 1083.6   3.5         0         0       1     551 [.       1     551 [.       1     552 [] 1.00
+
+>> UniRef90_B6SE82  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ! 1047.3   4.2         0         0       1     551 [.       1     551 [.       1     552 [] 1.00
+
+>> UniRef90_P27585  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  627.1   3.0  7.3e-191  7.8e-185       1     548 [.       1     549 [.       1     551 [. 0.97
+
+>> UniRef90_H9ZXS6  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  606.0   2.1  1.8e-184  1.9e-178       1     547 [.       1     548 [.       1     551 [] 0.98
+
+>> UniRef90_A0A2L0VWK2  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  588.4   0.5    4e-179  4.3e-173      93     415 ..       1     323 []       1     323 [] 1.00
+
+>> UniRef90_A0A0G3ICM2  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  582.4   2.6  2.6e-177  2.8e-171     165     428 ..       1     264 []       1     264 [] 1.00
+
+>> UniRef90_Q4F9J4  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  538.4   1.6  5.8e-164  6.1e-158      20     268 ..       2     250 .]       1     250 [] 1.00
+
+>> UniRef90_A0A0K1TPZ3  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  463.9   1.0  2.1e-141  2.2e-135       1     529 [.       1     529 [.       1     549 [. 0.95
+
+>> UniRef90_Q4F9J9  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  359.2   1.2  1.1e-109  1.2e-103      94     261 ..       3     170 .]       1     170 [] 0.99
+
+>> UniRef90_A0A097I4E7  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  347.9   2.0  2.8e-106    3e-100      23     523 ..       4     505 ..       1     519 [. 0.95
+
+>> UniRef90_U5YIF4  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  333.3   0.1  7.6e-102     8e-96       1     523 [.       1     524 [.       1     553 [. 0.91
+
+>> UniRef90_U5YJ76  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  327.8   0.5  3.5e-100   3.7e-94       1     523 [.       1     524 [.       1     535 [. 0.92
+
+>> UniRef90_U5YJ79  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  327.3   0.1  4.8e-100   5.1e-94       1     522 [.       1     523 [.       1     533 [. 0.93
+
+>> UniRef90_U5YIG0  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  315.4   0.3     2e-96   2.1e-90       1     523 [.       1     524 [.       1     544 [. 0.91
+
+>> UniRef90_U3RF10  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  315.3   1.3   2.1e-96   2.2e-90       1     511 [.       1     512 [.       1     547 [. 0.93
+
+>> UniRef90_W5QLW3  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  311.1   1.1   3.9e-95   4.1e-89       1     518 [.       1     519 [.       1     529 [. 0.93
+
+>> UniRef90_U5YL47  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  310.1   0.3   8.3e-95   8.8e-89       1     521 [.       1     522 [.       1     536 [. 0.91
+
+>> UniRef90_A0A097I4D5  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  309.8   1.2   9.8e-95     1e-88       1     519 [.       1     518 [.       1     548 [. 0.94
+
+>> UniRef90_U5YL97  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  308.7   0.6   2.1e-94   2.2e-88       1     518 [.       1     519 [.       1     529 [. 0.93
+
+>> UniRef90_U5YIF7  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  308.7   0.5   2.1e-94   2.2e-88       1     523 [.       1     524 [.       1     536 [. 0.92
+
+>> UniRef90_A0A0A0REB4  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  308.4   0.3   2.7e-94   2.8e-88       1     522 [.       1     523 [.       1     535 [. 0.91
+
+>> UniRef90_U5NTQ0  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  298.5   0.8   2.6e-91   2.8e-85       1     521 [.       1     522 [.       1     533 [. 0.93
+
+>> UniRef90_Q03068  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  285.8   0.5   1.8e-87     2e-81       1     512 [.       1     512 [.       1     531 [. 0.94
+
+>> UniRef90_H9ZXR6  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  264.6   4.6   4.9e-81   5.2e-75       1     511 [.       1     512 [.       1     530 [. 0.93
+
+>> UniRef90_H9ZXQ6  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  247.9   5.2   5.6e-76     6e-70       1     513 [.       1     514 [.       1     544 [. 0.94
+
+>> UniRef90_W5QLY2  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  242.5   0.2   2.4e-74   2.5e-68       1     495 [.       1     495 [.       1     517 [. 0.95
+
+>> UniRef90_UPI0008DC9A27  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  236.4   0.2   1.7e-72   1.8e-66     362     548 ..       2     189 ..       1     191 [. 0.97
+
+>> UniRef90_U5XLH1  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  228.4   0.3   4.4e-70   4.7e-64       1     512 [.       1     509 [.       1     520 [. 0.91
+
+>> UniRef90_Q9WAT6  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  223.4   2.8   1.4e-68   1.5e-62       1     517 [.       1     515 [.       1     530 [. 0.90
+
+>> UniRef90_W5QM01  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  200.4   0.0   1.3e-61   1.4e-55       1     515 [.       1     513 [.       1     527 [. 0.93
+
+>> UniRef90_Q19LA1  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  177.2   0.4   1.5e-54   1.5e-48       1      82 [.       1      82 [.       1      83 [] 0.99
+
+>> UniRef90_B5L4L2  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  128.0   0.2   1.2e-39   1.3e-33     298     512 ..       5     220 ..       1     242 [. 0.93
+
+>> UniRef90_S6CLS3  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  123.3   0.3   3.2e-38   3.4e-32       1     514 [.       1     514 [.       1     546 [. 0.84
+
+>> UniRef90_Q2Q1D7  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  113.9   0.3   2.3e-35   2.4e-29       1     495 [.       1     494 [.       1     517 [. 0.85
+
+>> UniRef90_U5NDB1  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  112.3   1.3   6.8e-35   7.2e-29       1     507 [.       1     507 [.       1     520 [. 0.80
+
+>> UniRef90_A0A193PKL6  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   52.6   0.0   8.1e-17   8.6e-11       1     171 [.       1     169 [.       1     192 [. 0.83
+   2 !   58.4   0.5   1.4e-18   1.5e-12     330     517 ..     318     507 ..     310     521 .. 0.91
+
+>> UniRef90_X5DC14  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  108.4   0.5   9.9e-34     1e-27       3     490 ..       3     479 ..       1     496 [. 0.79
+
+>> UniRef90_E1AA92  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  108.1   0.2   1.3e-33   1.3e-27       1     513 [.       1     505 [.       1     522 [. 0.83
+
+>> UniRef90_M4MBJ1  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   45.8   0.0   9.4e-15   9.9e-09       1     151 [.       1     149 [.       1     183 [. 0.83
+   2 !   60.4   0.1   3.5e-19   3.7e-13     331     517 ..     319     507 ..     266     522 .. 0.86
+
+>> UniRef90_A0A162BSL3  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  102.0   0.2   8.9e-32   9.5e-26       4     491 ..       2     478 ..       1     496 [. 0.81
+
+>> UniRef90_Q2YH52  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  101.8   0.6     1e-31   1.1e-25       1     507 [.       1     507 [.       1     524 [. 0.82
+
+>> UniRef90_A0A0H4MK89  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   39.0   0.0   1.1e-12   1.1e-06       1     187 [.       1     178 [.       1     186 [. 0.82
+   2 !   58.3   0.0   1.5e-18   1.6e-12     315     507 ..     305     497 ..     286     519 .. 0.82
+
+>> UniRef90_A0A0H4M5B6  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   96.1   0.1   5.5e-30   5.8e-24       1     507 [.       1     496 [.       1     513 [. 0.79
+
+>> UniRef90_A0A077JF23  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   89.6   0.3     5e-28   5.3e-22      25     531 ..      25     535 ..       1     545 [. 0.81
+
+>> UniRef90_T1SRJ5  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   85.5   5.5   8.5e-27     9e-21      26     515 ..      32     517 ..       9     532 .. 0.81
+
+>> UniRef90_M1GNJ9  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   82.7   2.2   6.2e-26   6.6e-20       2     496 ..       5     504 ..       4     522 .. 0.76
+
+>> UniRef90_G8DP05  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   81.8   0.4   1.1e-25   1.2e-19      23     532 ..      23     536 ..       1     545 [. 0.77
+
+>> UniRef90_A0A173G2W6  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   79.8   6.2   4.6e-25   4.8e-19      26     515 ..      32     517 ..       9     529 .. 0.79
+
+>> UniRef90_Q65796  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   32.8   0.0   8.2e-11   8.7e-05       1     138 [.       1     138 [.       1     155 [. 0.75
+   2 !   36.6   0.8   5.8e-12   6.1e-06     286     492 ..     276     481 ..     244     499 .. 0.81
+
+>> UniRef90_Q9JGE7  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   68.4   0.1   1.3e-21   1.4e-15       1      87 [.       1      87 []       1      87 [] 0.98
+
+>> UniRef90_A2TLM7  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   59.1   0.1   8.8e-19   9.3e-13     237     359 ..      21     143 ..       6     149 .. 0.92
+
+>> UniRef90_M1H209  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   55.6   1.0     1e-17   1.1e-11     327     465 ..       3     153 ..       1     160 [. 0.76
+
+>> UniRef90_X5DRK9  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   52.3   0.3   9.9e-17   1.1e-10     303     512 ..      71     282 ..      65     300 .. 0.82
+
+>> UniRef90_Q9DSP4  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   46.9   0.0   4.5e-15   4.7e-09       1     508 [.       1     499 [.       1     507 [. 0.74
+
+>> UniRef90_A0A0H4M3V5  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   46.8   0.2   4.8e-15     5e-09       1     508 [.       1     502 [.       1     515 [. 0.74
+
+>> UniRef90_W8PCU9  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   45.7   0.5   9.8e-15     1e-08     303     468 ..     112     279 ..     102     281 .] 0.82
+
+>> UniRef90_A0A023PLD8  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   39.1   0.0   9.9e-13     1e-06      19     185 ..      10     167 ..       3     176 .. 0.80
+
+>> UniRef90_UPI0006B0B7A2  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?    6.2   0.0    0.0093   9.9e+03     378     446 ..     273     341 ..     261     384 .. 0.86
+   2 ?    5.9   0.0     0.011   1.2e+04     378     446 ..     539     607 ..     527     632 .. 0.89
+   3 ?    5.6   0.0     0.014   1.5e+04     378     446 ..     696     764 ..     682     779 .. 0.91
+
+>> UniRef90_UPI00087F8832  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   19.2   0.0   1.1e-06       1.2      42     101 ..      31      90 ..      17     116 .. 0.89
+
+>> UniRef90_K6WX29  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   17.3   0.1     4e-06       4.2     280     405 ..      71     205 ..      62     217 .. 0.72
+
+>> UniRef90_A0A258WRU6  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   16.5   0.0   7.1e-06       7.6     429     479 ..      80     132 ..       9     142 .. 0.82
+
+>> UniRef90_UPI000BBF1646  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   15.8   0.0   1.2e-05        12      36     113 ..     704     787 ..     690     842 .. 0.69
+
+>> UniRef90_UPI000BBEA142  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   15.5   0.1   1.4e-05        15      55     112 ..     557     615 ..     523     629 .. 0.82
+
+>> UniRef90_A0A202DPA9  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   16.1   0.0   9.4e-06        10     477     523 ..      23      70 ..      10      78 .. 0.84
+
+
+
+Internal pipeline statistics summary:
+-------------------------------------
+Query model(s):                              1  (552 nodes)
+Target sequences:                     73216780  (24772911507 residues searched)
+Passed MSV filter:                   1457355  (0.0199047); expected 1464335.6 (0.02)
+Passed bias filter:                  1225535  (0.0167384); expected 1464335.6 (0.02)
+Passed Vit filter:                     80466  (0.00109901); expected 73216.8 (0.001)
+Passed Fwd filter:                       859  (1.17323e-05); expected 732.2 (1e-05)
+Initial search space (Z):           73216780  [actual number of targets]
+Domain search space  (domZ):              69  [number of targets reported over threshold]
+# CPU time: 761.69u 17.58s 00:12:59.27 Elapsed: 00:13:05.08
+# Mc/sec: 17418.16
+
+@@ New targets included:   62
+@@ New alignment includes: 67 subseqs (was 1), including original query
+@@ Continuing to next round.
+
+@@
+@@ Round:                  2
+@@ Included in MSA:        67 subsequences (query + 66 subseqs from 62 targets)
+@@ Model size:             552 positions
+@@
+
+Scores for complete sequences (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence               Description
+    ------- ------ -----    ------- ------ -----   ---- --  --------               -----------
+   3.3e-248  836.5   4.0   3.7e-248  836.3   4.0    1.0  1  UniRef90_P07131         
+   1.6e-243  821.0   4.3   1.8e-243  820.8   4.3    1.0  1  UniRef90_A0A142DXW2     
+   9.1e-243  818.5   2.7     1e-242  818.4   2.7    1.0  1  UniRef90_D1GA90         
+   2.4e-241  813.8   7.5   2.7e-241  813.7   7.5    1.0  1  UniRef90_A0A1I9KZH3     
+   3.4e-240  810.1   8.7   3.8e-240  809.9   8.7    1.0  1  UniRef90_A0A1J0F5H1     
+   2.3e-239  807.3   3.9   2.6e-239  807.1   3.9    1.0  1  UniRef90_G8H3D9         
+   3.6e-236  796.7   7.9     4e-236  796.6   7.9    1.0  1  UniRef90_B6SE82         
+   3.8e-211  714.1   1.9   4.3e-211  714.0   1.9    1.0  1  UniRef90_H9ZXS6         
+   1.3e-208  705.8  10.3   1.5e-208  705.6  10.3    1.0  1  UniRef90_P27585         
+   3.5e-203  687.9   6.4   4.3e-203  687.6   6.4    1.0  1  UniRef90_U5YJ79         
+   3.6e-202  684.5   8.1   4.4e-202  684.2   8.1    1.0  1  UniRef90_U5YIG0         
+   1.2e-201  682.8   6.7   1.5e-201  682.5   6.7    1.0  1  UniRef90_U5YJ76         
+   4.3e-201  681.0   7.7     5e-201  680.7   7.7    1.0  1  UniRef90_U5YIF4         
+   1.8e-200  678.9   7.2   2.2e-200  678.6   7.2    1.0  1  UniRef90_U5YL47         
+   3.3e-200  678.0   8.0   4.1e-200  677.7   8.0    1.0  1  UniRef90_U5YIF7         
+   3.7e-196  664.7   7.1   4.4e-196  664.4   7.1    1.0  1  UniRef90_A0A0A0REB4     
+   4.3e-193  654.6   8.3   5.2e-193  654.3   8.3    1.0  1  UniRef90_W5QLW3         
+   2.4e-186  632.3  11.5   2.9e-186  632.0  11.5    1.0  1  UniRef90_U5NTQ0         
+   1.2e-185  630.0   9.1   1.4e-185  629.7   9.1    1.0  1  UniRef90_U5YL97         
+   2.2e-184  625.8   1.0   2.5e-184  625.6   1.0    1.0  1  UniRef90_A0A0K1TPZ3     
+   4.6e-181  614.9   6.7   5.5e-181  614.6   6.7    1.0  1  UniRef90_U3RF10         
+   5.8e-180  611.2   3.9   6.9e-180  611.0   3.9    1.0  1  UniRef90_A0A097I4D5     
+   9.3e-178  603.9  10.2   1.1e-177  603.7  10.2    1.0  1  UniRef90_A0A097I4E7     
+     2e-175  596.2   9.7   2.4e-175  596.0   9.7    1.0  1  UniRef90_H9ZXR6         
+   7.7e-172  584.4  16.2   9.3e-172  584.1  16.2    1.0  1  UniRef90_H9ZXQ6         
+   2.4e-168  572.9   7.7   2.9e-168  572.6   7.7    1.0  1  UniRef90_Q03068         
+   2.6e-168  572.8   6.4     3e-168  572.5   6.4    1.0  1  UniRef90_U5NDB1         
+   6.6e-165  561.5   2.4     8e-165  561.2   2.4    1.0  1  UniRef90_W5QLY2         
+   2.9e-164  559.4   0.1   3.5e-164  559.1   0.1    1.0  1  UniRef90_E1AA92         
+   6.6e-164  558.2  16.3     8e-164  557.9  16.3    1.0  1  UniRef90_Q9WAT6         
+   3.4e-161  549.3   0.4     4e-161  549.0   0.4    1.0  1  UniRef90_Q2Q1D7         
+   2.3e-160  546.5   9.4   2.7e-160  546.3   9.4    1.0  1  UniRef90_Q2YH52         
+   2.5e-160  546.4   6.9     3e-160  546.1   6.9    1.0  1  UniRef90_G8DP05         
+   3.1e-160  546.1   5.2   3.8e-160  545.8   5.2    1.0  1  UniRef90_A0A077JF23     
+   7.5e-155  528.3   0.6   9.2e-155  528.0   0.6    1.0  1  UniRef90_A0A193PKL6     
+     3e-154  526.3   7.3   3.9e-154  525.9   7.3    1.0  1  UniRef90_T1SRJ5         
+   5.8e-154  525.4   0.1     7e-154  525.1   0.1    1.0  1  UniRef90_U5XLH1         
+   6.1e-154  525.3   7.7   7.1e-154  525.1   7.7    1.0  1  UniRef90_A0A173G2W6     
+   3.2e-153  522.9   2.0   3.8e-153  522.7   2.0    1.0  1  UniRef90_M4MBJ1         
+   8.2e-153  521.6   2.3   9.9e-153  521.3   2.3    1.0  1  UniRef90_W5QM01         
+   1.5e-151  517.5   0.0   1.8e-151  517.2   0.0    1.0  1  UniRef90_X5DC14         
+   3.9e-150  512.8   0.2   4.7e-150  512.5   0.2    1.0  1  UniRef90_A0A0H4M5B6     
+   1.3e-148  507.7   0.0   1.6e-148  507.4   0.0    1.0  1  UniRef90_A0A162BSL3     
+   3.2e-145  496.5  16.5   4.1e-145  496.2  16.5    1.0  1  UniRef90_M1GNJ9         
+   3.3e-144  493.2   5.7   3.9e-144  492.9   5.7    1.0  1  UniRef90_S6CLS3         
+   5.1e-130  446.4   1.1   6.2e-130  446.1   1.1    1.0  1  UniRef90_Q65796         
+   7.9e-128  439.1   0.2   9.4e-128  438.9   0.2    1.0  1  UniRef90_A0A0H4MK89     
+   7.6e-121  416.1   0.1   8.4e-121  415.9   0.1    1.0  1  UniRef90_A0A2L0VWK2     
+   4.1e-119  410.4   0.0     5e-119  410.1   0.0    1.0  1  UniRef90_A0A0H4M3V5     
+   5.2e-108  373.7   1.3   5.8e-108  373.5   1.3    1.0  1  UniRef90_A0A0G3ICM2     
+    7.7e-98  340.1   0.0    9.5e-98  339.8   0.0    1.0  1  UniRef90_Q9DSP4         
+    2.7e-97  338.3   0.4      3e-97  338.2   0.4    1.0  1  UniRef90_Q4F9J4         
+    8.7e-92  320.1   0.1    1.1e-91  319.8   0.1    1.0  1  UniRef90_X5DRK9         
+    1.4e-87  306.3   0.2    1.6e-87  306.1   0.2    1.0  1  UniRef90_W8PCU9         
+    1.1e-74  263.7   0.5    1.2e-74  263.5   0.5    1.0  1  UniRef90_UPI0008DC9A27  
+    1.1e-71  253.8   5.9    1.3e-71  253.6   5.9    1.0  1  UniRef90_B5L4L2         
+    6.1e-59  211.7   0.2    6.7e-59  211.6   0.2    1.0  1  UniRef90_Q4F9J9         
+    1.2e-52  191.0   3.6    1.3e-52  190.9   3.6    1.0  1  UniRef90_M1H209         
+    1.1e-50  184.5   0.0    1.3e-50  184.3   0.0    1.0  1  UniRef90_A0A023PLD8     
+    4.2e-41  152.9   0.5    5.1e-41  152.6   0.5    1.0  1  UniRef90_A2TLM7         
+    1.2e-33  128.3   0.4    1.3e-33  128.2   0.4    1.0  1  UniRef90_Q19LA1         
+      6e-32  122.6   1.6    6.5e-32  122.5   1.6    1.0  1  UniRef90_Q9JGE7         
++   2.7e-17   74.3   0.0    2.7e-17   74.3   0.0    1.0  1  UniRef90_C4MYG6         
+  ------ inclusion threshold ------
+      0.083   23.1   0.1      0.097   22.9   0.1    1.1  1  UniRef90_U0EFM6         
+       0.64   20.2   0.0       0.91   19.7   0.0    1.2  1  UniRef90_A0A0R3PSP0     
+        1.9   18.6   0.0        2.5   18.3   0.0    1.1  1  UniRef90_A0A1T5AX58     
+        2.4   18.3   0.5        2.8   18.1   0.5    1.0  1  UniRef90_UPI000420BF39  
+        3.2   17.9   0.1        4.9   17.3   0.1    1.2  1  UniRef90_A0A2H6EWX8     
+        3.4   17.8   0.5        4.9   17.3   0.5    1.1  1  UniRef90_Q9VVH7         
+        3.7   17.7   0.1        3.8   17.7   0.1    1.0  1  UniRef90_R5KZ09         
+        3.7   17.7   0.5    1.2e+03    9.4   0.0    3.0  3  UniRef90_V4A7V7         
+          4   17.6   0.7        4.8   17.3   0.7    1.0  1  UniRef90_A0A2D7TRV0     
+        4.4   17.4   0.1      3e+03    8.1   0.0    2.1  2  UniRef90_A0A0B1SIL0     
+          5   17.3   0.8        7.8   16.6   0.8    1.2  1  UniRef90_R0GCQ4         
+        6.1   17.0   0.1          7   16.8   0.1    1.0  1  UniRef90_UPI000CD97B7C  
+        6.6   16.9   0.0        7.3   16.7   0.0    1.0  1  UniRef90_B0MSE9         
+        9.4   16.4   0.0         18   15.5   0.0    1.4  1  UniRef90_M4VGA4         
+        9.5   16.3   0.3         16   15.6   0.3    1.3  1  UniRef90_R7D6D4         
+        9.6   16.3   0.0         12   16.0   0.0    1.1  1  UniRef90_A0A2E5AQD3     
+
+
+Domain annotation for each sequence:
+>> UniRef90_P07131  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  836.3   4.0    4e-254  3.7e-248       1     552 []       1     552 []       1     552 [] 1.00
+
+>> UniRef90_A0A142DXW2  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  820.8   4.3    2e-249  1.8e-243       1     552 []       1     552 []       1     552 [] 1.00
+
+>> UniRef90_D1GA90  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  818.4   2.7  1.1e-248    1e-242       1     552 []       1     552 []       1     552 [] 1.00
+
+>> UniRef90_A0A1I9KZH3  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  813.7   7.5  2.9e-247  2.7e-241       1     551 [.       1     551 [.       1     552 [] 1.00
+
+>> UniRef90_A0A1J0F5H1  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  809.9   8.7  4.1e-246  3.8e-240       1     551 [.       1     551 [.       1     552 [] 1.00
+
+>> UniRef90_G8H3D9  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  807.1   3.9  2.8e-245  2.6e-239       1     551 [.       1     551 [.       1     552 [] 1.00
+
+>> UniRef90_B6SE82  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  796.6   7.9  4.3e-242    4e-236       1     551 [.       1     551 [.       1     552 [] 1.00
+
+>> UniRef90_H9ZXS6  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  714.0   1.9  4.6e-217  4.3e-211       1     549 [.       1     550 [.       1     551 [] 0.99
+
+>> UniRef90_P27585  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  705.6  10.3  1.6e-214  1.5e-208       1     550 [.       1     551 [.       1     552 [] 0.99
+
+>> UniRef90_U5YJ79  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  687.6   6.4  4.6e-209  4.3e-203       1     524 [.       1     525 [.       1     538 [. 0.99
+
+>> UniRef90_U5YIG0  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  684.2   8.1  4.7e-208  4.4e-202       1     526 [.       1     527 [.       1     550 [. 0.99
+
+>> UniRef90_U5YJ76  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  682.5   6.7  1.6e-207  1.5e-201       1     525 [.       1     526 [.       1     535 [. 0.99
+
+>> UniRef90_U5YIF4  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  680.7   7.7  5.4e-207    5e-201       1     526 [.       1     527 [.       1     555 [. 0.97
+
+>> UniRef90_U5YL47  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  678.6   7.2  2.4e-206  2.2e-200       1     524 [.       1     525 [.       1     539 [. 0.99
+
+>> UniRef90_U5YIF7  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  677.7   8.0  4.4e-206  4.1e-200       1     523 [.       1     524 [.       1     537 [. 0.99
+
+>> UniRef90_A0A0A0REB4  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  664.4   7.1  4.7e-202  4.4e-196       1     526 [.       1     527 [.       1     550 [. 0.98
+
+>> UniRef90_W5QLW3  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  654.3   8.3  5.6e-199  5.2e-193       1     524 [.       1     525 [.       1     538 [. 0.99
+
+>> UniRef90_U5NTQ0  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  632.0  11.5  3.1e-192  2.9e-186       1     523 [.       1     524 [.       1     543 [. 0.98
+
+>> UniRef90_U5YL97  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  629.7   9.1  1.5e-191  1.4e-185       1     523 [.       1     524 [.       1     540 [. 0.98
+
+>> UniRef90_A0A0K1TPZ3  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  625.6   1.0  2.7e-190  2.5e-184       1     550 [.       1     550 [.       1     552 [. 0.99
+
+>> UniRef90_U3RF10  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  614.6   6.7  5.9e-187  5.5e-181       1     528 [.       1     527 [.       1     548 [. 0.97
+
+>> UniRef90_A0A097I4D5  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  611.0   3.9  7.5e-186  6.9e-180       1     528 [.       1     527 [.       1     548 [. 0.97
+
+>> UniRef90_A0A097I4E7  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  603.7  10.2  1.2e-183  1.1e-177      21     534 ..       2     514 ..       1     523 [. 0.98
+
+>> UniRef90_H9ZXR6  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  596.0   9.7  2.6e-181  2.4e-175       1     523 [.       1     525 [.       1     544 [. 0.98
+
+>> UniRef90_H9ZXQ6  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  584.1  16.2    1e-177  9.3e-172       1     523 [.       1     525 [.       1     545 [. 0.97
+
+>> UniRef90_Q03068  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  572.6   7.7  3.2e-174  2.9e-168       1     531 [.       1     529 [.       1     541 [. 0.97
+
+>> UniRef90_U5NDB1  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  572.5   6.4  3.3e-174    3e-168       1     518 [.       1     518 [.       1     546 [. 0.95
+
+>> UniRef90_W5QLY2  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  561.2   2.4  8.7e-171    8e-165       1     516 [.       1     516 [.       1     527 [. 0.98
+
+>> UniRef90_E1AA92  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  559.1   0.1  3.8e-170  3.5e-164       1     530 [.       1     517 [.       1     525 [. 0.95
+
+>> UniRef90_Q9WAT6  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  557.9  16.3  8.7e-170    8e-164       1     523 [.       1     521 [.       1     531 [. 0.97
+
+>> UniRef90_Q2Q1D7  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  549.0   0.4  4.3e-167    4e-161       1     518 [.       1     517 [.       1     537 [. 0.96
+
+>> UniRef90_Q2YH52  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  546.3   9.4  2.9e-166  2.7e-160       1     519 [.       1     519 [.       1     543 [. 0.95
+
+>> UniRef90_G8DP05  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  546.1   6.9  3.2e-166    3e-160       1     532 [.       1     536 [.       1     546 [. 0.96
+
+>> UniRef90_A0A077JF23  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  545.8   5.2  4.1e-166  3.8e-160       1     532 [.       1     536 [.       1     544 [. 0.96
+
+>> UniRef90_A0A193PKL6  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  528.0   0.6  9.9e-161  9.2e-155       1     529 [.       1     514 [.       1     520 [. 0.95
+
+>> UniRef90_T1SRJ5  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  525.9   7.3  4.3e-160  3.9e-154      10     518 ..      16     520 ..      10     549 .. 0.94
+
+>> UniRef90_U5XLH1  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  525.1   0.1  7.5e-160    7e-154       1     521 [.       1     518 [.       1     528 [. 0.97
+
+>> UniRef90_A0A173G2W6  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  525.1   7.7  7.6e-160  7.1e-154       9     532 ..      15     529 ..       6     551 .. 0.93
+
+>> UniRef90_M4MBJ1  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  522.7   2.0  4.1e-159  3.8e-153       1     522 [.       1     512 [.       1     521 [. 0.96
+
+>> UniRef90_W5QM01  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  521.3   2.3  1.1e-158  9.9e-153       1     522 [.       1     520 [.       1     533 [. 0.98
+
+>> UniRef90_X5DC14  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  517.2   0.0  1.9e-157  1.8e-151       3     517 ..       3     506 ..       1     518 [. 0.94
+
+>> UniRef90_A0A0H4M5B6  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  512.5   0.2    5e-156  4.7e-150       1     519 [.       1     508 [.       1     519 [. 0.96
+
+>> UniRef90_A0A162BSL3  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  507.4   0.0  1.8e-154  1.6e-148       4     515 ..       2     502 ..       1     514 [. 0.93
+
+>> UniRef90_M1GNJ9  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  496.2  16.5  4.4e-151  4.1e-145       2     507 ..       5     515 ..       4     530 .. 0.93
+
+>> UniRef90_S6CLS3  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  492.9   5.7  4.3e-150  3.9e-144       1     548 [.       1     542 [.       1     547 [. 0.96
+
+>> UniRef90_Q65796  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  446.1   1.1  6.7e-136  6.2e-130       1     506 [.       1     495 [.       1     514 [. 0.92
+
+>> UniRef90_A0A0H4MK89  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  438.9   0.2    1e-133  9.4e-128       1     532 [.       1     517 [.       1     519 [. 0.93
+
+>> UniRef90_A0A2L0VWK2  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  415.9   0.1  9.1e-127  8.4e-121      94     415 ..       2     323 .]       1     323 [] 0.99
+
+>> UniRef90_A0A0H4M3V5  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  410.1   0.0  5.4e-125    5e-119       1     515 [.       1     509 [.       1     521 [. 0.91
+
+>> UniRef90_A0A0G3ICM2  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  373.5   1.3  6.3e-114  5.8e-108     165     428 ..       1     264 []       1     264 [] 1.00
+
+>> UniRef90_Q9DSP4  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  339.8   0.0    1e-103   9.5e-98       1     515 [.       1     506 [.       1     511 [. 0.93
+
+>> UniRef90_Q4F9J4  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  338.2   0.4  3.3e-103     3e-97      21     267 ..       3     249 ..       1     250 [] 0.99
+
+>> UniRef90_X5DRK9  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  319.8   0.1   1.2e-97   1.1e-91     228     521 ..       2     291 ..       2     301 .. 0.94
+
+>> UniRef90_W8PCU9  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  306.1   0.2   1.7e-93   1.6e-87     189     470 ..       4     281 .]       1     281 [] 0.95
+
+>> UniRef90_UPI0008DC9A27  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  263.5   0.5   1.3e-80   1.2e-74     361     550 ..       1     191 [.       1     192 [] 0.99
+
+>> UniRef90_B5L4L2  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  253.6   5.9   1.3e-77   1.3e-71     295     523 ..       2     229 ..       1     249 [. 0.93
+
+>> UniRef90_Q4F9J9  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  211.6   0.2   7.2e-65   6.7e-59      94     261 ..       3     170 .]       1     170 [] 0.99
+
+>> UniRef90_M1H209  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  190.9   3.6   1.4e-58   1.3e-52     325     471 ..       1     159 [.       1     161 [] 0.91
+
+>> UniRef90_A0A023PLD8  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  184.3   0.0   1.4e-56   1.3e-50      12     279 ..       3     263 ..       1     271 [. 0.93
+
+>> UniRef90_A2TLM7  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  152.6   0.5   5.5e-47   5.1e-41     222     359 ..       6     143 ..       4     150 .. 0.97
+
+>> UniRef90_Q19LA1  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  128.2   0.4   1.4e-39   1.3e-33       1      82 [.       1      82 [.       1      83 [] 1.00
+
+>> UniRef90_Q9JGE7  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  122.5   1.6   7.1e-38   6.5e-32       1      87 [.       1      87 []       1      87 [] 0.99
+
+>> UniRef90_C4MYG6  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   74.3   0.0   2.9e-23   2.7e-17     194     280 ..       7      93 ..       1      94 [] 0.93
+
+>> UniRef90_U0EFM6  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   22.9   0.1   1.1e-07     0.097     381     431 ..      22      71 ..       4      79 .. 0.85
+
+>> UniRef90_A0A0R3PSP0  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   19.7   0.0   9.8e-07      0.91     119     166 ..      47      94 ..      33     137 .. 0.79
+
+>> UniRef90_A0A1T5AX58  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   18.3   0.0   2.7e-06       2.5     434     497 ..      50     113 ..      44     169 .. 0.75
+
+>> UniRef90_UPI000420BF39  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   18.1   0.5     3e-06       2.8      61     246 ..       5     187 ..       1     195 [. 0.79
+
+>> UniRef90_A0A2H6EWX8  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   17.3   0.1   5.3e-06       4.9      17      74 ..      79     137 ..      75     144 .. 0.83
+
+>> UniRef90_Q9VVH7  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   17.3   0.5   5.3e-06       4.9      46     166 ..      50     170 ..      46     181 .. 0.86
+
+>> UniRef90_R5KZ09  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   17.7   0.1   4.1e-06       3.8     233     301 ..      18      86 ..       4     101 .. 0.83
+
+>> UniRef90_V4A7V7  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?    1.3   0.0      0.38   3.5e+05     340     390 ..      29      79 ..       7      88 .. 0.73
+   2 ?    3.8   0.0     0.066   6.1e+04     339     391 ..     105     157 ..      82     170 .. 0.79
+   3 ?    9.4   0.0    0.0013   1.2e+03     340     391 ..     172     223 ..     163     227 .. 0.93
+
+>> UniRef90_A0A2D7TRV0  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   17.3   0.7   5.2e-06       4.8     199     317 ..      69     192 ..      42     201 .. 0.68
+
+>> UniRef90_A0A0B1SIL0  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?    7.7   0.0    0.0044     4e+03     194     224 ..      14      43 ..       5      68 .. 0.82
+   2 ?    8.1   0.0    0.0033     3e+03     193     222 ..     111     140 ..      82     160 .. 0.82
+
+>> UniRef90_R0GCQ4  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   16.6   0.8   8.5e-06       7.8      53     108 ..     196     250 ..     191     270 .. 0.75
+
+>> UniRef90_UPI000CD97B7C  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   16.8   0.1   7.6e-06         7      45     101 ..      20      78 ..      18      91 .. 0.78
+
+>> UniRef90_B0MSE9  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   16.7   0.0   7.9e-06       7.3     433     486 ..       8      61 ..       3      74 .. 0.90
+
+>> UniRef90_M4VGA4  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   15.5   0.0   1.9e-05        18     242     321 ..     448     527 ..     430     541 .. 0.87
+
+>> UniRef90_R7D6D4  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   15.6   0.3   1.7e-05        16      52     108 ..     224     281 ..     213     292 .. 0.75
+
+>> UniRef90_A0A2E5AQD3  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   16.0   0.0   1.3e-05        12     104     216 ..     177     295 ..     158     297 .. 0.71
+
+
+
+Internal pipeline statistics summary:
+-------------------------------------
+Query model(s):                              1  (552 nodes)
+Target sequences:                     73216780  (24772911507 residues searched)
+Passed MSV filter:                   1828857  (0.0249787); expected 1464335.6 (0.02)
+Passed bias filter:                  1225648  (0.01674); expected 1464335.6 (0.02)
+Passed Vit filter:                     99765  (0.0013626); expected 73216.8 (0.001)
+Passed Fwd filter:                      1095  (1.49556e-05); expected 732.2 (1e-05)
+Initial search space (Z):           73216780  [actual number of targets]
+Domain search space  (domZ):              79  [number of targets reported over threshold]
+# CPU time: 774.22u 16.19s 00:13:10.41 Elapsed: 00:13:14.68
+# Mc/sec: 17207.74
+
+@@ New targets included:   1
+@@ New alignment includes: 64 subseqs (was 67), including original query
+@@ Continuing to next round.
+
+@@
+@@ Round:                  3
+@@ Included in MSA:        64 subsequences (query + 63 subseqs from 63 targets)
+@@ Model size:             552 positions
+@@
+
+Scores for complete sequences (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence               Description
+    ------- ------ -----    ------- ------ -----   ---- --  --------               -----------
+   3.7e-238  803.1   4.1   4.1e-238  803.0   4.1    1.0  1  UniRef90_P07131         
+   1.1e-235  795.0   4.5   1.2e-235  794.8   4.5    1.0  1  UniRef90_A0A142DXW2     
+   3.2e-234  790.1   2.7   3.6e-234  790.0   2.7    1.0  1  UniRef90_D1GA90         
+   1.8e-233  787.7   7.6     2e-233  787.5   7.6    1.0  1  UniRef90_A0A1I9KZH3     
+   1.7e-231  781.2   8.9   1.9e-231  781.0   8.9    1.0  1  UniRef90_A0A1J0F5H1     
+   1.7e-231  781.1   4.1   1.9e-231  781.0   4.1    1.0  1  UniRef90_G8H3D9         
+     1e-228  771.9   8.0   1.2e-228  771.8   8.0    1.0  1  UniRef90_B6SE82         
+   1.8e-209  708.5   7.8   2.1e-209  708.2   7.8    1.0  1  UniRef90_U5YJ79         
+     2e-209  708.3   8.0   2.3e-209  708.1   8.0    1.0  1  UniRef90_U5YIG0         
+     3e-208  704.4   7.5   3.6e-208  704.1   7.5    1.0  1  UniRef90_U5YIF4         
+     1e-207  702.6   1.7   1.2e-207  702.5   1.7    1.0  1  UniRef90_H9ZXS6         
+   3.5e-207  700.9   8.2   4.2e-207  700.6   8.2    1.0  1  UniRef90_U5YJ76         
+     4e-207  700.7   8.2   4.8e-207  700.4   8.2    1.0  1  UniRef90_U5YL47         
+   6.4e-207  700.0   8.2   7.7e-207  699.8   8.2    1.0  1  UniRef90_U5YIF7         
+   3.5e-206  697.6  10.0   3.9e-206  697.4  10.0    1.0  1  UniRef90_P27585         
+   2.4e-202  685.0   7.4   2.7e-202  684.8   7.4    1.0  1  UniRef90_A0A0A0REB4     
+   2.5e-198  671.6   7.5   3.1e-198  671.4   7.5    1.0  1  UniRef90_W5QLW3         
+   2.3e-193  655.3   1.1   2.6e-193  655.1   1.1    1.0  1  UniRef90_A0A0K1TPZ3     
+   1.4e-190  646.1  12.5   1.7e-190  645.8  12.5    1.0  1  UniRef90_U5NTQ0         
+   1.7e-190  645.8   9.9     2e-190  645.5   9.9    1.0  1  UniRef90_U5YL97         
+     2e-185  629.0   6.6   2.5e-185  628.8   6.6    1.0  1  UniRef90_U3RF10         
+   3.9e-185  628.1   3.8   4.7e-185  627.9   3.8    1.0  1  UniRef90_A0A097I4D5     
+   3.9e-182  618.2  10.1   4.7e-182  617.9  10.1    1.0  1  UniRef90_A0A097I4E7     
+   2.3e-180  612.4   9.4   2.8e-180  612.1   9.4    1.0  1  UniRef90_H9ZXR6         
+   7.6e-178  604.1  15.6   9.2e-178  603.8  15.6    1.0  1  UniRef90_H9ZXQ6         
+     6e-175  594.5   7.5   7.1e-175  594.2   7.5    1.0  1  UniRef90_Q03068         
+   1.2e-174  593.5   2.9   1.4e-174  593.3   2.9    1.0  1  UniRef90_W5QLY2         
+   2.5e-171  582.6   6.4   2.9e-171  582.3   6.4    1.0  1  UniRef90_U5NDB1         
+   1.7e-170  579.8   0.1     2e-170  579.5   0.1    1.0  1  UniRef90_E1AA92         
+   1.5e-167  570.1   9.5   1.8e-167  569.8   9.5    1.0  1  UniRef90_Q2YH52         
+   1.9e-167  569.7  15.3   2.4e-167  569.4  15.3    1.0  1  UniRef90_Q9WAT6         
+   4.4e-167  568.5   0.2   5.3e-167  568.3   0.2    1.0  1  UniRef90_Q2Q1D7         
+   3.8e-166  565.5   0.8   4.6e-166  565.2   0.8    1.0  1  UniRef90_A0A193PKL6     
+   5.2e-166  565.0   2.3   6.3e-166  564.7   2.3    1.0  1  UniRef90_M4MBJ1         
+   5.7e-161  548.3   4.2   7.1e-161  548.0   4.2    1.0  1  UniRef90_A0A077JF23     
+   6.8e-161  548.1   1.4   8.2e-161  547.8   1.4    1.0  1  UniRef90_W5QM01         
+   3.1e-160  545.9   6.7   3.7e-160  545.7   6.7    1.0  1  UniRef90_G8DP05         
+   3.9e-159  542.3   7.6   5.1e-159  541.9   7.6    1.0  1  UniRef90_T1SRJ5         
+     5e-159  541.9   8.1   5.9e-159  541.7   8.1    1.0  1  UniRef90_A0A173G2W6     
+   5.9e-159  541.7   0.1   7.1e-159  541.4   0.1    1.0  1  UniRef90_U5XLH1         
+   7.9e-158  538.0  17.0     1e-157  537.6  17.0    1.0  1  UniRef90_M1GNJ9         
+   3.2e-157  536.0   0.0   3.9e-157  535.7   0.0    1.0  1  UniRef90_X5DC14         
+   2.3e-154  526.5   5.2   2.7e-154  526.3   5.2    1.0  1  UniRef90_S6CLS3         
+   5.5e-154  525.3   0.3   6.8e-154  525.0   0.3    1.0  1  UniRef90_A0A0H4M5B6     
+     6e-154  525.2   0.0   7.3e-154  524.9   0.0    1.0  1  UniRef90_A0A162BSL3     
+   9.7e-149  508.0   0.2   1.1e-148  507.7   0.2    1.0  1  UniRef90_A0A0H4MK89     
+     2e-143  490.4   1.2   2.4e-143  490.2   1.2    1.0  1  UniRef90_Q65796         
+   1.1e-128  441.8   0.0   1.3e-128  441.5   0.0    1.0  1  UniRef90_A0A0H4M3V5     
+   2.6e-116  400.9   0.1   2.9e-116  400.8   0.1    1.0  1  UniRef90_A0A2L0VWK2     
+   6.2e-108  373.3   0.0   7.5e-108  373.0   0.0    1.0  1  UniRef90_Q9DSP4         
+   1.7e-104  361.9   1.6   1.9e-104  361.8   1.6    1.0  1  UniRef90_A0A0G3ICM2     
+    2.3e-99  345.0   0.1    3.1e-99  344.6   0.1    1.0  1  UniRef90_X5DRK9         
+    5.7e-99  343.7   0.2    6.4e-99  343.5   0.2    1.0  1  UniRef90_W8PCU9         
+    2.3e-93  325.2   0.5    2.5e-93  325.0   0.5    1.0  1  UniRef90_Q4F9J4         
+      9e-77  270.4   5.2      1e-76  270.2   5.2    1.0  1  UniRef90_B5L4L2         
+    4.7e-71  251.5   0.4    5.2e-71  251.4   0.4    1.0  1  UniRef90_UPI0008DC9A27  
+    4.3e-69  245.1   0.0    5.2e-69  244.8   0.0    1.0  1  UniRef90_A0A023PLD8     
+    8.5e-57  204.5   3.3    9.4e-57  204.3   3.3    1.0  1  UniRef90_M1H209         
+    9.4e-56  201.0   0.3      1e-55  200.9   0.3    1.0  1  UniRef90_Q4F9J9         
+      7e-44  161.9   0.7    8.6e-44  161.6   0.7    1.0  1  UniRef90_A2TLM7         
+    2.2e-33  127.2   0.4    2.4e-33  127.1   0.4    1.0  1  UniRef90_Q19LA1         
+      1e-31  121.7   1.9    1.1e-31  121.6   1.9    1.0  1  UniRef90_Q9JGE7         
+      2e-20   84.5   0.0    2.1e-20   84.4   0.0    1.0  1  UniRef90_C4MYG6         
+  ------ inclusion threshold ------
+      0.083   23.0   0.1      0.091   22.8   0.1    1.1  1  UniRef90_U0EFM6         
+       0.62   20.1   0.5    5.2e+02   10.4   0.0    3.0  3  UniRef90_V4A7V7         
+       0.63   20.1   0.0        0.9   19.6   0.0    1.2  1  UniRef90_A0A0R3PSP0     
+       0.86   19.6   0.7          1   19.4   0.7    1.0  1  UniRef90_UPI000420BF39  
+        1.9   18.5   0.0        2.4   18.2   0.0    1.1  1  UniRef90_A0A1T5AX58     
+        2.1   18.4   0.4        2.5   18.1   0.4    1.0  1  UniRef90_A0A1D7XNB1     
+          3   17.8   1.2        3.1   17.8   1.2    1.0  1  UniRef90_U2K4V6         
+        3.1   17.8   0.1        4.6   17.2   0.1    1.2  1  UniRef90_A0A2H6EWX8     
+        3.9   17.5   0.0        5.5   17.0   0.0    1.1  1  UniRef90_A0A1H8NZU0     
+        4.3   17.3   0.1        6.3   16.8   0.1    1.2  1  UniRef90_UPI00054F380B  
+        4.5   17.3   1.4        5.5   17.0   1.4    1.1  1  UniRef90_H3NDX4         
+        5.7   16.9   0.2        6.9   16.6   0.2    1.0  1  UniRef90_A0A0U2USU8     
+        6.5   16.7   0.1        7.4   16.5   0.1    1.1  1  UniRef90_A0A0V8JH17     
+        6.6   16.7   0.0        8.6   16.3   0.0    1.1  1  UniRef90_A0A2N0DXD0     
+        6.7   16.7   0.1        7.9   16.4   0.1    1.0  1  UniRef90_UPI000CD97B7C  
+        6.8   16.6   0.6        9.4   16.2   0.6    1.1  1  UniRef90_Q9VVH7         
+        6.9   16.6   0.0        7.4   16.5   0.0    1.0  1  UniRef90_W7KPF8         
+          7   16.6   0.1         42   14.0   0.0    1.9  2  UniRef90_R9JXF2         
+          7   16.6   0.1        8.1   16.4   0.1    1.1  1  UniRef90_A0A1C4FNS3     
+        8.6   16.3   0.0         18   15.2   0.0    1.5  1  UniRef90_A0A176WRU1     
+        8.9   16.3   0.0         12   15.9   0.0    1.1  1  UniRef90_F5S6Q6         
+        9.3   16.2   0.3         15   15.5   0.3    1.3  1  UniRef90_R7D6D4         
+        9.4   16.2   0.0    5.9e+03    7.0   0.0    2.2  2  UniRef90_A0A2D4C506     
+        9.8   16.1   0.0         14   15.6   0.0    1.2  1  UniRef90_A0A0N8PVU8     
+
+
+Domain annotation for each sequence:
+>> UniRef90_P07131  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  803.0   4.1  4.9e-244  4.1e-238       1     552 []       1     552 []       1     552 [] 1.00
+
+>> UniRef90_A0A142DXW2  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  794.8   4.5  1.5e-241  1.2e-235       1     552 []       1     552 []       1     552 [] 1.00
+
+>> UniRef90_D1GA90  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  790.0   2.7  4.3e-240  3.6e-234       1     552 []       1     552 []       1     552 [] 1.00
+
+>> UniRef90_A0A1I9KZH3  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  787.5   7.6  2.4e-239    2e-233       1     551 [.       1     551 [.       1     552 [] 1.00
+
+>> UniRef90_A0A1J0F5H1  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  781.0   8.9  2.2e-237  1.9e-231       1     551 [.       1     551 [.       1     552 [] 1.00
+
+>> UniRef90_G8H3D9  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  781.0   4.1  2.3e-237  1.9e-231       1     551 [.       1     551 [.       1     552 [] 1.00
+
+>> UniRef90_B6SE82  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  771.8   8.0  1.4e-234  1.2e-228       1     551 [.       1     551 [.       1     552 [] 1.00
+
+>> UniRef90_U5YJ79  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  708.2   7.8  2.5e-215  2.1e-209       1     528 [.       1     529 [.       1     551 [. 0.99
+
+>> UniRef90_U5YIG0  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  708.1   8.0  2.7e-215  2.3e-209       1     530 [.       1     531 [.       1     553 [. 0.98
+
+>> UniRef90_U5YIF4  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  704.1   7.5  4.3e-214  3.6e-208       1     548 [.       1     552 [.       1     555 [. 0.97
+
+>> UniRef90_H9ZXS6  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  702.5   1.7  1.4e-213  1.2e-207       1     550 [.       1     551 []       1     551 [] 1.00
+
+>> UniRef90_U5YJ76  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  700.6   8.2    5e-213  4.2e-207       1     529 [.       1     530 [.       1     551 [. 0.99
+
+>> UniRef90_U5YL47  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  700.4   8.2  5.7e-213  4.8e-207       1     529 [.       1     530 [.       1     551 [. 0.99
+
+>> UniRef90_U5YIF7  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  699.8   8.2  9.1e-213  7.7e-207       1     529 [.       1     530 [.       1     549 [. 0.99
+
+>> UniRef90_P27585  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  697.4  10.0  4.6e-212  3.9e-206       1     550 [.       1     551 [.       1     552 [] 0.99
+
+>> UniRef90_A0A0A0REB4  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  684.8   7.4  3.2e-208  2.7e-202       1     532 [.       1     533 [.       1     553 [. 0.98
+
+>> UniRef90_W5QLW3  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  671.4   7.5  3.7e-204  3.1e-198       1     528 [.       1     529 [.       1     545 [. 0.99
+
+>> UniRef90_A0A0K1TPZ3  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  655.1   1.1  3.1e-199  2.6e-193       1     551 [.       1     551 [.       1     552 [. 1.00
+
+>> UniRef90_U5NTQ0  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  645.8  12.5    2e-196  1.7e-190       1     529 [.       1     530 [.       1     551 [. 0.99
+
+>> UniRef90_U5YL97  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  645.5   9.9  2.4e-196    2e-190       1     528 [.       1     529 [.       1     551 [. 0.98
+
+>> UniRef90_U3RF10  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  628.8   6.6  2.9e-191  2.5e-185       1     538 [.       1     536 [.       1     549 [. 0.98
+
+>> UniRef90_A0A097I4D5  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  627.9   3.8  5.6e-191  4.7e-185       1     535 [.       1     534 [.       1     549 [. 0.98
+
+>> UniRef90_A0A097I4E7  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  617.9  10.1  5.6e-188  4.7e-182      20     537 ..       1     517 [.       1     526 [. 0.99
+
+>> UniRef90_H9ZXR6  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  612.1   9.4  3.3e-186  2.8e-180       1     523 [.       1     525 [.       1     541 [. 0.98
+
+>> UniRef90_H9ZXQ6  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  603.8  15.6  1.1e-183  9.2e-178       1     529 [.       1     531 [.       1     547 [. 0.98
+
+>> UniRef90_Q03068  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  594.2   7.5  8.4e-181  7.1e-175       1     540 [.       1     534 [.       1     546 [. 0.97
+
+>> UniRef90_W5QLY2  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  593.3   2.9  1.7e-180  1.4e-174       1     519 [.       1     519 [.       1     538 [. 0.99
+
+>> UniRef90_U5NDB1  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  582.3   6.4  3.4e-177  2.9e-171       1     519 [.       1     519 [.       1     546 [. 0.98
+
+>> UniRef90_E1AA92  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  579.5   0.1  2.4e-176    2e-170       1     528 [.       1     515 [.       1     525 [. 0.97
+
+>> UniRef90_Q2YH52  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  569.8   9.5  2.2e-173  1.8e-167       1     522 [.       1     522 [.       1     543 [. 0.96
+
+>> UniRef90_Q9WAT6  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  569.4  15.3  2.8e-173  2.4e-167       1     525 [.       1     523 [.       1     533 [. 0.98
+
+>> UniRef90_Q2Q1D7  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  568.3   0.2  6.3e-173  5.3e-167       1     520 [.       1     519 [.       1     541 [. 0.97
+
+>> UniRef90_A0A193PKL6  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  565.2   0.8  5.5e-172  4.6e-166       1     522 [.       1     512 [.       1     520 [. 0.97
+
+>> UniRef90_M4MBJ1  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  564.7   2.3  7.5e-172  6.3e-166       1     522 [.       1     512 [.       1     521 [. 0.98
+
+>> UniRef90_A0A077JF23  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  548.0   4.2  8.4e-167  7.1e-161       1     532 [.       1     536 [.       1     545 [. 0.97
+
+>> UniRef90_W5QM01  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  547.8   1.4  9.7e-167  8.2e-161       1     522 [.       1     522 [.       1     536 [. 0.98
+
+>> UniRef90_G8DP05  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  545.7   6.7  4.4e-166  3.7e-160       1     532 [.       1     536 [.       1     547 [. 0.98
+
+>> UniRef90_T1SRJ5  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  541.9   7.6  6.1e-165  5.1e-159       9     536 ..      15     533 ..       9     549 .. 0.95
+
+>> UniRef90_A0A173G2W6  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  541.7   8.1    7e-165  5.9e-159       9     549 ..      15     548 ..       6     551 .. 0.95
+
+>> UniRef90_U5XLH1  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  541.4   0.1  8.5e-165  7.1e-159       1     523 [.       1     520 [.       1     528 [. 0.98
+
+>> UniRef90_M1GNJ9  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  537.6  17.0  1.2e-163    1e-157       2     517 ..       5     525 ..       4     537 .. 0.96
+
+>> UniRef90_X5DC14  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  535.7   0.0  4.7e-163  3.9e-157       3     521 ..       3     510 ..       1     519 [. 0.95
+
+>> UniRef90_S6CLS3  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  526.3   5.2  3.2e-160  2.7e-154       1     550 [.       1     544 [.       1     546 [. 0.98
+
+>> UniRef90_A0A0H4M5B6  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  525.0   0.3    8e-160  6.8e-154       1     520 [.       1     509 [.       1     520 [. 0.96
+
+>> UniRef90_A0A162BSL3  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  524.9   0.0  8.6e-160  7.3e-154       3     519 ..       1     506 [.       1     515 [. 0.96
+
+>> UniRef90_A0A0H4MK89  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  507.7   0.2  1.4e-154  1.1e-148       1     531 [.       1     516 [.       1     519 [. 0.97
+
+>> UniRef90_Q65796  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  490.2   1.2  2.9e-149  2.4e-143       1     507 [.       1     496 [.       1     515 [. 0.96
+
+>> UniRef90_A0A0H4M3V5  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  441.5   0.0  1.5e-134  1.3e-128       1     516 [.       1     510 [.       1     522 [. 0.95
+
+>> UniRef90_A0A2L0VWK2  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  400.8   0.1  3.4e-122  2.9e-116      94     415 ..       2     323 .]       1     323 [] 0.99
+
+>> UniRef90_Q9DSP4  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  373.0   0.0  8.9e-114  7.5e-108       1     517 [.       1     508 [.       1     514 [. 0.96
+
+>> UniRef90_A0A0G3ICM2  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  361.8   1.6  2.2e-110  1.9e-104     165     428 ..       1     264 []       1     264 [] 1.00
+
+>> UniRef90_X5DRK9  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  344.6   0.1  3.6e-105   3.1e-99     228     522 ..       2     292 ..       2     301 .. 0.97
+
+>> UniRef90_W8PCU9  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  343.5   0.2  7.5e-105   6.4e-99     186     470 ..       1     281 []       1     281 [] 0.99
+
+>> UniRef90_Q4F9J4  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  325.0   0.5     3e-99   2.5e-93      21     267 ..       3     249 ..       1     250 [] 0.99
+
+>> UniRef90_B5L4L2  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  270.2   5.2   1.2e-82     1e-76     295     540 ..       2     242 ..       1     254 [. 0.94
+
+>> UniRef90_UPI0008DC9A27  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  251.4   0.4   6.2e-77   5.2e-71     361     550 ..       1     191 [.       1     192 [] 0.99
+
+>> UniRef90_A0A023PLD8  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  244.8   0.0   6.2e-75   5.2e-69      12     283 ..       3     267 ..       1     271 [. 0.96
+
+>> UniRef90_M1H209  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  204.3   3.3   1.1e-62   9.4e-57     325     471 ..       1     159 [.       1     161 [] 0.93
+
+>> UniRef90_Q4F9J9  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  200.9   0.3   1.2e-61     1e-55      94     260 ..       3     169 ..       1     170 [] 0.99
+
+>> UniRef90_A2TLM7  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  161.6   0.7     1e-49   8.6e-44     222     359 ..       6     143 ..       4     150 .. 0.97
+
+>> UniRef90_Q19LA1  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  127.1   0.4   2.8e-39   2.4e-33       1      82 [.       1      82 [.       1      83 [] 1.00
+
+>> UniRef90_Q9JGE7  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  121.6   1.9   1.3e-37   1.1e-31       1      87 [.       1      87 []       1      87 [] 0.99
+
+>> UniRef90_C4MYG6  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   84.4   0.0   2.5e-26   2.1e-20     190     280 ..       3      93 ..       1      94 [] 0.96
+
+>> UniRef90_U0EFM6  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   22.8   0.1   1.1e-07     0.091     383     432 ..      24      72 ..       3      79 .. 0.85
+
+>> UniRef90_V4A7V7  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?    1.5   0.0      0.33   2.7e+05     340     391 ..      29      80 ..       7      90 .. 0.76
+   2 ?    4.8   0.0     0.031   2.6e+04     339     392 ..     105     158 ..      85     170 .. 0.82
+   3 ?   10.4   0.0   0.00062   5.2e+02     340     392 ..     172     224 ..     164     227 .. 0.94
+
+>> UniRef90_A0A0R3PSP0  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   19.6   0.0   1.1e-06       0.9     116     165 ..      44      93 ..      32     137 .. 0.84
+
+>> UniRef90_UPI000420BF39  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   19.4   0.7   1.2e-06         1      60     245 ..       4     186 ..       1     191 [. 0.84
+
+>> UniRef90_A0A1T5AX58  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   18.2   0.0   2.8e-06       2.4     434     547 ..      50     165 ..      44     170 .. 0.72
+
+>> UniRef90_A0A1D7XNB1  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   18.1   0.4   2.9e-06       2.5     113     177 ..      80     145 ..      57     152 .. 0.85
+
+>> UniRef90_U2K4V6  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   17.8   1.2   3.7e-06       3.1     272     342 ..      14      85 ..       6      88 .] 0.81
+
+>> UniRef90_A0A2H6EWX8  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   17.2   0.1   5.4e-06       4.6      17      74 ..      79     137 ..      74     146 .. 0.84
+
+>> UniRef90_A0A1H8NZU0  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   17.0   0.0   6.5e-06       5.5     134     208 ..     150     222 ..     137     230 .. 0.92
+
+>> UniRef90_UPI00054F380B  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   16.8   0.1   7.5e-06       6.3     414     471 ..       3      60 ..       1      66 [. 0.93
+
+>> UniRef90_H3NDX4  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   17.0   1.4   6.5e-06       5.5     180     313 ..      30     166 ..      12     181 .. 0.87
+
+>> UniRef90_A0A0U2USU8  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   16.6   0.2   8.2e-06       6.9     183     251 ..       8      78 ..       3      86 .. 0.87
+
+>> UniRef90_A0A0V8JH17  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   16.5   0.1   8.8e-06       7.4     434     487 ..      45      99 ..      36     108 .. 0.88
+
+>> UniRef90_A0A2N0DXD0  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   16.3   0.0     1e-05       8.6     219     295 ..     121     199 ..     114     210 .. 0.86
+
+>> UniRef90_UPI000CD97B7C  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   16.4   0.1   9.4e-06       7.9      45     102 ..      20      79 ..      18      91 .. 0.81
+
+>> UniRef90_Q9VVH7  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   16.2   0.6   1.1e-05       9.4      46     166 ..      50     170 ..      45     183 .. 0.86
+
+>> UniRef90_W7KPF8  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   16.5   0.0   8.7e-06       7.4     141     204 ..      17      82 ..      14      93 .] 0.90
+
+>> UniRef90_R9JXF2  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?    0.3   0.0      0.74   6.2e+05     423     450 ..       3      30 ..       1      60 [. 0.90
+   2 ?   14.0   0.0     5e-05        42      34     114 ..      89     168 ..      86     173 .. 0.92
+
+>> UniRef90_A0A1C4FNS3  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   16.4   0.1   9.6e-06       8.1     434     487 ..      49     103 ..      40     112 .. 0.88
+
+>> UniRef90_A0A176WRU1  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   15.2   0.0   2.2e-05        18     249     320 ..     366     436 ..     349     442 .. 0.87
+
+>> UniRef90_F5S6Q6  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   15.9   0.0   1.4e-05        12     416     470 ..       9      63 ..       3      70 .. 0.94
+
+>> UniRef90_R7D6D4  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   15.5   0.3   1.8e-05        15      48     107 ..     217     280 ..     213     292 .. 0.72
+
+>> UniRef90_A0A2D4C506  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?    7.0   0.0     0.007   5.9e+03     188     245 ..     503     560 ..     480     586 .. 0.89
+   2 ?    7.0   0.0     0.007   5.9e+03     188     245 ..    1243    1300 ..    1220    1326 .. 0.89
+
+>> UniRef90_A0A0N8PVU8  
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   15.6   0.0   1.7e-05        14     214     257 ..     227     270 ..     207     275 .. 0.92
+
+
+
+Internal pipeline statistics summary:
+-------------------------------------
+Query model(s):                              1  (552 nodes)
+Target sequences:                     73216780  (24772911507 residues searched)
+Passed MSV filter:                   1985061  (0.0271121); expected 1464335.6 (0.02)
+Passed bias filter:                  1324113  (0.0180848); expected 1464335.6 (0.02)
+Passed Vit filter:                    105428  (0.00143994); expected 73216.8 (0.001)
+Passed Fwd filter:                      1224  (1.67175e-05); expected 732.2 (1e-05)
+Initial search space (Z):           73216780  [actual number of targets]
+Domain search space  (domZ):              87  [number of targets reported over threshold]
+# CPU time: 789.92u 15.72s 00:13:25.64 Elapsed: 00:13:30.87
+# Mc/sec: 16864.17
+
+@@ New targets included:   0
+@@ New alignment includes: 64 subseqs (was 64), including original query
+@@
+@@ CONVERGED (in 3 rounds). 
+@@
+
+//
+[ok]
+Search results will be written to T0990.hhr
+Reading in 88 column state sequences with a total of 38268 residues
+
+Iteration 1
+Prefiltering database
+.
+HMMs passed 1st prefilter (gapless profile-profile alignment)  :     87
+HMMs passed 2nd prefilter (gapped profile-profile alignment)   :     87
+HMMs passed 2nd prefilter and not found in previous iterations :     87
+Scoring 87 HMMs using HMM-HMM Viterbi alignment
+....
+Realigning 76 HMMs using HMM-HMM Maximum Accuracy algorithm
+.......
+Merging hits to query profile
+64 sequences belonging to 64 database HMMs found with an E-value < 0.001       
+Number of effective sequences of resulting query HMM: Neff = 5.69
+
+Iteration 2
+Prefiltering database
+.
+HMMs passed 1st prefilter (gapless profile-profile alignment)  :     87
+HMMs passed 2nd prefilter (gapped profile-profile alignment)   :     87
+HMMs passed 2nd prefilter and not found in previous iterations :     24
+Scoring 24 HMMs using HMM-HMM Viterbi alignment
+.
+Realigning 12 HMMs using HMM-HMM Maximum Accuracy algorithm
+.
+Merging hits to query profile
+64 sequences belonging to 64 database HMMs found with an E-value < 0.001       
+Number of effective sequences of resulting query HMM: Neff = 5.69
+
+Iteration 3
+Prefiltering database
+.
+HMMs passed 1st prefilter (gapless profile-profile alignment)  :     87
+HMMs passed 2nd prefilter (gapped profile-profile alignment)   :     87
+HMMs passed 2nd prefilter and not found in previous iterations :     24
+Scoring 24 HMMs using HMM-HMM Viterbi alignment
+.
+Rescoring previously found HMMs with Viterbi algorithm
+...
+Realigning 75 HMMs using HMM-HMM Maximum Accuracy algorithm
+.
+Merging hits to query profile
+64 sequences belonging to 64 database HMMs found with an E-value < 0.001       
+Number of effective sequences of resulting query HMM: Neff = 5.69
+
+Query         T0990
+Match_columns 552
+No_of_seqs    77 out of 109
+Neff          5.7 
+Searched_HMMs 88
+Date          Fri Aug  9 12:24:47 2019
+Command       /storage/htc/bdm/zhiye/DNCON4_db_tools/tools//hhsuite-2.0.16-linux-x86_64/bin/hhblits -i T0990.a3m -d T0990-mydb/mydb -oa3m T0990.a3m -e 1e-3 -n 3 -cpu 8 -diff inf -id 99 -cov 50 
+
+ No Hit                             Prob E-value P-value  Score    SS Cols Query HMM  Template HMM
+  1 >UniRef90_P07131               100.0  3E-161  1E-163 1180.2   0.0  552    1-552     1-552 (552)
+  2 >UniRef90_P07131               100.0  3E-161  1E-163 1180.2   0.0  552    1-552     1-552 (552)
+  3 UniRef90_A0A142DXW2            100.0  1E-158  5E-161 1162.0   0.0  552    1-552     1-552 (552)
+  4 T0990                          100.0  2E-158  8E-161 1160.2   0.0  552    1-552     1-552 (552)
+  5 UniRef90_D1GA90                100.0  7E-158  3E-160 1156.3   0.0  552    1-552     1-552 (552)
+  6 UniRef90_A0A1I9KZH3            100.0  2E-156  1E-158 1145.4   0.0  551    1-551     1-551 (552)
+  7 UniRef90_G8H3D9                100.0  4E-156  2E-158 1143.7   0.0  552    1-552     1-552 (552)
+  8 UniRef90_A0A1J0F5H1            100.0  9E-156  4E-158 1141.3   0.0  551    1-551     1-551 (552)
+  9 UniRef90_B6SE82                100.0  7E-153  3E-155 1120.6   0.0  552    1-552     1-552 (552)
+ 10 UniRef90_U5YIG0                100.0  5E-147  2E-149 1079.4   0.0  552    1-552     1-553 (560)
+ 11 UniRef90_U5YIF4                100.0  6E-147  3E-149 1079.3   0.0  552    1-552     1-553 (562)
+ 12 UniRef90_U5YJ76                100.0  4E-146  2E-148 1073.5   0.0  552    1-552     1-553 (562)
+ 13 UniRef90_U5YJ79                100.0  5E-146  2E-148 1072.6   0.0  552    1-552     1-553 (560)
+ 14 UniRef90_U5YL47                100.0  7E-145  3E-147 1064.4   0.0  552    1-552     1-553 (560)
+ 15 UniRef90_U5YIF7                100.0  7E-144  3E-146 1056.9   0.0  552    1-552     1-553 (560)
+ 16 UniRef90_A0A0A0REB4            100.0  2E-142  7E-145 1047.3   0.0  552    1-552     1-553 (559)
+ 17 UniRef90_W5QLW3                100.0  2E-136  8E-139 1004.3   0.0  552    1-552     1-553 (563)
+ 18 UniRef90_U5NTQ0                100.0  3E-136  1E-138 1002.0   0.0  552    1-552     1-553 (559)
+ 19 UniRef90_P27585                100.0  1E-135  6E-138  996.5   0.0  550    1-551     1-552 (552)
+ 20 UniRef90_H9ZXS6                100.0  8E-135  3E-137  991.1   0.0  550    1-550     1-551 (551)
+ 21 UniRef90_U5YL97                100.0  3E-131  1E-133  966.8   0.0  552    1-552     1-553 (563)
+ 22 UniRef90_Q03068                100.0  1E-124  4E-127  918.2   0.0  543    1-550     1-548 (548)
+ 23 UniRef90_U3RF10                100.0  2E-124  7E-127  917.7   0.0  540    1-540     1-541 (557)
+ 24 UniRef90_A0A097I4D5            100.0  2E-123  8E-126  910.2   0.0  540    1-540     1-541 (557)
+ 25 UniRef90_A0A0K1TPZ3            100.0  2E-121  9E-124  895.2   0.0  551    1-552     1-552 (554)
+ 26 UniRef90_A0A097I4E7            100.0  1E-116  5E-119  858.0   0.0  528   20-547     1-529 (530)
+ 27 UniRef90_H9ZXR6                100.0  2E-114  9E-117  845.2   0.0  545    1-545     1-551 (556)
+ 28 UniRef90_E1AA92                100.0  5E-114  2E-116  839.2   0.0  513    1-527     1-519 (531)
+ 29 UniRef90_Q9WAT6                100.0  5E-112  2E-114  826.7   0.0  518    1-520     1-518 (545)
+ 30 UniRef90_H9ZXQ6                100.0  3E-111  1E-113  823.1   0.0  544    1-544     1-550 (556)
+ 31 UniRef90_M4MBJ1                100.0  3E-111  1E-113  819.4   0.0  507    1-523     1-513 (529)
+ 32 UniRef90_A0A193PKL6            100.0  3E-111  1E-113  819.0   0.0  507    1-523     1-513 (529)
+ 33 UniRef90_W5QLY2                100.0  3E-110  1E-112  815.1   0.0  515    1-516     1-516 (549)
+ 34 UniRef90_A0A173G2W6            100.0  4E-109  2E-111  811.0   0.0  537    2-549     6-548 (589)
+ 35 UniRef90_U5NDB1                100.0  5E-108  2E-110  800.7   0.0  502    1-515     1-515 (564)
+ 36 UniRef90_T1SRJ5                100.0  3E-107  1E-109  797.4   0.0  504    9-520    15-523 (589)
+ 37 UniRef90_Q2YH52                100.0  1E-105  6E-108  783.8   0.0  502    1-515     1-515 (574)
+ 38 UniRef90_Q2Q1D7                100.0  2E-104  9E-107  773.3   0.0  503    1-516     1-515 (554)
+ 39 UniRef90_W5QM01                100.0  4E-103  2E-105  763.0   0.0  541    1-541     1-541 (546)
+ 40 UniRef90_X5DC14                100.0  7E-103  3E-105  760.5   0.0  502    2-520     2-509 (536)
+ 41 UniRef90_U5XLH1                100.0  8E-102  3E-104  752.1   0.0  529    1-532     1-529 (529)
+ 42 UniRef90_A0A162BSL3            100.0  2E-101  8E-104  749.9   0.0  501    3-520     1-507 (534)
+ 43 UniRef90_A0A077JF23            100.0  9E-101  4E-103  749.9   0.0  508    1-523     1-529 (580)
+ 44 UniRef90_G8DP05                100.0  8E-100  3E-102  743.4   0.0  510    1-525     1-531 (580)
+ 45 UniRef90_A0A0H4M5B6            100.0 1.3E-98  6E-101  730.0   0.0  502    1-519     1-508 (536)
+ 46 UniRef90_S6CLS3                100.0 1.8E-98  8E-101  730.3   0.0  546    1-552     1-546 (548)
+ 47 UniRef90_Q65796                100.0 5.6E-98  2E-100  725.5   0.0  498    1-515     1-504 (537)
+ 48 UniRef90_A0A0H4MK89            100.0 1.4E-94   6E-97  701.1   0.0  509    1-526     1-516 (535)
+ 49 UniRef90_M1GNJ9                100.0 1.5E-91 6.5E-94  682.0   0.0  516    3-534     6-545 (562)
+ 50 UniRef90_A0A0H4M3V5            100.0 7.1E-84   3E-86  623.5   0.0  506    1-517     1-511 (524)
+ 51 UniRef90_A0A2L0VWK2            100.0 2.6E-79 1.1E-81  565.3   0.0  322   94-415     2-323 (323)
+ 52 UniRef90_A0A0G3ICM2            100.0 1.5E-73 6.5E-76  514.7   0.0  264  165-428     1-264 (264)
+ 53 UniRef90_X5DRK9                100.0 2.2E-70 9.3E-73  502.1   0.0  289  228-522     2-292 (309)
+ 54 UniRef90_W8PCU9                100.0 5.8E-70 2.5E-72  494.1   0.0  278  180-470     2-281 (281)
+ 55 UniRef90_Q4F9J4                100.0 2.7E-69 1.2E-71  483.2   0.0  248   21-268     3-250 (250)
+ 56 UniRef90_Q9DSP4                100.0 2.2E-63 9.4E-66  476.8   0.0  491    1-517     1-508 (517)
+ 57 UniRef90_B5L4L2                100.0 2.7E-56 1.2E-58  398.0   0.0  247  295-544     2-253 (256)
+ 58 UniRef90_UPI0008DC9A27         100.0 1.1E-51 4.5E-54  354.9   0.0  191  361-551     1-192 (192)
+ 59 UniRef90_Q4F9J9                100.0 9.4E-44   4E-46  299.0   0.0  167   94-260     3-169 (170)
+ 60 UniRef90_A0A023PLD8            100.0 4.1E-42 1.8E-44  305.8   0.0  263   12-290     3-270 (273)
+ 61 UniRef90_M1H209                100.0 2.6E-37 1.1E-39  256.3   0.0  146  325-471     1-159 (161)
+ 62 UniRef90_Q19LA1                 99.9 6.9E-35   3E-37  217.9   0.0   82    1-82      1-82  (83)
+ 63 UniRef90_Q9JGE7                 99.9 2.4E-31   1E-33  199.3   0.0   87    1-87      1-87  (87)
+ 64 UniRef90_A2TLM7                 99.9 2.5E-30 1.1E-32  210.6   0.0  142  222-363     6-148 (151)
+ 65 UniRef90_C4MYG6                 99.2 1.4E-17   6E-20  122.0   0.0   80  200-279    13-92  (94)
+ 66 UniRef90_UPI000CD97B7C          84.3  0.0017 7.2E-06   40.4   0.0   56   44-99     19-76  (95)
+ 67 UniRef90_A0A0R3PSP0             75.4  0.0057 2.5E-05   44.2   0.0   36  128-163    56-91  (336)
+ 68 UniRef90_U0EFM6                 72.7  0.0074 3.2E-05   38.2   0.0   49  384-433    25-73  (123)
+ 69 UniRef90_A0A2H6EWX8             55.7   0.027 0.00012   35.8   0.0   27   19-45     81-107 (149)
+ 70 UniRef90_A0A0N8PVU8             47.5   0.044 0.00019   37.4   0.0   46  214-259   227-272 (280)
+ 71 UniRef90_U2K4V6                 39.6   0.071  0.0003   30.6   0.0   38  306-343    49-86  (88)
+ 72 UniRef90_UPI00054F380B          30.4    0.12 0.00054   31.5   0.0   56  415-470     4-59  (144)
+ 73 UniRef90_A0A2N0DXD0             29.4    0.13 0.00058   33.9   0.0   62  217-278   119-183 (266)
+ 74 UniRef90_F5S6Q6                 25.4    0.18 0.00075   30.8   0.0   56  415-470     8-63  (152)
+ 75 UniRef90_W7KPF8                 21.4    0.24   0.001   27.8   0.0   38  141-178    17-54  (93)
+ 76 UniRef90_A0A0V8JH17             20.6    0.25  0.0011   28.5   0.0   56  434-489    45-101 (113)
+
+
+Writing A3M alignment to T0990.a3m
+Done
+[1] 10424
+[2] 10425

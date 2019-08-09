@@ -1,0 +1,289 @@
+/storage/htc/bdm/zhiye/DNCON4
+current path:/storage/htc/bdm/zhiye/DNCON4/example/T0990/alignment
+Started [/storage/htc/bdm/zhiye/DNCON4_db_tools/tools/DeepAlign1.0/generate_hhjack_hhmsearch3.pl]: Fri Aug  9 11:35:39 2019
+Starting job hhb-cov50.sh ..
+running hhblits job hhb-cov50..
+- 11:35:39.676 INFO: Search results will be written to T0990.hhr
+
+Wait until all HHblits jobs are done ..
+./hhb-cov50.running
+ 1 jobs running currently
+- 11:35:44.075 INFO: Searching 13605227 column state sequences.
+
+- 11:35:44.144 INFO: T0990.fasta is in A2M, A3M or FASTA format
+
+- 11:35:44.145 INFO: Iteration 1
+
+- 11:35:44.941 INFO: Prefiltering database
+
+- 11:37:59.163 INFO: HMMs passed 1st prefilter (gapless profile-profile alignment)  : 271177
+
+- 11:38:05.978 INFO: HMMs passed 2nd prefilter (gapped profile-profile alignment)   : 163
+
+- 11:38:05.979 INFO: HMMs passed 2nd prefilter and not found in previous iterations : 163
+
+- 11:38:05.979 INFO: Scoring 163 HMMs using HMM-HMM Viterbi alignment
+
+- 11:38:06.241 INFO: Alternative alignment: 0
+
+- 11:38:09.974 INFO: 163 alignments done
+
+- 11:38:09.976 INFO: Alternative alignment: 1
+
+- 11:38:10.476 INFO: 157 alignments done
+
+- 11:38:10.477 INFO: Alternative alignment: 2
+
+- 11:38:10.554 INFO: 8 alignments done
+
+- 11:38:10.555 INFO: Alternative alignment: 3
+
+- 11:38:10.561 INFO: 1 alignments done
+
+- 11:38:10.699 INFO: Realigning 76 HMM-HMM alignments using Maximum Accuracy algorithm
+
+- 11:38:11.683 INFO: 10 sequences belonging to 10 database HMMs found with an E-value < 0.001
+
+- 11:38:11.683 INFO: Number of effective sequences of resulting query HMM: Neff = 5.58573
+
+- 11:38:11.697 INFO: Iteration 2
+
+- 11:38:12.507 INFO: Prefiltering database
+
+- 11:40:22.265 INFO: HMMs passed 1st prefilter (gapless profile-profile alignment)  : 401286
+
+- 11:40:32.424 INFO: HMMs passed 2nd prefilter (gapped profile-profile alignment)   : 369
+
+- 11:40:32.425 INFO: HMMs passed 2nd prefilter and not found in previous iterations : 359
+
+- 11:40:32.426 INFO: Scoring 359 HMMs using HMM-HMM Viterbi alignment
+
+- 11:40:32.731 INFO: Alternative alignment: 0
+
+- 11:40:38.262 INFO: 359 alignments done
+
+- 11:40:38.269 INFO: Stop after DB-HHM: 359 because early stop  2.60606 < filter cutoff 3.59
+
+- 11:40:38.271 INFO: Alternative alignment: 1
+
+- 11:40:39.156 INFO: 313 alignments done
+
+- 11:40:39.158 INFO: Alternative alignment: 2
+
+- 11:40:39.225 INFO: 13 alignments done
+
+- 11:40:39.225 INFO: Alternative alignment: 3
+
+- 11:40:39.257 INFO: 2 alignments done
+
+- 11:40:39.362 INFO: Realigning 82 HMM-HMM alignments using Maximum Accuracy algorithm
+
+- 11:40:40.100 INFO: 11 sequences belonging to 11 database HMMs found with an E-value < 0.001
+
+- 11:40:40.100 INFO: Number of effective sequences of resulting query HMM: Neff = 5.58573
+
+- 11:40:40.119 INFO: Iteration 3
+
+- 11:40:40.944 INFO: Prefiltering database
+
+- 11:42:50.682 INFO: HMMs passed 1st prefilter (gapless profile-profile alignment)  : 401286
+
+- 11:43:00.897 INFO: HMMs passed 2nd prefilter (gapped profile-profile alignment)   : 369
+
+- 11:43:00.898 INFO: HMMs passed 2nd prefilter and not found in previous iterations : 358
+
+- 11:43:00.899 INFO: Scoring 358 HMMs using HMM-HMM Viterbi alignment
+
+- 11:43:01.081 INFO: Alternative alignment: 0
+
+- 11:43:02.183 INFO: 358 alignments done
+
+- 11:43:02.187 INFO: Stop after DB-HHM: 358 because early stop  1.60747 < filter cutoff 3.58
+
+- 11:43:02.188 INFO: Alternative alignment: 1
+
+- 11:43:02.896 INFO: 313 alignments done
+
+- 11:43:02.898 INFO: Alternative alignment: 2
+
+- 11:43:02.967 INFO: 13 alignments done
+
+- 11:43:02.974 INFO: Alternative alignment: 3
+
+- 11:43:03.153 INFO: 2 alignments done
+
+- 11:43:03.240 INFO: Rescoring previously found HMMs with Viterbi algorithm
+
+- 11:43:03.344 INFO: Alternative alignment: 0
+
+- 11:43:03.380 INFO: 11 alignments done
+
+- 11:43:03.381 INFO: Alternative alignment: 1
+
+- 11:43:03.415 INFO: 11 alignments done
+
+- 11:43:03.416 INFO: Alternative alignment: 2
+
+- 11:43:03.526 INFO: 1 alignments done
+
+- 11:43:03.527 INFO: Alternative alignment: 3
+
+- 11:43:03.612 INFO: Realigning 92 HMM-HMM alignments using Maximum Accuracy algorithm
+
+- 11:43:04.470 INFO: 11 sequences belonging to 11 database HMMs found with an E-value < 0.001
+
+- 11:43:04.471 INFO: Number of effective sequences of resulting query HMM: Neff = 5.58573
+
+hhblits hhb-cov50 job done.
+0 jobs running currently
+
+Alignment Summary:
+L = 552
+45 hhb-cov50.aln
+
+hhb-cov50.aln N:45
+   Neff:27.666667
+
+[2]  - Done                          rm -rf T0990-mydb
+JACK_HH generated!
+Looks like hhb-cov50.aln alnstats file is already here.. skipping..
+hhb-cov50.aln N:45
+   Neff:27.666667
+
+T0990.jackaln N:77
+   Neff:29.866667
+
+Check sequences in a3m that are shorter and throw them away..
+build hmmer HMM model...
+# hmmbuild :: profile HMM construction from multiple sequence alignments
+# HMMER 3.1b2 (February 2015); http://hmmer.org/
+# Copyright (C) 2015 Howard Hughes Medical Institute.
+# Freely distributed under the GNU General Public License (GPLv3).
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# input alignment file:             T0990.a3m
+# output HMM file:                  T0990.hmmer
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# idx name                  nseq  alen  mlen eff_nseq re/pos description
+#---- -------------------- ----- ----- ----- -------- ------ -----------
+1     T0990                   77   552   525     3.35  0.590 
+
+# CPU time: 0.45u 0.00s 00:00:00.45 Elapsed: 00:00:00.49
+search HMMER hmm against database ...
+[1]  - Done                          rm -rf T0990-mya3m
+JACK_HHM generated!
+T0990.metaln N:77
+   Neff:29.866667
+
+Check sequences that are shorter and throw them away..
+
+Finished [/storage/htc/bdm/zhiye/DNCON4_db_tools/tools/DeepAlign1.0/generate_hhjack_hhmsearch3.pl]: Fri Aug  9 12:59:28 2019
+Started [/storage/htc/bdm/zhiye/DNCON4//scripts//generate-other.pl]: Fri Aug  9 12:59:28 2019
+
+Input: /storage/htc/bdm/zhiye/DNCON4/example/T0990.fasta
+L    : 552
+Seq  : MERFLRKYNISGDYANATRTFLAISPQWTCSHLKRNCLFNGMCAKQNFERAMIAATDAEEPAKAYRLVELAKEAMYDRETVWLQCFKSFSQPYEEDIEGKMKRCGAQLLEDYRKNGMMDEAVKQSALVNSERVRLDDSLSAMPYIYVPIKEGQIVNPTFISRYRQIAYYFYSPNLADDWIDPNLFGIRGQHNQIKREIERQVNTCPYTGYKGRVLQVMFLPIQLINFLRMDDFAKHFNRYASMAIQQYLRVGYAEEVRYVQQLFGKIPTGEFPLHHMMLMRRDFPTRDRSIVEARVRRSGDENWQSWLLPMIIVREGLDHQDRWEWLIDYMDRKHTCQLCYLKHSKQIPTCGVIDVRASELTGCSPFKTVKIEEHVGNNSVFETKLVRDEQIGRIGDHYYTTNCYTGAEALITTAIHIHRWIRGCGIWNDEGWREGIFMLGRVLLRWELTKAQRSALLRLFCFVCYGYAPRADGTIPDWNNLGSFLDTILKGPELSEDEDERAYATMFEMVRCIITLCYAEKVHFAGFAAPACESGEVINLAARMSQMRMEY
+
+[[Executing: cp /storage/htc/bdm/zhiye/DNCON4/example/T0990.fasta /storage/htc/bdm/zhiye/DNCON4/example/T0990/]]
+[[Executing: echo ">T0990" > /storage/htc/bdm/zhiye/DNCON4/example/T0990/T0990.fasta]]
+[[Executing: echo "MERFLRKYNISGDYANATRTFLAISPQWTCSHLKRNCLFNGMCAKQNFERAMIAATDAEEPAKAYRLVELAKEAMYDRETVWLQCFKSFSQPYEEDIEGKMKRCGAQLLEDYRKNGMMDEAVKQSALVNSERVRLDDSLSAMPYIYVPIKEGQIVNPTFISRYRQIAYYFYSPNLADDWIDPNLFGIRGQHNQIKREIERQVNTCPYTGYKGRVLQVMFLPIQLINFLRMDDFAKHFNRYASMAIQQYLRVGYAEEVRYVQQLFGKIPTGEFPLHHMMLMRRDFPTRDRSIVEARVRRSGDENWQSWLLPMIIVREGLDHQDRWEWLIDYMDRKHTCQLCYLKHSKQIPTCGVIDVRASELTGCSPFKTVKIEEHVGNNSVFETKLVRDEQIGRIGDHYYTTNCYTGAEALITTAIHIHRWIRGCGIWNDEGWREGIFMLGRVLLRWELTKAQRSALLRLFCFVCYGYAPRADGTIPDWNNLGSFLDTILKGPELSEDEDERAYATMFEMVRCIITLCYAEKVHFAGFAAPACESGEVINLAARMSQMRMEY" >> /storage/htc/bdm/zhiye/DNCON4/example/T0990/T0990.fasta]]
+
+
+Generating PSSM..
+[[Executing: mkdir -p /storage/htc/bdm/zhiye/DNCON4/example/T0990/pssm]]
+[[Executing: cp ../T0990.fasta ./]]
+Running PSI-Blast with nr90...
+[[Executing: /storage/htc/bdm/zhiye/DNCON4_db_tools/tools/blast-2.2.26/bin/blastpgp -a 8 -e 0.001 -j 3 -h 0.002 -d /storage/htc/bdm/zhiye/DNCON4_db_tools/databases/nr/nr90 -i T0990.fasta -Q T0990.pssm >& T0990.psiblast.output]]
+
+
+Predicting secondary structure and solvent accessibility using /storage/htc/bdm/zhiye/DNCON4_db_tools.SCRATCH..
+[[Executing: mkdir -p /storage/htc/bdm/zhiye/DNCON4/example/T0990/ss_sa]]
+[[Executing: cp ../T0990.fasta ./]]
+[[Executing: /storage/htc/bdm/zhiye/DNCON4_db_tools/tools/SCRATCH-1D_1.1/bin/run_SCRATCH-1D_predictors.sh T0990.fasta T0990 4]]
+
+###################################
+#                                 #
+#  SCRATCH-1D release 1.1 (2015)  #
+#                                 #
+###################################
+
+[SCRATCH-1D_predictions.pl] 1 protein sequence(s) found
+[SCRATCH-1D_predictions.pl] generating sequence profiles...
+[SCRATCH-1D_predictions.pl] running SCRATCH-1D predictors...
+[SCRATCH-1D_predictions.pl] running homology analysis...
+[SCRATCH-1D_predictions.pl] writing SSpro predictions...
+[SCRATCH-1D_predictions.pl] writing SSpro8 predictions...
+[SCRATCH-1D_predictions.pl] writing ACCpro predictions...
+[SCRATCH-1D_predictions.pl] writing ACCpro20 predictions...
+[SCRATCH-1D_predictions.pl] job successfully completed!
+
+[[Executing: cp /storage/htc/bdm/zhiye/DNCON4/example/T0990/ss_sa/T0990.fasta /storage/htc/bdm/zhiye/DNCON4/example/T0990/ss_sa/T0990.ss_sa]]
+[[Executing: echo ">T0990" > /storage/htc/bdm/zhiye/DNCON4/example/T0990/ss_sa/T0990.ss_sa]]
+[[Executing: echo "MERFLRKYNISGDYANATRTFLAISPQWTCSHLKRNCLFNGMCAKQNFERAMIAATDAEEPAKAYRLVELAKEAMYDRETVWLQCFKSFSQPYEEDIEGKMKRCGAQLLEDYRKNGMMDEAVKQSALVNSERVRLDDSLSAMPYIYVPIKEGQIVNPTFISRYRQIAYYFYSPNLADDWIDPNLFGIRGQHNQIKREIERQVNTCPYTGYKGRVLQVMFLPIQLINFLRMDDFAKHFNRYASMAIQQYLRVGYAEEVRYVQQLFGKIPTGEFPLHHMMLMRRDFPTRDRSIVEARVRRSGDENWQSWLLPMIIVREGLDHQDRWEWLIDYMDRKHTCQLCYLKHSKQIPTCGVIDVRASELTGCSPFKTVKIEEHVGNNSVFETKLVRDEQIGRIGDHYYTTNCYTGAEALITTAIHIHRWIRGCGIWNDEGWREGIFMLGRVLLRWELTKAQRSALLRLFCFVCYGYAPRADGTIPDWNNLGSFLDTILKGPELSEDEDERAYATMFEMVRCIITLCYAEKVHFAGFAAPACESGEVINLAARMSQMRMEY" >> /storage/htc/bdm/zhiye/DNCON4/example/T0990/ss_sa/T0990.ss_sa]]
+[[Executing: tail -n 1 /storage/htc/bdm/zhiye/DNCON4/example/T0990/ss_sa/T0990.ss >> /storage/htc/bdm/zhiye/DNCON4/example/T0990/ss_sa/T0990.ss_sa]]
+[[Executing: tail -n 1 /storage/htc/bdm/zhiye/DNCON4/example/T0990/ss_sa/T0990.acc >> /storage/htc/bdm/zhiye/DNCON4/example/T0990/ss_sa/T0990.ss_sa]]
+[[Executing: sed -i 's/-/b/g' /storage/htc/bdm/zhiye/DNCON4/example/T0990/ss_sa/T0990.ss_sa]]
+Predicted SS and SA:
+>T0990
+MERFLRKYNISGDYANATRTFLAISPQWTCSHLKRNCLFNGMCAKQNFERAMIAATDAEEPAKAYRLVELAKEAMYDRETVWLQCFKSFSQPYEEDIEGKMKRCGAQLLEDYRKNGMMDEAVKQSALVNSERVRLDDSLSAMPYIYVPIKEGQIVNPTFISRYRQIAYYFYSPNLADDWIDPNLFGIRGQHNQIKREIERQVNTCPYTGYKGRVLQVMFLPIQLINFLRMDDFAKHFNRYASMAIQQYLRVGYAEEVRYVQQLFGKIPTGEFPLHHMMLMRRDFPTRDRSIVEARVRRSGDENWQSWLLPMIIVREGLDHQDRWEWLIDYMDRKHTCQLCYLKHSKQIPTCGVIDVRASELTGCSPFKTVKIEEHVGNNSVFETKLVRDEQIGRIGDHYYTTNCYTGAEALITTAIHIHRWIRGCGIWNDEGWREGIFMLGRVLLRWELTKAQRSALLRLFCFVCYGYAPRADGTIPDWNNLGSFLDTILKGPELSEDEDERAYATMFEMVRCIITLCYAEKVHFAGFAAPACESGEVINLAARMSQMRMEY
+CHHHHHHCCCCCHHHHHHHHHHHHCHCCCCCCCCCCCECCCHHHHHHHHHHHHHHHHCCCHHHHHHHHHHHHHHHHCHHHHHHHHHHHHCCCCCHHHHHHHHHHHHHHHHHHHHCCCHHHHHCCCCCCCCCEEEECCCCCCCCEEEECCCCCCEECCCEEEECCCEEEEEECCCCCCCCCCCCHHHHHHHHHHHHHHHHHHCCCCCCCCCCCCEEEEEEECHHHHHHHCCHHHHHHHHHHHHHHHHHHHHHCCCCHHHHHHHHHCCCCCCCCHHHHHHECCCCCCCCCCEEEEEEEECCCCCCHHHHHHHHHHHHHHHHCCCCHHHHHHHHCCCCCEEEEEEEHCCCCCEEEEEEEEHHHHCCCCCEEEEEEEEECCCCCCCCEEECCCEEEEECCCEEEEEECCCHHHHHHHHHHHHHHHHHCCCCCCCHHHHHHHHHHHHHHHECCCCHHHHHHHHHHHHHHHHCCCCCCCCCCCCHHHHHHHHHHHHCCCCCCHHHHHHHHHHHHHHHHHHHHHHCCCCCCCCCCCCCCCCCCCHHHHHHHHHHHHHCC
+eeebbeebebeeeeebbbbbbbebbeebebbbeebebbbebebbbebbeebbeebbeeeeeebbeebbebbeebbeebeebbbbbbebbeeeeeeebeeebeebbeebbebbeebebbeebeebeeeeeeebbbbbbbbbbbbbbbbbbeeeebbebeebbbbbbbbbbbbbeeebeebbebebeebbebbeebbeebeeebeebeeeeeebbbbbbbbbbbbbbebbeeeebbebbbbbbbbbbebbeebeeeebebbbbbbbbbeeeeeebbbbbbbbebebeeeebbbbbbbbbbeeeeebbbbbbbbbbbbbbbbbebbbebbbebbeeebebbbbbbbeeeebeebbbbbbbbbbbbbbeebbbbbbbebeeeeebeebebeeebbbbbbbebbbbbbbbbbbbbbbbbbbbbbbbbbbebbeeeebbbbbbbbbbbbbbbbbbeeebbbbbbbbbbbbbbbbbbeeebebbebebbbebbebbbebeebeeebbeebbbbbbbbbbbbbbbbbeeebebbbbebbebeeebbbebbebbbebbeee
+
+
+Predicting secondary structure and solvent accessibility using PSIPRED..
+[[Executing: mkdir -p /storage/htc/bdm/zhiye/DNCON4/example/T0990/psipred]]
+[[Executing: echo ">T0990" > ./T0990.fasta]]
+[[Executing: echo "MERFLRKYNISGDYANATRTFLAISPQWTCSHLKRNCLFNGMCAKQNFERAMIAATDAEEPAKAYRLVELAKEAMYDRETVWLQCFKSFSQPYEEDIEGKMKRCGAQLLEDYRKNGMMDEAVKQSALVNSERVRLDDSLSAMPYIYVPIKEGQIVNPTFISRYRQIAYYFYSPNLADDWIDPNLFGIRGQHNQIKREIERQVNTCPYTGYKGRVLQVMFLPIQLINFLRMDDFAKHFNRYASMAIQQYLRVGYAEEVRYVQQLFGKIPTGEFPLHHMMLMRRDFPTRDRSIVEARVRRSGDENWQSWLLPMIIVREGLDHQDRWEWLIDYMDRKHTCQLCYLKHSKQIPTCGVIDVRASELTGCSPFKTVKIEEHVGNNSVFETKLVRDEQIGRIGDHYYTTNCYTGAEALITTAIHIHRWIRGCGIWNDEGWREGIFMLGRVLLRWELTKAQRSALLRLFCFVCYGYAPRADGTIPDWNNLGSFLDTILKGPELSEDEDERAYATMFEMVRCIITLCYAEKVHFAGFAAPACESGEVINLAARMSQMRMEY" >> ./T0990.fasta]]
+[[Executing: /storage/htc/bdm/zhiye/DNCON4_db_tools/tools/metapsicov/runpsipredandsolv /storage/htc/bdm/zhiye/DNCON4_db_tools/databases/nr /storage/htc/bdm/zhiye/DNCON4_db_tools/tools/blast-2.2.26/bin /storage/htc/bdm/zhiye/DNCON4_db_tools/tools/psipred /storage/htc/bdm/zhiye/DNCON4_db_tools/tools/metapsicov T0990.fasta]]
+Running PSI-BLAST with sequence T0990.fasta ...
+Predicting secondary structure...
+Pass1 ...
+Pass2 ...
+Solvation pass ...
+Cleaning up ...
+Final output files: T0990.ss2 T0990.horiz T0990.solv
+Finished.
+
+
+Predicting CMAP using NNCON..
+[[Executing: mkdir -p /storage/htc/bdm/zhiye/DNCON4/example/T0990/nncon]]
+[[Executing: echo ">T0990" > ./T0990.fasta]]
+[[Executing: echo "MERFLRKYNISGDYANATRTFLAISPQWTCSHLKRNCLFNGMCAKQNFERAMIAATDAEEPAKAYRLVELAKEAMYDRETVWLQCFKSFSQPYEEDIEGKMKRCGAQLLEDYRKNGMMDEAVKQSALVNSERVRLDDSLSAMPYIYVPIKEGQIVNPTFISRYRQIAYYFYSPNLADDWIDPNLFGIRGQHNQIKREIERQVNTCPYTGYKGRVLQVMFLPIQLINFLRMDDFAKHFNRYASMAIQQYLRVGYAEEVRYVQQLFGKIPTGEFPLHHMMLMRRDFPTRDRSIVEARVRRSGDENWQSWLLPMIIVREGLDHQDRWEWLIDYMDRKHTCQLCYLKHSKQIPTCGVIDVRASELTGCSPFKTVKIEEHVGNNSVFETKLVRDEQIGRIGDHYYTTNCYTGAEALITTAIHIHRWIRGCGIWNDEGWREGIFMLGRVLLRWELTKAQRSALLRLFCFVCYGYAPRADGTIPDWNNLGSFLDTILKGPELSEDEDERAYATMFEMVRCIITLCYAEKVHFAGFAAPACESGEVINLAARMSQMRMEY" >> ./T0990.fasta]]
+[[Executing: /storage/htc/bdm/zhiye/DNCON4_db_tools/tools/nncon1.0_64bit/bin/predict_ss_sa_cm.sh T0990.fasta /storage/htc/bdm/zhiye/DNCON4/example/T0990/nncon]]
+search for /storage/htc/bdm/zhiye/DNCON4_db_tools/tools/nncon1.0_64bit/data/nr/nr90.00.
+Generate alignment...
+[blastpgp] WARNING: Unable to open nr90.pin
+rm: missing operand
+Try 'rm --help' for more information.
+done
+Predict secondary structure...done
+Predict solvent accessibility...done
+Predict full contact map at 12A...Warning: alignment file: /storage/htc/bdm/zhiye/DNCON4/example/T0990/nncon/T0990_fastaalg doesn't exist!
+done
+Predict full contact map at 8A...Warning: alignment file: /storage/htc/bdm/zhiye/DNCON4/example/T0990/nncon/T0990_fastaalg doesn't exist!
+done
+mv: cannot stat ‘/storage/htc/bdm/zhiye/DNCON4/example/T0990/nncon/T0990_fastaalg’: No such file or directory
+mv: cannot stat ‘/storage/htc/bdm/zhiye/DNCON4/example/T0990/nncon/T0990_fastaalg.pssm’: No such file or directory
+
+
+Predicting CMAP using BETACON..
+[[Executing: mkdir -p /storage/htc/bdm/zhiye/DNCON4/example/T0990/betacon]]
+[[Executing: echo ">T0990" > ./T0990.fasta]]
+[[Executing: echo "MERFLRKYNISGDYANATRTFLAISPQWTCSHLKRNCLFNGMCAKQNFERAMIAATDAEEPAKAYRLVELAKEAMYDRETVWLQCFKSFSQPYEEDIEGKMKRCGAQLLEDYRKNGMMDEAVKQSALVNSERVRLDDSLSAMPYIYVPIKEGQIVNPTFISRYRQIAYYFYSPNLADDWIDPNLFGIRGQHNQIKREIERQVNTCPYTGYKGRVLQVMFLPIQLINFLRMDDFAKHFNRYASMAIQQYLRVGYAEEVRYVQQLFGKIPTGEFPLHHMMLMRRDFPTRDRSIVEARVRRSGDENWQSWLLPMIIVREGLDHQDRWEWLIDYMDRKHTCQLCYLKHSKQIPTCGVIDVRASELTGCSPFKTVKIEEHVGNNSVFETKLVRDEQIGRIGDHYYTTNCYTGAEALITTAIHIHRWIRGCGIWNDEGWREGIFMLGRVLLRWELTKAQRSALLRLFCFVCYGYAPRADGTIPDWNNLGSFLDTILKGPELSEDEDERAYATMFEMVRCIITLCYAEKVHFAGFAAPACESGEVINLAARMSQMRMEY" >> ./T0990.fasta]]
+[[Executing: /storage/htc/bdm/zhiye/DNCON4_db_tools/tools//betacon_64bit_standalone/bin/beta_contact_map.sh T0990.fasta /storage/htc/bdm/zhiye/DNCON4/example/T0990/betacon]]
+Generate alignment...
+[blastpgp] WARNING: posReadCheckpoint: Attempting to recover data from previous checkpoint
+
+[blastpgp] WARNING: posReadCheckpoint: Data recovered successfully
+
+done
+Predict secondary structure...done
+Predict solvent accessibility...done
+Predict full contact map at 12A...done
+Predict full contact map at 8A...done
+Predict band contact map at 8A...done
+Predict band contact map at 12A...done
+Predict beta-residue pairings...[blastpgp] WARNING: posReadCheckpoint: Attempting to recover data from previous checkpoint
+
+[blastpgp] WARNING: posReadCheckpoint: Data recovered successfully
+

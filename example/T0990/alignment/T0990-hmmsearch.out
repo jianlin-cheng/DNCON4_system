@@ -1,0 +1,40 @@
+# hmmsearch :: search profile(s) against a sequence database
+# HMMER 3.1b2 (February 2015); http://hmmer.org/
+# Copyright (C) 2015 Howard Hughes Medical Institute.
+# Freely distributed under the GNU General Public License (GPLv3).
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# query HMM file:                  T0990.hmmer
+# target sequence database:        /storage/htc/bdm/zhiye/DNCON4_db_tools/databases//Metaclust50/metaclust_50
+# per-seq hits tabular output:     T0990_2nd.tbl
+# show alignments in output:       no
+# sequence reporting threshold:    E-value <= 0.001
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Query:       T0990  [M=525]
+Scores for complete sequences (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence        Description
+    ------- ------ -----    ------- ------ -----   ---- --  --------        -----------
+
+   [No hits detected that satisfy reporting thresholds]
+
+
+Domain annotation for each sequence:
+
+   [No targets detected that satisfy reporting thresholds]
+
+
+Internal pipeline statistics summary:
+-------------------------------------
+Query model(s):                              1  (525 nodes)
+Target sequences:                    504254871  (51531022827 residues searched)
+Passed MSV filter:                   9500085  (0.0188398); expected 10085097.4 (0.02)
+Passed bias filter:                  6831963  (0.0135486); expected 10085097.4 (0.02)
+Passed Vit filter:                    469156  (0.000930395); expected 504254.9 (0.001)
+Passed Fwd filter:                      5537  (1.09806e-05); expected 5042.5 (1e-05)
+Initial search space (Z):          504254871  [actual number of targets]
+Domain search space  (domZ):               0  [number of targets reported over threshold]
+# CPU time: 1941.80u 117.60s 00:34:19.40 Elapsed: 00:34:26.17
+# Mc/sec: 13093.63
+//
+[ok]

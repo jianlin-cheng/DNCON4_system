@@ -1,0 +1,133 @@
+Query         T0990
+Match_columns 552
+No_of_seqs    77 out of 78
+Neff          5.7 
+Searched_HMMs 2
+Date          Fri Aug  9 12:59:24 2019
+Command       /storage/htc/bdm/zhiye/DNCON4_db_tools/tools//hhsuite-2.0.16-linux-x86_64/bin/hhblits -i T0990.a3m -d T0990-mydb/mydb -oa3m T0990.a3m -e 1e-3 -n 3 -cpu 8 -diff inf -id 99 -cov 50 
+
+ No Hit                             Prob E-value P-value  Score    SS Cols Query HMM  Template HMM
+  1 >T0990                         100.0  3E-160  2E-161 1164.5   0.0  552    1-552     1-552 (552)
+  2 >T0990                         100.0  3E-160  2E-161 1164.5   0.0  552    1-552     1-552 (552)
+
+No 1  
+>>T0990
+Probab=100.00  E-value=3.4e-160  Score=1164.50  Aligned_cols=552  Identities=100%  Similarity=1.596  Sum_probs=550.1
+
+Q T0990             1 MERFLRKYNISGDYANATRTFLAISPQWTCSHLKRNCLFNGMCAKQNFERAMIAATDAEEPAKAYRLVELAKEAMYDRET   80 (552)
+Q Consensus         1 MErFlr~F~i~g~~a~alr~f~~iS~~wtCSHrrrdC~i~G~C~rQ~F~~~~~~~~~~~d~~~A~~lv~iA~~a~~DRe~   80 (552)
+                      ||||||||+|+||.|||.|||.+|||+|||||++|+|+++|+|++|||+.++..+++..++..|.+|||+|+++|.|||+
+T Consensus         1 merflrkynisgdyanatrtflaispqwtcshlkrnclfngmcakqnferamiaatdaeepakayrlvelakeamydret   80 (552)
+T >T0990            1 MERFLRKYNISGDYANATRTFLAISPQWTCSHLKRNCLFNGMCAKQNFERAMIAATDAEEPAKAYRLVELAKEAMYDRET   80 (552)
+Confidence            89999999999999999999999999999999999999999999999999999999999999999999999999999999
+
+
+Q T0990            81 VWLQCFKSFSQPYEEDIEGKMKRCGAQLLEDYRKNGMMDEAVKQSALVNSERVRLDDSLSAMPYIYVPIKEGQIVNPTFI  160 (552)
+Q Consensus        81 vW~~~~~~~~~~~~~~~~~~~~~~~~~l~~~y~~sgm~~~~~~~~~~~~~~RvylDDS~S~l~~fyiP~~~g~i~~~~~~  160 (552)
+                      ||+||+++|++++++|+|++|+++++++++.|++.||++|.+++++.-|++||.+|||.|++||+|||+..|+||+|+.+
+T Consensus        81 vwlqcfksfsqpyeediegkmkrcgaqlledyrkngmmdeavkqsalvnservrlddslsampyiyvpikegqivnptfi  160 (552)
+T >T0990           81 VWLQCFKSFSQPYEEDIEGKMKRCGAQLLEDYRKNGMMDEAVKQSALVNSERVRLDDSLSAMPYIYVPIKEGQIVNPTFI  160 (552)
+Confidence            99999999999999999999999999999999999999999999999999999999999999999999999999999999
+
+
+Q T0990           161 SRYRQIAYYFYSPNLADDWIDPNLFGIRGQHNQIKREIERQVNTCPYTGYKGRVLQVMFLPIQLINFLRMDDFAKHFNRY  240 (552)
+Q Consensus       161 ~R~g~~~i~fY~~~~~~~~~~p~~~~i~~~~~~~~~~v~~~~p~Cp~TG~~~~i~~vvflP~~m~~~l~~~~~~~~~~R~  240 (552)
+                      +||+||+|+||+|+-+|+|+||..++|++++++++++|+++..+|||||.+++|.+|||||+++++++..++|+++|+|+
+T Consensus       161 sryrqiayyfyspnladdwidpnlfgirgqhnqikreierqvntcpytgykgrvlqvmflpiqlinflrmddfakhfnry  240 (552)
+T >T0990          161 SRYRQIAYYFYSPNLADDWIDPNLFGIRGQHNQIKREIERQVNTCPYTGYKGRVLQVMFLPIQLINFLRMDDFAKHFNRY  240 (552)
+Confidence            99999999999999999999999999999999999999999999999999999999999999999999999999999999
+
+
+Q T0990           241 ASMAIQQYLRVGYAEEVRYVQQLFGKIPTGEFPLHHMMLMRRDFPTRDRSIVEARVRRSGDENWQSWLLPMIIVREGLDH  320 (552)
+Q Consensus       241 le~D~k~i~~~~tr~~~R~~~QrFgv~g~g~~~~~~~ml~~~~~~~~~~slv~~~~~~~g~~~w~~~~~P~lL~R~~~~g  320 (552)
+                      ++|+++.+...|..++.|++.|.||--|+|++|+|+|||++...|++++|||++|++|+|+++|+||++||+++|..+..
+T Consensus       241 asmaiqqylrvgyaeevryvqqlfgkiptgefplhhmmlmrrdfptrdrsivearvrrsgdenwqswllpmiivregldh  320 (552)
+T >T0990          241 ASMAIQQYLRVGYAEEVRYVQQLFGKIPTGEFPLHHMMLMRRDFPTRDRSIVEARVRRSGDENWQSWLLPMIIVREGLDH  320 (552)
+Confidence            99999999999999999999999999999999999999999999999999999999999999999999999999999999
+
+
+Q T0990           321 QDRWEWLIDYMDRKHTCQLCYLKHSKQIPTCGVIDVRASELTGCSPFKTVKIEEHVGNNSVFETKLVRDEQIGRIGDHYY  400 (552)
+Q Consensus       321 ~~~~~~v~~~~~s~~~CQlCyl~~~~~~~~v~ivDtR~ae~~G~~~vr~~r~~~H~~~~~~~~~~L~~~E~L~R~GdHWv  400 (552)
+                      +-.|+|+.+||+.+++||+|||++....+++-+||+|++|++||+|++++++-+|.+++++..++|.++|+++|+||||+
+T Consensus       321 qdrwewlidymdrkhtcqlcylkhskqiptcgvidvraseltgcspfktvkieehvgnnsvfetklvrdeqigrigdhyy  400 (552)
+T >T0990          321 QDRWEWLIDYMDRKHTCQLCYLKHSKQIPTCGVIDVRASELTGCSPFKTVKIEEHVGNNSVFETKLVRDEQIGRIGDHYY  400 (552)
+Confidence            99999999999999999999999999999999999999999999999999999999999999999999999999999999
+
+
+Q T0990           401 TTNCYTGAEALITTAIHIHRWIRGCGIWNDEGWREGIFMLGRVLLRWELTKAQRSALLRLFCFVCYGYAPRADGTIPDWN  480 (552)
+Q Consensus       401 a~~c~s~~EA~~vTat~iHR~lRG~G~w~~~~~~~a~~~L~R~~L~W~~~~~~~~~lfRL~cf~~fG~~p~~~g~~~dW~  480 (552)
+                      .++|+++.||+++||+.||||+||+|+|+++.|++++.+|+|++|+|++++++|++++|||||+|+||+|+.+|++|||+
+T Consensus       401 ttncytgaealittaihihrwirgcgiwndegwregifmlgrvllrweltkaqrsallrlfcfvcygyapradgtipdwn  480 (552)
+T >T0990          401 TTNCYTGAEALITTAIHIHRWIRGCGIWNDEGWREGIFMLGRVLLRWELTKAQRSALLRLFCFVCYGYAPRADGTIPDWN  480 (552)
+Confidence            99999999999999999999999999999999999999999999999999999999999999999999999999999999
+
+
+Q T0990           481 NLGSFLDTILKGPELSEDEDERAYATMFEMVRCIITLCYAEKVHFAGFAAPACESGEVINLAARMSQMRMEY  552 (552)
+Q Consensus       481 DLG~FL~~I~~~~~~s~~~~e~~~~~m~~~~~~~l~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~m~~~~  552 (552)
+                      +||+||+.|++||++|++++|++|++|+++++|.++++|.+++.+++|++|.|+.|+++++++.||||..||
+T Consensus       481 nlgsfldtilkgpelsedederayatmfemvrciitlcyaekvhfagfaapacesgevinlaarmsqmrmey  552 (552)
+T >T0990          481 NLGSFLDTILKGPELSEDEDERAYATMFEMVRCIITLCYAEKVHFAGFAAPACESGEVINLAARMSQMRMEY  552 (552)
+Confidence            999999999999999999999999999999999999999999999999999999999999999999999987
+
+
+No 2  
+>>T0990
+Probab=100.00  E-value=3.4e-160  Score=1164.50  Aligned_cols=552  Identities=100%  Similarity=1.596  Sum_probs=550.1
+
+Q T0990             1 MERFLRKYNISGDYANATRTFLAISPQWTCSHLKRNCLFNGMCAKQNFERAMIAATDAEEPAKAYRLVELAKEAMYDRET   80 (552)
+Q Consensus         1 MErFlr~F~i~g~~a~alr~f~~iS~~wtCSHrrrdC~i~G~C~rQ~F~~~~~~~~~~~d~~~A~~lv~iA~~a~~DRe~   80 (552)
+                      ||||||||+|+||.|||.|||.+|||+|||||++|+|+++|+|++|||+.++..+++..++..|.+|||+|+++|.|||+
+T Consensus         1 merflrkynisgdyanatrtflaispqwtcshlkrnclfngmcakqnferamiaatdaeepakayrlvelakeamydret   80 (552)
+T >T0990            1 MERFLRKYNISGDYANATRTFLAISPQWTCSHLKRNCLFNGMCAKQNFERAMIAATDAEEPAKAYRLVELAKEAMYDRET   80 (552)
+Confidence            89999999999999999999999999999999999999999999999999999999999999999999999999999999
+
+
+Q T0990            81 VWLQCFKSFSQPYEEDIEGKMKRCGAQLLEDYRKNGMMDEAVKQSALVNSERVRLDDSLSAMPYIYVPIKEGQIVNPTFI  160 (552)
+Q Consensus        81 vW~~~~~~~~~~~~~~~~~~~~~~~~~l~~~y~~sgm~~~~~~~~~~~~~~RvylDDS~S~l~~fyiP~~~g~i~~~~~~  160 (552)
+                      ||+||+++|++++++|+|++|+++++++++.|++.||++|.+++++.-|++||.+|||.|++||+|||+..|+||+|+.+
+T Consensus        81 vwlqcfksfsqpyeediegkmkrcgaqlledyrkngmmdeavkqsalvnservrlddslsampyiyvpikegqivnptfi  160 (552)
+T >T0990           81 VWLQCFKSFSQPYEEDIEGKMKRCGAQLLEDYRKNGMMDEAVKQSALVNSERVRLDDSLSAMPYIYVPIKEGQIVNPTFI  160 (552)
+Confidence            99999999999999999999999999999999999999999999999999999999999999999999999999999999
+
+
+Q T0990           161 SRYRQIAYYFYSPNLADDWIDPNLFGIRGQHNQIKREIERQVNTCPYTGYKGRVLQVMFLPIQLINFLRMDDFAKHFNRY  240 (552)
+Q Consensus       161 ~R~g~~~i~fY~~~~~~~~~~p~~~~i~~~~~~~~~~v~~~~p~Cp~TG~~~~i~~vvflP~~m~~~l~~~~~~~~~~R~  240 (552)
+                      +||+||+|+||+|+-+|+|+||..++|++++++++++|+++..+|||||.+++|.+|||||+++++++..++|+++|+|+
+T Consensus       161 sryrqiayyfyspnladdwidpnlfgirgqhnqikreierqvntcpytgykgrvlqvmflpiqlinflrmddfakhfnry  240 (552)
+T >T0990          161 SRYRQIAYYFYSPNLADDWIDPNLFGIRGQHNQIKREIERQVNTCPYTGYKGRVLQVMFLPIQLINFLRMDDFAKHFNRY  240 (552)
+Confidence            99999999999999999999999999999999999999999999999999999999999999999999999999999999
+
+
+Q T0990           241 ASMAIQQYLRVGYAEEVRYVQQLFGKIPTGEFPLHHMMLMRRDFPTRDRSIVEARVRRSGDENWQSWLLPMIIVREGLDH  320 (552)
+Q Consensus       241 le~D~k~i~~~~tr~~~R~~~QrFgv~g~g~~~~~~~ml~~~~~~~~~~slv~~~~~~~g~~~w~~~~~P~lL~R~~~~g  320 (552)
+                      ++|+++.+...|..++.|++.|.||--|+|++|+|+|||++...|++++|||++|++|+|+++|+||++||+++|..+..
+T Consensus       241 asmaiqqylrvgyaeevryvqqlfgkiptgefplhhmmlmrrdfptrdrsivearvrrsgdenwqswllpmiivregldh  320 (552)
+T >T0990          241 ASMAIQQYLRVGYAEEVRYVQQLFGKIPTGEFPLHHMMLMRRDFPTRDRSIVEARVRRSGDENWQSWLLPMIIVREGLDH  320 (552)
+Confidence            99999999999999999999999999999999999999999999999999999999999999999999999999999999
+
+
+Q T0990           321 QDRWEWLIDYMDRKHTCQLCYLKHSKQIPTCGVIDVRASELTGCSPFKTVKIEEHVGNNSVFETKLVRDEQIGRIGDHYY  400 (552)
+Q Consensus       321 ~~~~~~v~~~~~s~~~CQlCyl~~~~~~~~v~ivDtR~ae~~G~~~vr~~r~~~H~~~~~~~~~~L~~~E~L~R~GdHWv  400 (552)
+                      +-.|+|+.+||+.+++||+|||++....+++-+||+|++|++||+|++++++-+|.+++++..++|.++|+++|+||||+
+T Consensus       321 qdrwewlidymdrkhtcqlcylkhskqiptcgvidvraseltgcspfktvkieehvgnnsvfetklvrdeqigrigdhyy  400 (552)
+T >T0990          321 QDRWEWLIDYMDRKHTCQLCYLKHSKQIPTCGVIDVRASELTGCSPFKTVKIEEHVGNNSVFETKLVRDEQIGRIGDHYY  400 (552)
+Confidence            99999999999999999999999999999999999999999999999999999999999999999999999999999999
+
+
+Q T0990           401 TTNCYTGAEALITTAIHIHRWIRGCGIWNDEGWREGIFMLGRVLLRWELTKAQRSALLRLFCFVCYGYAPRADGTIPDWN  480 (552)
+Q Consensus       401 a~~c~s~~EA~~vTat~iHR~lRG~G~w~~~~~~~a~~~L~R~~L~W~~~~~~~~~lfRL~cf~~fG~~p~~~g~~~dW~  480 (552)
+                      .++|+++.||+++||+.||||+||+|+|+++.|++++.+|+|++|+|++++++|++++|||||+|+||+|+.+|++|||+
+T Consensus       401 ttncytgaealittaihihrwirgcgiwndegwregifmlgrvllrweltkaqrsallrlfcfvcygyapradgtipdwn  480 (552)
+T >T0990          401 TTNCYTGAEALITTAIHIHRWIRGCGIWNDEGWREGIFMLGRVLLRWELTKAQRSALLRLFCFVCYGYAPRADGTIPDWN  480 (552)
+Confidence            99999999999999999999999999999999999999999999999999999999999999999999999999999999
+
+
+Q T0990           481 NLGSFLDTILKGPELSEDEDERAYATMFEMVRCIITLCYAEKVHFAGFAAPACESGEVINLAARMSQMRMEY  552 (552)
+Q Consensus       481 DLG~FL~~I~~~~~~s~~~~e~~~~~m~~~~~~~l~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~m~~~~  552 (552)
+                      +||+||+.|++||++|++++|++|++|+++++|.++++|.+++.+++|++|.|+.|+++++++.||||..||
+T Consensus       481 nlgsfldtilkgpelsedederayatmfemvrciitlcyaekvhfagfaapacesgevinlaarmsqmrmey  552 (552)
+T >T0990          481 NLGSFLDTILKGPELSEDEDERAYATMFEMVRCIITLCYAEKVHFAGFAAPACESGEVINLAARMSQMRMEY  552 (552)
+Confidence            999999999999999999999999999999999999999999999999999999999999999999999987
+
+
+Done!

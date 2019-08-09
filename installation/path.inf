@@ -1,0 +1,17 @@
+## FLAG path of dncon4 database
+dncon4_db_dir=/storage/htc/bdm/zhiye/DNCON4_db_tools
+
+## path of train script
+dncon4_train_script=/train
+
+## path of evalu_ensemble script
+dncon4_evalu_ensemble=/predictors/ensemble
+
+## path of pred_ensemble script
+dncon4_pred_ensemble=/predictors/ensemble
+
+## path of evalu_individual script
+dncon4_evalu_individual=/predictors/individual
+
+## path of pred_individual script
+dncon4_pred_individual=/predictors/individual

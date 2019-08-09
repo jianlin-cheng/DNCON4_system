@@ -1,0 +1,13 @@
+#                                                               --- full sequence ---- --- best 1 domain ---- --- domain number estimation ----
+# target name        accession  query name           accession    E-value  score  bias   E-value  score  bias   exp reg clu  ov env dom rep inc description of target
+#------------------- ---------- -------------------- ---------- --------- ------ ----- --------- ------ -----   --- --- --- --- --- --- --- --- ---------------------
+#
+# Program:         hmmsearch
+# Version:         3.1b2 (February 2015)
+# Pipeline mode:   SEARCH
+# Query file:      T0990.hmmer
+# Target file:     /storage/htc/bdm/zhiye/DNCON4_db_tools/databases//Metaclust50/metaclust_50
+# Option settings: /storage/htc/bdm/zhiye/DNCON4_db_tools/tools//hmmer-3.1b2-linux-intel-x86_64/binaries/hmmsearch --tblout T0990_2nd.tbl --noali -E 0.001 T0990.hmmer /storage/htc/bdm/zhiye/DNCON4_db_tools/databases//Metaclust50/metaclust_50 
+# Current dir:     /storage/htc/bdm/zhiye/DNCON4/example/T0990/alignment
+# Date:            Fri Aug  9 12:59:17 2019
+# [ok]

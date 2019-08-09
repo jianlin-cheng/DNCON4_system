@@ -1,0 +1,6 @@
+# file to ignore
+
+# folder to ignore
+**/outputs/
+env/
+models/custom/
