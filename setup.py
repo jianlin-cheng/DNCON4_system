@@ -276,16 +276,29 @@ if __name__ == '__main__':
     # Set directory of multicom databases and tools
     # db_tools_dir = "/storage/htc/bdm/zhiye/DNCON4_db_tools/" 
     temp_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + '/DNCON4_db_tools/'
-    intall_flag = input("Intall DNCON4_db_tools to "+ temp_path +" ? (Yes/No)")
-    if 'Y' in intall_flag or 'y' in intall_flag:
-        db_tools_dir = temp_path
-    elif 'N' in intall_flag or 'n' in intall_flag:
-        custom_path = input("Please input the path of DNCON4_db_tools you want to install...\n")
-        print("The DNCON4_db_tools will be installed to %s, please wait...\n"%custom_path)
-        db_tools_dir = custom_path
+
+    if sys.version_info[0] < 3:
+        intall_flag = raw_input("Intall DNCON4_db_tools to "+ temp_path +" ? (Yes/No)")
+        if 'Y' in intall_flag or 'y' in intall_flag:
+            db_tools_dir = temp_path
+        elif 'N' in intall_flag or 'n' in intall_flag:
+            custom_path = raw_input("Please input the path of DNCON4_db_tools you want to install...\n")
+            print("The DNCON4_db_tools will be installed to %s, please wait...\n"%custom_path)
+            db_tools_dir = custom_path
+        else:
+            print("Input illeage! System exit!")
+            sys.exit(1)
     else:
-        print("Input illeage! System exit!")
-        sys.exit(1)
+        intall_flag = input("Intall DNCON4_db_tools to "+ temp_path +" ? (Yes/No)")
+        if 'Y' in intall_flag or 'y' in intall_flag:
+            db_tools_dir = temp_path
+        elif 'N' in intall_flag or 'n' in intall_flag:
+            custom_path = input("Please input the path of DNCON4_db_tools you want to install...\n")
+            print("The DNCON4_db_tools will be installed to %s, please wait...\n"%custom_path)
+            db_tools_dir = custom_path
+        else:
+            print("Input illeage! System exit!")
+            sys.exit(1)
 
 
     ##!!! Don't Change the code below##
