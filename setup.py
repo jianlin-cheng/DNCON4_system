@@ -173,7 +173,7 @@ def download_uniref(db_tools_dir,tools_dir,identity):
     if not os.path.exists(uniref_dir):
         os.makedirs(uniref_dir)
     os.chdir(uniref_dir)
-    if os.path.exists("uniref"+identity) and os.path.exists("uniref"+identity+".ssi"):
+    if os.path.exists("uniref"+identity+".pal") and os.path.exists("uniref"+identity+".ssi"):
         print("\tuniref"+identity+" is found, skip!")
     else:
         if os.path.exists("uniref"+identity+"_04_2018.tar.gz"):
@@ -302,9 +302,9 @@ if __name__ == '__main__':
 
 
     ##!!! Don't Change the code below##
-    install_dir = os.path.dirname(os.path.abspath(__file__))
-    if not os.path.exists(install_dir):
-        print("The DNCON4 directory "+install_dir+" is not existing, set the path as your unzipped DNCON4 directory")
+    global_path = os.path.dirname(os.path.abspath(__file__))
+    if not os.path.exists(global_path):
+        print("The DNCON4 directory "+global_path+" is not existing, set the path as your unzipped DNCON4 directory")
         sys.exit(1)
 
     if not os.path.exists(db_tools_dir):
@@ -313,12 +313,29 @@ if __name__ == '__main__':
     db_tools_dir=os.path.abspath(db_tools_dir)
 
     # write db_dir to /installation/path.inf
-    configure_file(install_dir + '/installation/', 'inf', 'dncon4_db_dir', db_tools_dir)
+    configure_file(global_path + '/installation/', 'inf', 'dncon4_db_dir', db_tools_dir)
 
+    os.chdir(global_path)
     script_path = os.path.dirname(os.path.abspath(__file__))
+    #install virtual environment
+    vir_dir = global_path+ '/env'
+    if not os.path.exists(vir_dir):
+        os.makedirs(vir_dir)
+        os.system("chmod -R 755 "+vir_dir)
+    if os.path.exists(vir_dir+"/env_vir.done"):
+        print(vir_dir+"/env_vir installed....skip")
+    else:
+        os.system("touch "+vir_dir+"/env_vir.running")
+        retcode = subprocess.call("sh "+script_path+"/installation/set_env.sh", shell=True)
+        if retcode :
+            print("Failed to set virtual environment.... ")
+            sys.exit(1)
+        os.system("mv "+vir_dir+"/env_vir.running "+vir_dir+"/env_vir.done")
+        print(vir_dir+"/env_vir installed")
+
 
     print("Start install DNCON4_db_tools into "+db_tools_dir)
-    os.chdir(db_tools_dir);
+    os.chdir(db_tools_dir)
     database_dir = db_tools_dir+"/databases"
     tools_dir = db_tools_dir+"/tools"
     install_dir = db_tools_dir+"/installation"
@@ -333,22 +350,10 @@ if __name__ == '__main__':
         os.system("chmod -R 755 "+tools_dir)
 
     if not os.path.exists(install_dir):
-        os.makedirs(tools_dir)
+        os.makedirs(install_dir)
         os.system("chmod -R 755 "+install_dir)
 
     ####### 1) tools compilation
-    #install virtual environment
-    if os.path.exists(install_dir+"/env_vir.done"):
-        print(install_dir+"/env_vir installed....skip")
-    else:
-        os.system("touch "+install_dir+"/env_vir.running")
-        retcode = subprocess.call("sh "+script_path+"/installation/set_env.sh", shell=True)
-        if retcode :
-            print("Failed to set virtual environment.... ")
-            sys.exit(1)
-        os.system("mv "+install_dir+"/env_vir.running "+install_dir+"/env_vir.done")
-        print(install_dir+"/env_vir installed")
-
     #install boost
     if os.path.exists(install_dir+"/boost.done"):
         print(install_dir+"/boost installed....skip")
@@ -379,7 +384,34 @@ if __name__ == '__main__':
         print(install_dir+"/OpenBlas.done")
 
 
-    ### (2) Download basic tools
+    ### (2) Download databases
+    os.chdir(database_dir)
+
+    #### Download NR90_2016
+    print("Download NR90\n");
+    download_nr(db_tools_dir,tools_dir,90)
+
+    #### Download Uniref90_04_2018
+    print("Download Uniref90\n");
+    download_uniref(db_tools_dir,tools_dir,90)
+
+    #### Download Metaclust50_2018_01
+    print("Download Metaclust50\n");
+    download_metaclust(db_tools_dir,tools_dir)
+
+
+    ### (3) Download basic tools
+    #### Download uniclust30_2017_10
+    if os.path.exists(install_dir+"/uniclust30_2017_10_hhsuite.done"):
+        print(install_dir+"/uniclust30_2017_10_hhsuite installed....skip")
+    else:
+        os.system("touch "+install_dir+"/uniclust30_2017_10_hhsuite.running")
+        tool = "uniclust30_2017_10_hhsuite.tar.gz"
+        address = "http://wwwuser.gwdg.de/~compbiol/uniclust/2017_10/uniclust30_2017_10_hhsuite.tar.gz"
+        direct_download(tool, address, database_dir)
+        os.system("mv "+install_dir+"/uniclust30_2017_10_hhsuite.running "+install_dir+"/uniclust30_2017_10_hhsuite.done")
+        print(install_dir+"/uniclust30_2017_10_hhsuite installed")
+
     #### Download blast-2.2.26
     if os.path.exists(install_dir+"/blast-2.2.26.done"):
         print(install_dir+"/blast-2.2.26 installed....skip")
@@ -576,28 +608,4 @@ if __name__ == '__main__':
         os.system("mv "+install_dir+"/betacon_64bit_standalone.running "+install_dir+"/betacon_64bit_standalone.done")
         print(install_dir+"/betacon_64bit_standalone installed")
 
-    ### (2) Download databases
-    os.chdir(database_dir)
 
-    #### Download NR90_2016
-    print("Download NR90\n");
-    download_nr(db_tools_dir,tools_dir,90)
-
-    #### Download Uniref90_04_2018
-    print("Download Uniref90\n");
-    download_uniref(db_tools_dir,tools_dir,90)
-
-    #### Download Metaclust50_2018_01
-    print("Download Metaclust50\n");
-    download_metaclust(db_tools_dir,tools_dir)
-
-    #### Download uniclust30_2017_10
-    if os.path.exists(install_dir+"/uniclust30_2017_10_hhsuite.done"):
-        print(install_dir+"/uniclust30_2017_10_hhsuite installed....skip")
-    else:
-        os.system("touch "+install_dir+"/uniclust30_2017_10_hhsuite.running")
-        tool = "uniclust30_2017_10_hhsuite.tar.gz"
-        address = "http://wwwuser.gwdg.de/~compbiol/uniclust/2017_10/uniclust30_2017_10_hhsuite.tar.gz"
-        direct_download(tool, address, database_dir)
-        os.system("mv "+install_dir+"/uniclust30_2017_10_hhsuite.running "+install_dir+"/uniclust30_2017_10_hhsuite.done")
-        print(install_dir+"/uniclust30_2017_10_hhsuite installed")

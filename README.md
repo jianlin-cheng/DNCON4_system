@@ -9,8 +9,15 @@ git clone https://github.com/jianlin-cheng/DNCON4_system.git
 cd DNCON4_system
 ```
 
+**(2) Activate system python3 environment (required)**
 
-**(2) Configure DNCON4_system (required)**
+```
+if on lewis: sh installation/activate_python3_in_lewis_server.sh
+
+if on multicom: sh installation/activate_python3_in_multicom_server.sh
+```
+
+**(3) Configure DNCON4_system (required)**
 
 ```
 python setup.py
@@ -18,7 +25,7 @@ python setup.py
 python configure.py
 ```
 
-**(3) Training the DNCON4 model**
+**(4) Training the DNCON4 model**
 <h5>There are several different single model, below is a demo commad line to run the training shell.</h5>
 
 ```
@@ -28,7 +35,7 @@ sh train/train_dres34_deepcov_plm_pearson_pssm_lewis.sh
 
 ```
 
-**(4) Predict the DNCON4 model on CASP13 (single target, input fasta (should user change the fasta in shell file), ouput rr file**
+**(5) Predict the DNCON4 model on CASP13 (single target, input fasta (should user change the fasta in shell file), ouput rr file**
 
 <h5>Case 1: run individual model</h5>
 
@@ -52,7 +59,7 @@ Output directory: example/*fasta name*/pred_map_ensem/rr/
 
 ```
 
-**(5) Predict and Evaluate the DNCON4 model on CASP13 37 FM domain**
+**(6) Predict and Evaluate the DNCON4 model on CASP13 37 FM domain**
 
 <h5>Case 1: run individual model</h5>
 

@@ -1,7 +1,8 @@
 #!/bin/bash -e
 # module load python/python-3.5.2
 temp_dir=$(pwd)
-gloable_dir=${temp_dir%%DNCON4*}'DNCON4'
+gloable_name=`pwd | awk -F "/" '{print $NF}'`
+gloable_dir=${temp_dir%%$gloable_name*}$gloable_name
 env_dir=$gloable_dir/env/
 echo install virtual environment to $env_dir
 cd $env_dir

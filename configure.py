@@ -39,13 +39,22 @@ def configure_file(filepath, filetype, flag, keyword, db_dir):
 
 temp_path = sys.path[0]
 DNCON4_path = ''
-intall_flag = raw_input("Intall DNCON4 to "+ temp_path +" ? (Yes/No)")
-if 'Y' in intall_flag or 'y' in intall_flag:
-	DNCON4_path = temp_path
+if sys.version_info[0] < 3:
+    intall_flag = raw_input("Intall DNCON4 to "+ temp_path +" ? (Yes/No)")
+    if 'Y' in intall_flag or 'y' in intall_flag:
+    	DNCON4_path = temp_path
+    else:
+    	custom_path = raw_input("Please input the path you want to install...")
+    	print("The DNCON4 will be installed to %s, please wait...\n"%custom_path)
+    	DNCON4_path = custom_path
 else:
-	custom_path = raw_input("Please input the path you want to install...")
-	print("The DNCON4 will be installed to %s, please wait...\n"%custom_path)
-	DNCON4_path = custom_path
+    intall_flag = raw_input("Intall DNCON4 to "+ temp_path +" ? (Yes/No)")
+    if 'Y' in intall_flag or 'y' in intall_flag:
+        DNCON4_path = temp_path
+    else:
+        custom_path = raw_input("Please input the path you want to install...")
+        print("The DNCON4 will be installed to %s, please wait...\n"%custom_path)
+        DNCON4_path = custom_path
 	## copy all file to the custom path, then need to change all shell gloable_dir
 
 install_info_file = DNCON4_path+'/installation/path.inf'
