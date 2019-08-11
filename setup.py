@@ -385,6 +385,16 @@ if __name__ == '__main__':
         os.system("mv "+install_dir+"/OpenBlas.running "+install_dir+"/OpenBlas.done")
         print(install_dir+"/OpenBlas.done")
 
+    #### Download blast-2.2.26
+    if os.path.exists(install_dir+"/blast-2.2.26.done"):
+        print(install_dir+"/blast-2.2.26 installed....skip")
+    else:
+        os.system("touch "+install_dir+"/blast-2.2.26.running")
+        tool = "blast-2.2.26-x64-linux.tar.gz"
+        address = "ftp://ftp.ncbi.nih.gov/blast/executables/legacy.NOTSUPPORTED/2.2.26/blast-2.2.26-x64-linux.tar.gz"
+        direct_download(tool, address, tools_dir)
+        os.system("mv "+install_dir+"/blast-2.2.26.running "+install_dir+"/blast-2.2.26.done")
+        print(install_dir+"/blast-2.2.26 installed")
 
     ### (2) Download databases
     os.chdir(database_dir)
@@ -413,17 +423,6 @@ if __name__ == '__main__':
         direct_download(tool, address, database_dir)
         os.system("mv "+install_dir+"/uniclust30_2017_10_hhsuite.running "+install_dir+"/uniclust30_2017_10_hhsuite.done")
         print(install_dir+"/uniclust30_2017_10_hhsuite installed")
-
-    #### Download blast-2.2.26
-    if os.path.exists(install_dir+"/blast-2.2.26.done"):
-        print(install_dir+"/blast-2.2.26 installed....skip")
-    else:
-        os.system("touch "+install_dir+"/blast-2.2.26.running")
-        tool = "blast-2.2.26-x64-linux.tar.gz"
-        address = "ftp://ftp.ncbi.nih.gov/blast/executables/legacy.NOTSUPPORTED/2.2.26/blast-2.2.26-x64-linux.tar.gz"
-        direct_download(tool, address, tools_dir)
-        os.system("mv "+install_dir+"/blast-2.2.26.running "+install_dir+"/blast-2.2.26.done")
-        print(install_dir+"/blast-2.2.26 installed")
 
     #### Downlaod SCRATCH
     if os.path.exists(install_dir+"/SCRATCH-1D_1.1.done"):
