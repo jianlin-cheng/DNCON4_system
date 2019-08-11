@@ -103,6 +103,8 @@ else:
 if os.path.exists(outdir+"/ccmpred/"+target+".plm") and os.path.getsize(outdir+"/ccmpred/"+target+".plm") > 0:
     print("plm generated.....skip")
     os.system("mv "+outdir+"/ccmpred/"+target+".plm "+outdir)
+elif os.path.exists(outdir+"/"+target+".plm") and os.path.getsize(outdir+"/"+target+".plm") > 0:
+    print("plm generated.....skip")
 else:
     print("plm generation failed....")
 

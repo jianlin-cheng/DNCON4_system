@@ -48,11 +48,11 @@ if sys.version_info[0] < 3:
     	print("The DNCON4 will be installed to %s, please wait...\n"%custom_path)
     	DNCON4_path = custom_path
 else:
-    intall_flag = raw_input("Intall DNCON4 to "+ temp_path +" ? (Yes/No)")
+    intall_flag = input("Intall DNCON4 to "+ temp_path +" ? (Yes/No)")
     if 'Y' in intall_flag or 'y' in intall_flag:
         DNCON4_path = temp_path
     else:
-        custom_path = raw_input("Please input the path you want to install...")
+        custom_path = input("Please input the path you want to install...")
         print("The DNCON4 will be installed to %s, please wait...\n"%custom_path)
         DNCON4_path = custom_path
 	## copy all file to the custom path, then need to change all shell gloable_dir

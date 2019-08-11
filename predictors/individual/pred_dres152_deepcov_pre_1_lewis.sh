@@ -22,7 +22,7 @@ global_dir=/storage/htc/bdm/zhiye/DNCON4
 source $global_dir/env/dncon4_virenv/bin/activate
 models_dir[0]=$global_dir/models/pretrain/3.res152_deepcov_pre_freecontact/
 output_dir=$global_dir/predictors/results/PRE/
-fasta=/storage/htc/bdm/zhiye/DNCON4/example/T0771.fasta
+fasta=$global_dir/example/T0771.fasta
 ## DBTOOL_FLAG
 db_tool_dir=/storage/htc/bdm/zhiye/DNCON4_db_tools
 printf "$global_dir\n"

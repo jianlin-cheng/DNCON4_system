@@ -25,7 +25,7 @@ models_dir[1]=$global_dir/models/pretrain/2.dres152_deepcov_plm_pearson_pssm/
 models_dir[2]=$global_dir/models/pretrain/3.res152_deepcov_pre_freecontact/
 models_dir[3]=$global_dir/models/pretrain/4.res152_deepcov_other/
 output_dir=$global_dir/example/T0950/
-fasta=/storage/htc/bdm/zhiye/DNCON4/example/T0950.fasta
+fasta=$global_dir/example/T0950.fasta
 ## DBTOOL_FLAG
 db_tool_dir=/storage/htc/bdm/zhiye/DNCON4_db_tools
 printf "$global_dir\n"

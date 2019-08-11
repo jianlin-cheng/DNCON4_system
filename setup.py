@@ -184,7 +184,7 @@ def download_uniref(db_tools_dir,tools_dir,identity):
         else:
             print("Failed to download uniref"+identity+" from http://sysbio.rnet.missouri.edu/dncon4_db_tools/databases/uniref90_04_2018.tar.gz")
             sys.exit(1)
-        os.system("gzip -d uniref"+identity+"_04_2018.tar.gz")
+        os.system("tar zxvf "+identity+"_04_2018.tar.gz")
         #os.system("mv uniref"+identity+".fasta uniref"+identity)
         retcode = subprocess.call(tools_dir+"/hmmer-3.1b2-linux-intel-x86_64/easel/miniapps/esl-sfetch --index uniref"+identity,shell=True)
         if retcode :

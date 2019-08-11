@@ -6,8 +6,6 @@ use warnings;
 use Carp;
 use Cwd 'abs_path';
 use File::Basename;
-use LWP::UserAgent;
-use Time::Piece;
 
 my $db_tool_dir = shift;
 my $aln            = shift;

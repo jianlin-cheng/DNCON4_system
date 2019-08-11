@@ -270,9 +270,16 @@ if iter_num == 1: # this is single model predictor
         os.system('rm -f '+id+'.raw')
     if only_predict_flag == False:
         print("Use coneva to evaluated. It may take 1 or 2 minutes.....\n")
+        emoji_flag = False
         for key in selected_list:
-            # print(key+" evaluated")
-            print('(｡･ω･｡)ﾉ♡ ', end='', flush=True)
+            # print(key+" evaluated")print
+            if emoji_flag:
+                emoji_flag=False
+                print('\r', '\\(￣︶￣*\\))  \\(￣︶￣*\\))  \\(￣︶￣*\\))  \\(￣︶￣*\\))  \\(￣︶￣*\\))', end='', flush=True)
+            else:
+                emoji_flag=True
+                print('\r', ' ((/*￣︶￣)/  ((/*￣︶￣)/  ((/*￣︶￣)/  ((/*￣︶￣)/  ((/*￣︶￣)/', end='', flush=True)
+            # print('(｡･ω･｡)ﾉ♡ ', end='', flush=True)
             pdb_name = get_all_file_contain_str(path_of_pdb, key)
             for i in range(len(pdb_name)):
                 pdb_file = path_of_pdb + pdb_name[i]
@@ -360,9 +367,15 @@ elif iter_num == 4: # this is multiple model predictor, now modele number is 4
         os.system('rm -f '+id+'.raw')
     if only_predict_flag == False:
         print("Use coneva to evaluated. It may take 1 or 2 minutes.....\n")
+        emoji_flag = False
         for key in selected_list:
-            # print(key+" evaluated")
-            print('(｡･ω･｡)ﾉ♡ ', end='', flush=True)
+            # print(key+" evaluated")print
+            if emoji_flag:
+                emoji_flag=False
+                print('\r', '\\(￣︶￣*\\))  \\(￣︶￣*\\))  \\(￣︶￣*\\))  \\(￣︶￣*\\))  \\(￣︶￣*\\))', end='', flush=True)
+            else:
+                emoji_flag=True
+                print('\r', ' ((/*￣︶￣)/  ((/*￣︶￣)/  ((/*￣︶￣)/  ((/*￣︶￣)/  ((/*￣︶￣)/', end='', flush=True)
             pdb_name = get_all_file_contain_str(path_of_pdb, key)
             for i in range(len(pdb_name)):
                 pdb_file = path_of_pdb + pdb_name[i]
