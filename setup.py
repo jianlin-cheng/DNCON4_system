@@ -102,7 +102,7 @@ def boost_install(install_dir,tools_dir,gcc_version):
     ### install boost-1.55 
     os.chdir(install_dir)
     if gcc_version[0] ==4 and gcc_version[1]<6: #gcc 4.6
-        if os.path.exists(tools_dir+"/boost_1_38_0/install.done"):
+        if not os.path.exists(tools_dir+"/boost_1_38_0/install.done"):
             print("\nStart install boost_1.38, may take ~20 min (sh P1_install_boost.sh &> P1_install_boost.log)\n\n")
             print("\n\t\t\tLog is saved in "+install_dir+"/P1_install_boost.log\n\n")
             os.system("sh P1_install_boost.sh &> P1_install_boost.log")
@@ -112,7 +112,7 @@ def boost_install(install_dir,tools_dir,gcc_version):
         else:
             print("\nboost-1.38 is installed!\n\n")
     else:
-        if os.path.exists(tools_dir+"/boost_1_55_0/install.done"):
+        if not os.path.exists(tools_dir+"/boost_1_55_0/install.done"):
             print("\nStart install boost_1.55, may take ~20 min (sh P1_install_boost.sh &> P1_install_boost.log)\n\n")
             print("\n\t\t\tLog is saved in "+install_dir+"/P1_install_boost.log\n\n")
             os.system("sh P1_install_boost.sh &> P1_install_boost.log")
@@ -121,7 +121,7 @@ def boost_install(install_dir,tools_dir,gcc_version):
 
 def OpenBlas_install(install_dir,tools_dir):
     #### install OpenBlas
-    if os.path.exists(tools_dir+"/OpenBLAS/install.done"):
+    if not os.path.exists(tools_dir+"/OpenBLAS/install.done"):
         print("\nStart install OpenBlas, may take ~1 min (sh P2_install_OpenBlas.sh &> P2_install_OpenBlas.log)\n\n")
         print("\n\t\t\tLog is saved in "+install_dir+"P2_install_OpenBlas.log\n\n")
         os.system("sh P2_install_OpenBlas.sh &> P2_install_OpenBlas.log")
@@ -358,6 +358,7 @@ if __name__ == '__main__':
     if os.path.exists(install_dir+"/boost.done"):
         print(install_dir+"/boost installed....skip")
     else:
+        os.chdir(install_dir)
         os.system("touch "+install_dir+"/boost.running")
         tool = "boost_1_38_0.tar.gz"
         address = "http://sysbio.rnet.missouri.edu/multicom_db_tools/tools/boost_1_38_0.tar.gz"
@@ -374,6 +375,7 @@ if __name__ == '__main__':
     if os.path.exists(install_dir+"/OpenBlas.done"):
         print(install_dir+"/OpenBlas installed....skip")
     else:
+        os.chdir(install_dir)
         os.system("touch "+install_dir+"/OpenBlas.running")
         tool = "OpenBLAS.tar.gz"
         address = "http://sysbio.rnet.missouri.edu/multicom_db_tools//tools/OpenBLAS.tar.gz"
@@ -473,9 +475,9 @@ if __name__ == '__main__':
         tool = "hhsuite-2.0.16-linux-x86_64.tar.gz"
         address = "http://wwwuser.gwdg.de/~compbiol/data/hhsuite/releases/all/hhsuite-2.0.16-linux-x86_64.tar.gz"
         direct_download(tool, address, tools_dir)
-        os.system("chmod -R 777 "+install_dir+"/hhsuite-2.0.16-linux-x86_64")
-        os.system("mv "+install_dir+"/hmmer-3.1b2-linux-intel-x86_64.running "+install_dir+"/hhsuite-2.0.16-linux-x86_64.done")
-        print(install_dir+"/hhsuite-2.0.16-linux-x86_64 installed")
+        os.system("chmod -R 777 "+tools_dir+"/hhsuite-2.0.16-linux-x86_64")
+        os.system("mv "+install_dir+"/hhsuite-2.0.16.running "+install_dir+"/hhsuite-2.0.16.done")
+        print(install_dir+"/hhsuite-2.0.16 installed")
 
     if os.path.exists(install_dir+"/hhsuite-3.0-beta.3.done"):
         print(install_dir+"/hhsuite-2.0.16 installed....skip")
@@ -484,7 +486,7 @@ if __name__ == '__main__':
         tool = "hhsuite-3.0-beta.3-Linux.tar.gz"
         address = "https://github.com/soedinglab/hh-suite/releases/download/v3.0-beta.3/hhsuite-3.0-beta.3-Linux.tar.gz"
         direct_download(tool, address, tools_dir)
-        os.system("chmod -R 777 "+install_dir+"/hhsuite-3.0-beta.3-Linux")
+        os.system("chmod -R 777 "+tools_dir+"/hhsuite-3.0-beta.3-Linux")
         os.system("mv "+install_dir+"/hhsuite-3.0-beta.3.running "+install_dir+"/hhsuite-3.0-beta.3.done")
         print(install_dir+"/hhsuite-3.0-beta.3 installed")
 
@@ -541,6 +543,8 @@ if __name__ == '__main__':
         address = "http://sysbio.rnet.missouri.edu/multicom_db_tools/tools/freecontact-1.0.21.tar.gz"
         direct_download(tool, address, tools_dir)
         os.chdir(tools_dir+"/freecontact-1.0.21")
+        #retcode = subprocess.call("sh "+install_dir+"/P1_install_boost.sh &> P1_install_boost.log", shell=True)
+        #retcode = subprocess.call("sh "+install_dir+"/P2_install_OpenBlas.sh &> P2_install_OpenBlas.log", shell=True)
         retcode = subprocess.call("sh "+install_dir+"/P3_install_freecontact.sh &> P3_install_freecontact.log", shell=True)
         if retcode :
             print("Failed to install "+tools_dir+"/freecontact-1.0.21")

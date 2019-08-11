@@ -13,6 +13,7 @@ import time
 sys.path.insert(0, sys.path[0])
 from Model_construct import *
 from DNCON_lib import *
+from training_strategy import *
 
 import subprocess
 import numpy as np
@@ -113,7 +114,7 @@ if os.path.exists(outdir+"/"+target+".pre") and os.path.getsize(outdir+"/"+targe
     print("pre generated.....skip")
 else:
     os.system(script_path+"/calNf_ly "+outdir+"/alignment/"+target+".aln 0.8 > "+outdir+"/"+target+".weight")
-    os.system("python -W ignore "+script_path+"/generate_pre.py "+outdir+"/alignment/"+target+".aln "+outdir+"/"+target+" >"+outdir+"/pre.log")
+    os.system("python -W ignore "+script_path+"/generate_pre.py "+outdir+"/alignment/"+target+".aln "+outdir+"/"+target)
     os.system("rm "+outdir+"/"+target+".weight")
     if os.path.exists(outdir+"/"+target+".pre") and os.path.getsize(outdir+"/"+target+".pre") > 0:
         print("pre generated successfully....")
@@ -121,22 +122,7 @@ else:
         print("pre generation failed....")
 ##########
 
-
-#This may can only used on local machine
-os.system('nvidia-smi -q -d Memory |grep -A4 GPU|grep Free >tmp')
-memory_gpu=[int(x.split()[2]) for x in open('tmp','r').readlines()]
-if memory_gpu == []:
-    print("System is out of GPU memory, Run on CPU")
-    os.environ['CUDA_VISIBLE_DEVICES']="0"
-else:
-    if np.max(memory_gpu) <= 2000:
-        print("System is out of GPU memory, Run on CPU")
-        os.environ['CUDA_VISIBLE_DEVICES']="7"
-        os.system('rm tmp')
-        # sys.exit(1)
-    else:
-        os.environ['CUDA_VISIBLE_DEVICES']=str(np.argmax(memory_gpu))
-        os.system('rm tmp')
+gpu_schedul_strategy("local", allow_growth=True)
 
 def chkdirs(fn):
     dn = os.path.dirname(fn)

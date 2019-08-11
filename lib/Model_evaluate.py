@@ -60,22 +60,7 @@ dist_string = "80"
 loss_function = 'binary_crossentropy'
 if_use_binsize = False #False True
 
-
-#This may can only used on local machine
-os.system('nvidia-smi -q -d Memory |grep -A4 GPU|grep Free >tmp')
-memory_gpu=[int(x.split()[2]) for x in open('tmp','r').readlines()]
-if memory_gpu == []:
-    print("System is out of GPU memory, Run on CPU")
-    os.environ['CUDA_VISIBLE_DEVICES']="0"
-else:
-    if np.max(memory_gpu) <= 2000:
-        print("System is out of GPU memory, Run on CPU")
-        os.environ['CUDA_VISIBLE_DEVICES']="7"
-        os.system('rm tmp')
-        # sys.exit(1)
-    else:
-        os.environ['CUDA_VISIBLE_DEVICES']=str(np.argmax(memory_gpu))
-        os.system('rm tmp')
+gpu_schedul_strategy("local", allow_growth=True)
 
 def chkdirs(fn):
     dn = os.path.dirname(fn)
@@ -270,16 +255,9 @@ if iter_num == 1: # this is single model predictor
         os.system('rm -f '+id+'.raw')
     if only_predict_flag == False:
         print("Use coneva to evaluated. It may take 1 or 2 minutes.....\n")
-        emoji_flag = False
         for key in selected_list:
-            # print(key+" evaluated")print
-            if emoji_flag:
-                emoji_flag=False
-                print('\r', '\\(￣︶￣*\\))  \\(￣︶￣*\\))  \\(￣︶￣*\\))  \\(￣︶￣*\\))  \\(￣︶￣*\\))', end='', flush=True)
-            else:
-                emoji_flag=True
-                print('\r', ' ((/*￣︶￣)/  ((/*￣︶￣)/  ((/*￣︶￣)/  ((/*￣︶￣)/  ((/*￣︶￣)/', end='', flush=True)
-            # print('(｡･ω･｡)ﾉ♡ ', end='', flush=True)
+            # print(key+" evaluated")
+            print('(｡･ω･｡)ﾉ♡ ', end='', flush=True)
             pdb_name = get_all_file_contain_str(path_of_pdb, key)
             for i in range(len(pdb_name)):
                 pdb_file = path_of_pdb + pdb_name[i]
@@ -367,15 +345,9 @@ elif iter_num == 4: # this is multiple model predictor, now modele number is 4
         os.system('rm -f '+id+'.raw')
     if only_predict_flag == False:
         print("Use coneva to evaluated. It may take 1 or 2 minutes.....\n")
-        emoji_flag = False
         for key in selected_list:
-            # print(key+" evaluated")print
-            if emoji_flag:
-                emoji_flag=False
-                print('\r', '\\(￣︶￣*\\))  \\(￣︶￣*\\))  \\(￣︶￣*\\))  \\(￣︶￣*\\))  \\(￣︶￣*\\))', end='', flush=True)
-            else:
-                emoji_flag=True
-                print('\r', ' ((/*￣︶￣)/  ((/*￣︶￣)/  ((/*￣︶￣)/  ((/*￣︶￣)/  ((/*￣︶￣)/', end='', flush=True)
+            # print(key+" evaluated")
+            print('(｡･ω･｡)ﾉ♡ ', end='', flush=True)
             pdb_name = get_all_file_contain_str(path_of_pdb, key)
             for i in range(len(pdb_name)):
                 pdb_file = path_of_pdb + pdb_name[i]
