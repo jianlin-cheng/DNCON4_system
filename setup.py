@@ -193,7 +193,7 @@ def download_uniref(db_tools_dir,tools_dir,identity):
         if os.path.exists("uniref"+identity+".pal"):
             print("\tuniref"+identity+" has been formatted, skip!")
         else:
-            print("\tnr"+identity+" starts formating......")
+            print("\tuniref"+identity+" starts formating......")
             os.system(tools_dir+"/blast-2.2.26/bin/formatdb -i uniref"+identity+" -o T -t uniref"+identity+" -n uniref"+identity)
             os.system("chmod -R 755 uniref"+identity+"*")
         print("Downloading and formatting uniref"+identity+"....Done")
@@ -396,6 +396,27 @@ if __name__ == '__main__':
         os.system("mv "+install_dir+"/blast-2.2.26.running "+install_dir+"/blast-2.2.26.done")
         print(install_dir+"/blast-2.2.26 installed")
 
+    #### Download hmmer-3.1b2-linux-intel-x86_64
+    if os.path.exists(install_dir+"/hmmer-3.1b2-linux-intel-x86_64.done"):
+        print(install_dir+"/hmmer-3.1b2-linux-intel-x86_64 installed....skip")
+    else:
+        os.system("touch "+install_dir+"/hmmer-3.1b2-linux-intel-x86_64.running")
+        tool = "hmmer-3.1b2-linux-intel-x86_64.tar.gz"
+        address = "http://eddylab.org/software/hmmer3/3.1b2/hmmer-3.1b2-linux-intel-x86_64.tar.gz"
+        direct_download(tool, address, tools_dir)
+        tool = re.sub("\.tar.gz","",tool)
+        os.chdir(tools_dir+"/"+tool)
+        retcode = subprocess.call("./configure", shell=True)
+        if retcode :
+            print("Failed to configure "+tools_dir+"/"+tool)
+            sys.exit(1)
+        retcode = subprocess.call("make", shell=True)
+        if retcode :
+            print("Failed to make "+tools_dir+"/"+tool)
+            sys.exit(1)
+        os.system("mv "+install_dir+"/hmmer-3.1b2-linux-intel-x86_64.running "+install_dir+"/hmmer-3.1b2-linux-intel-x86_64.done")
+        print(install_dir+"/hmmer-3.1b2-linux-intel-x86_64 installed")
+
     ### (2) Download databases
     os.chdir(database_dir)
 
@@ -443,27 +464,6 @@ if __name__ == '__main__':
         retcode = subprocess.call("cp -r "+tools_dir+"/blast-2.2.26 ./pkg/", shell=True)
         os.system("mv "+install_dir+"/SCRATCH-1D_1.1.running "+install_dir+"/SCRATCH-1D_1.1.done")
         print(install_dir+"/SCRATCH-1D_1.1 installed")
-
-    #### Download hmmer-3.1b2-linux-intel-x86_64
-    if os.path.exists(install_dir+"/hmmer-3.1b2-linux-intel-x86_64.done"):
-        print(install_dir+"/hmmer-3.1b2-linux-intel-x86_64 installed....skip")
-    else:
-        os.system("touch "+install_dir+"/hmmer-3.1b2-linux-intel-x86_64.running")
-        tool = "hmmer-3.1b2-linux-intel-x86_64.tar.gz"
-        address = "http://eddylab.org/software/hmmer3/3.1b2/hmmer-3.1b2-linux-intel-x86_64.tar.gz"
-        direct_download(tool, address, tools_dir)
-        tool = re.sub("\.tar.gz","",tool)
-        os.chdir(tools_dir+"/"+tool)
-        retcode = subprocess.call("./configure", shell=True)
-        if retcode :
-            print("Failed to configure "+tools_dir+"/"+tool)
-            sys.exit(1)
-        retcode = subprocess.call("make", shell=True)
-        if retcode :
-            print("Failed to make "+tools_dir+"/"+tool)
-            sys.exit(1)
-        os.system("mv "+install_dir+"/hmmer-3.1b2-linux-intel-x86_64.running "+install_dir+"/hmmer-3.1b2-linux-intel-x86_64.done")
-        print(install_dir+"/hmmer-3.1b2-linux-intel-x86_64 installed")
 
     #### Downlaod HHblits (hhsuite-3.0-beta.3-Source for hhblits aln and hhsuite-2.0.16 for jack_hhblits)
     #### This can be improved later by using hhsuite-3.0-beta.3-Source only !!!!!!!!
