@@ -198,12 +198,12 @@ def download_uniref90(db_tools_dir,tools_dir,identity):
             os.system("chmod -R 755 uniref"+identity+"*")
         print("Downloading and formatting uniref"+identity+"....Done")
 
-def download_uniref90filt(db_tools_dir,tools_dir):
+def download_uniref90filt(db_tools_dir):
     uniref_dir = db_tools_dir+"/databases/uniref"
     if os.path.exists(uniref_dir+"/uniref90pfilt.pal"):
         print("\tuniref90pfilt is found, skip!")
     else:
-        os.chdir(tools_dir)
+        os.chdir(db_tools_dir+"/databases")
         if os.path.exists("uniref.tar.gz"):
             os.system("rm uniref.tar.gz")
         os.system("wget http://sysbio.rnet.missouri.edu/bdm_download/dncon2-tool/databases/uniref.tar.gz")
@@ -445,7 +445,7 @@ if __name__ == '__main__':
     download_uniref90(db_tools_dir,tools_dir,90)
     
     #### Download Uniref90_filt for psipred
-    download_uniref90filt(db_tools_dir,tools_dir)
+    download_uniref90filt(db_tools_dir)
 
     #### Download Metaclust50_2018_01
     print("Download Metaclust50\n");
