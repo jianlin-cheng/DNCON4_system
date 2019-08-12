@@ -133,7 +133,7 @@ if (-s "$id.solv"){
 	print "Looks like .solv file is already here.. skipping..\n";
 }
 else{
-	system_cmd($db_tool_dir.PSIPRED." $db_tool_dir".BLASTNRDB." $db_tool_dir".BLASTPATH." $db_tool_dir".PSIPREDPATH." $db_tool_dir".METAPSICOV." $fasta");
+	system_cmd($db_tool_dir.PSIPRED." $db_tool_dir/databases/uniref $db_tool_dir".BLASTPATH." $db_tool_dir".PSIPREDPATH." $db_tool_dir".METAPSICOV." $fasta");
 }
 chdir $outdir or confess $!;
 

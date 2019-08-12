@@ -167,7 +167,7 @@ def download_nr(db_tools_dir,tools_dir,identity):
         os.system("chmod -R 755 nr"+identity+"*")
         print("Downloading and formatting nr"+identity+"....Done")
 
-def download_uniref(db_tools_dir,tools_dir,identity):
+def download_uniref90(db_tools_dir,tools_dir,identity):
     identity = str(identity)
     uniref_dir = db_tools_dir+"/databases/uniref"+identity
     if not os.path.exists(uniref_dir):
@@ -198,6 +198,23 @@ def download_uniref(db_tools_dir,tools_dir,identity):
             os.system("chmod -R 755 uniref"+identity+"*")
         print("Downloading and formatting uniref"+identity+"....Done")
 
+def download_uniref90filt(db_tools_dir,tools_dir):
+    uniref_dir = db_tools_dir+"/databases/uniref"
+    if os.path.exists(uniref_dir+"/uniref90pfilt.pal"):
+        print("\tuniref90pfilt is found, skip!")
+    else:
+        os.chdir(tools_dir)
+        if os.path.exists("uniref.tar.gz"):
+            os.system("rm uniref.tar.gz")
+        os.system("wget http://sysbio.rnet.missouri.edu/bdm_download/dncon2-tool/databases/uniref.tar.gz")
+        if os.path.exists("uniref.tar.gz"):
+            print("\tuniref90filt is found, start extracting files")
+        else:
+            print("Failed to download uniref90filt from http://sysbio.rnet.missouri.edu/bdm_download/dncon2-tool/databases/uniref.tar.gz")
+            sys.exit(1)
+        os.system("tar zxvf uniref.tar.gz")
+        print("Downloading and formatting uniref90filt....Done")
+
 def download_metaclust(db_tools_dir,tools_dir):
     metaclust_dir = db_tools_dir+"/databases/Metaclust50"
     if not os.path.exists(metaclust_dir):
@@ -208,14 +225,13 @@ def download_metaclust(db_tools_dir,tools_dir):
     else:
         if os.path.exists("metaclust_2018_01.tar.gz"):
             os.system("rm metaclust_2018_01.tar.gz")
-        os.system("wget https://metaclust.mmseqs.org/2018_01/metaclust_2018_01.tar.gz")
+        os.system("wget http://sysbio.rnet.missouri.edu/dncon4_db_tools/databases/metaclust_2018_01.tar.gz")
         if os.path.exists("metaclust_2018_01.tar.gz"):
             print("\tmetaclust_50 is found, start extracting files")
         else:
-            print("Failed to download metaclust_50 from https://metaclust.mmseqs.org/2018_01/metaclust_2018_01.tar.gz")
+            print("Failed to download metaclust_50 from http://sysbio.rnet.missouri.edu/dncon4_db_tools/databases/metaclust_2018_01.tar.gz")
             sys.exit(1)
         os.system("tar -zxf metaclust_2018_01.tar.gz")
-        os.system("mv metaclust_50.fasta metaclust_50")
         retcode = subprocess.call(tools_dir+"/hmmer-3.1b2-linux-intel-x86_64/easel/miniapps/esl-sfetch --index metaclust_50", shell=True)
         if retcode :
             print("Failed to index "+db_tools_dir+"/databases/Metaclust50")
@@ -426,7 +442,10 @@ if __name__ == '__main__':
 
     #### Download Uniref90_04_2018
     print("Download Uniref90\n");
-    download_uniref(db_tools_dir,tools_dir,90)
+    download_uniref90(db_tools_dir,tools_dir,90)
+    
+    #### Download Uniref90_filt for psipred
+    download_uniref90filt(db_tools_dir,tools_dir)
 
     #### Download Metaclust50_2018_01
     print("Download Metaclust50\n");
@@ -451,7 +470,7 @@ if __name__ == '__main__':
     else:
         os.system("touch "+install_dir+"/SCRATCH-1D_1.1.running")
         tool = "SCRATCH-1D_1.1.tar.gz"
-        address = "wget http://download.igb.uci.edu/SCRATCH-1D_1.1.tar.gz"
+        address = "http://download.igb.uci.edu/SCRATCH-1D_1.1.tar.gz"
         direct_download(tool, address, tools_dir)
         tool = re.sub("\.tar.gz","",tool)
         os.chdir(tools_dir+"/"+tool)

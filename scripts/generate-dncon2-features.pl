@@ -11,6 +11,8 @@ use lib ''.abs_path(dirname($0));
 use ProteinUtils qw(estimate_joint_entropy calc_entropy atchley_factor scaled_log_odds_n_inf scld_residue_residue_contacts scld_lu_contact_potential scld_levitt_contact_potential scld_braun_contact_potential scaled_ordered_mean pssm_counts);
 use MyMathUtils qw(calc_cosine calc_pearson_r);
 
+use Data::Dumper;
+
 if (@ARGV ne 11){
   print STDERR "Usage: $0 <fasta> <pssm> <ss_sa> <colstat> <pairstat> <psipred> <psisolv> <ccmpred> <freecontact> <nncon> <betacon>\n";
   exit;
@@ -178,8 +180,8 @@ my @colstat    = split /\s+/, $colstatrow;
 # Obtain co-evolution features
 if (-f $colstat_fname){
 	%con_ccmpre = %{ccmpred2hash($ccmpred_fname)}; 
-    %con_nncon = %{ccmpred2hash($nncon_fname)}; 
-    %con_betacon = %{ccmpred2hash($betacon_fname)}; 
+    %con_nncon = %{con2hash($nncon_fname)}; 
+    %con_betacon = %{con2hash($betacon_fname)}; 
 	%con_frecon = %{freecontact2hash($freecontact_fname)};
 	%pstat_pots = %{pairstat2hash($pairstat_fname, "potsum")};
 	%pstat_mimt = %{pairstat2hash($pairstat_fname, "mimat")};
@@ -522,6 +524,27 @@ print "\n";
 
 ####################################################################################################
 sub ccmpred2hash{
+	my $file_ccmpred = shift;
+	die "ERROR! file_ccmpred not defined!" if !$file_ccmpred;
+	my %conf = ();
+	open CCM, $file_ccmpred or die $!." $file_ccmpred";
+	my $i = 0;
+	while(<CCM>){
+		$_ =~ s/^\s+//;
+		my @C = split /\s+/, $_;
+		for(my $j = 0; $j <= $#C; $j++){
+			$conf{$i." ".$j} = $C[$j];
+			$conf{$j." ".$i} = $C[$j];
+		}
+		$conf{$i." ".$i} = 1;
+		$i++;
+	}
+	close CCM;
+	return \%conf;
+}
+
+####################################################################################################
+sub con2hash{
 	my $file_ccmpred = shift;
 	die "ERROR! file_ccmpred not defined!" if !$file_ccmpred;
 	my %conf = ();
