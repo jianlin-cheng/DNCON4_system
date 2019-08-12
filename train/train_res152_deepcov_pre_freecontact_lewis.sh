@@ -15,8 +15,8 @@ module load cuda/cuda-9.0.176
 module load cudnn/cudnn-7.1.4-cuda-9.0.176
 export GPUARRAY_FORCE_CUDA_DRIVER_LOAD=""
 export HDF5_USE_FILE_LOCKING=FALSE
-temp_dir=$(pwd)
-gloable_dir=${temp_dir%%DNCON4*}'DNCON4'
+##GLOBAL_FALG
+global_dir=/storage/htc/bdm/zhiye/DNCON4
 ## ENV_FLAG
 source $gloable_dir/env/dncon4_virenv/bin/activate
 ## FEATURE_FLAG

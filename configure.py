@@ -40,18 +40,20 @@ def configure_file(filepath, filetype, flag, keyword, db_dir):
 temp_path = sys.path[0]
 DNCON4_path = ''
 if sys.version_info[0] < 3:
-    intall_flag = raw_input("Intall DNCON4 to "+ temp_path +" ? (Yes/No)")
+    intall_flag = raw_input("Intall DNCON4 to "+ temp_path +" ? (Yes)")
     if 'Y' in intall_flag or 'y' in intall_flag:
     	DNCON4_path = temp_path
     else:
+        sys.exit(1)
     	custom_path = raw_input("Please input the path you want to install...")
     	print("The DNCON4 will be installed to %s, please wait...\n"%custom_path)
     	DNCON4_path = custom_path
 else:
-    intall_flag = input("Intall DNCON4 to "+ temp_path +" ? (Yes/No)")
+    intall_flag = input("Intall DNCON4 to "+ temp_path +" ? (Yes)")
     if 'Y' in intall_flag or 'y' in intall_flag:
         DNCON4_path = temp_path
     else:
+        sys.exit(1)
         custom_path = input("Please input the path you want to install...")
         print("The DNCON4 will be installed to %s, please wait...\n"%custom_path)
         DNCON4_path = custom_path
