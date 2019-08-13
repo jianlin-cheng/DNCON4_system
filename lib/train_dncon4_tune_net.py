@@ -72,6 +72,11 @@ path_of_lists   = GLOBAL_PATH+'/data/'+dataset+'/lists-test-train/'
 reject_fea_file = GLOBAL_PATH+'/lib/feature_txt/feature_to_use_'+fea_file+'.txt'
 path_of_Y       = feature_dir + '/features/' + dataset + '/'
 path_of_X       = feature_dir + '/features/' + dataset + '/'
+
+if not os.path.exists(path_of_X):
+  print("Can not find folder of features: "+ path_of_X +", please check and run configure.py to download or extract it!")
+  sys.exit(1)
+
 if nb_layers > 40 and nb_layers <=50:
   Maximum_length=400 # 500 will OOM  
 elif nb_layers > 50:

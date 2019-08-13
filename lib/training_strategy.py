@@ -9,7 +9,6 @@ import keras.backend.tensorflow_backend as KTF
 def gpu_schedul_strategy(sysflag, gpu_mem_rate = 0.5, allow_growth = False):
     gpu_mem = 0
     current_path = sys.path[0]
-    print(current_path)
     if sysflag == 'local':
         os.system('nvidia-smi -q -d Memory |grep -A4 GPU|grep Free > tmp')
         os.system('chmod -R 777 tmp')

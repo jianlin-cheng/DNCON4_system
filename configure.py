@@ -40,21 +40,16 @@ def configure_file(filepath, filetype, flag, keyword, db_dir):
 temp_path = sys.path[0]
 DNCON4_path = ''
 if sys.version_info[0] < 3:
-    intall_flag = raw_input("Intall DNCON4 to "+ temp_path +" ? (Yes)")
-    if 'Y' in intall_flag or 'y' in intall_flag:
-    	DNCON4_path = temp_path
-    else:
-    	custom_path = raw_input("Please input the path you want to install...")
-    	print("The DNCON4 will be installed to %s, please wait...\n"%custom_path)
-    	DNCON4_path = custom_path
+    intall_flag = raw_input("Intall DNCON4 to "+ temp_path +". Press any button to continue...")
 else:
-    intall_flag = input("Intall DNCON4 to "+ temp_path +" ? (Yes)")
-    if 'Y' in intall_flag or 'y' in intall_flag:
-        DNCON4_path = temp_path
-    else:
-        custom_path = input("Please input the path you want to install...")
-        print("The DNCON4 will be installed to %s, please wait...\n"%custom_path)
-        DNCON4_path = custom_path
+    intall_flag = input("Intall DNCON4 to "+ temp_path +". Press any button to continue...")
+DNCON4_path = temp_path
+    # if 'Y' in intall_flag or 'y' in intall_flag:
+    #     DNCON4_path = temp_path
+    # else:
+    #     custom_path = input("Please input the path you want to install...")
+    #     print("The DNCON4 will be installed to %s, please wait...\n"%custom_path)
+    #     DNCON4_path = custom_path
 	## copy all file to the custom path, then need to change all shell gloable_dir
 
 install_info_file = DNCON4_path+'/installation/path.inf'
@@ -125,3 +120,37 @@ print("configure feature generate script...")
 configure_file(dncon4_feature_generate, 'sh', 'GLOBAL_FALG', 'global_dir', DNCON4_path)
 configure_file(dncon4_feature_generate, 'sh', 'FEATURE_FLAG', 'feature_dir', dncon4_db_dir)
 
+### ask if want to donwload the feature data
+os.chdir(dncon4_db_dir+'/features/')
+if sys.version_info[0] < 3:
+    download_flag = raw_input("\n\nWould you want to download the training database ? It will take 30 min to download, and cost 400GB disk space. (No/Yes)")
+    if 'Y' in download_flag or 'y' in download_flag:
+        os.system("wget http://sysbio.rnet.missouri.edu/dncon4_db_tools/features/DEEPCOV.tar.gz")
+        if os.path.exists("DEEPCOV.tar.gz"):
+            print("DEEPCOV.tar.gz already exists")
+        else:
+            print("Failed to download DEEPCOV.tar.gz from http://sysbio.rnet.missouri.edu/dncon4_db_tools/features/DEEPCOV.tar.gz")
+            sys.exit(1)
+
+    extract_flag = raw_input("Would you want to extract the training database ? It will take 15 hr to extract, and cost another 700GB disk space. (No/Yes)")
+    if 'Y' in extract_flag or 'y' in extract_flag:
+        os.system("tar zxvf DEEPCOV.tar.gz")
+        print("Extract DEEPCOV.tar.gz done!")
+        if os.path.exists("DEEPCOV.tar.gz"):
+            os.system("rm DEEPCOV.tar.gz")
+else:
+    download_flag = input("Would you want to download the training database ? It will take 30 min to download, and cost 400GB disk space. (No/Yes)")
+    if 'Y' in download_flag or 'y' in download_flag:
+        os.system("wget http://sysbio.rnet.missouri.edu/dncon4_db_tools/features/DEEPCOV.tar.gz")
+        if os.path.exists("DEEPCOV.tar.gz"):
+            print("DEEPCOV.tar.gz already exists")
+        else:
+            print("Failed to download DEEPCOV.tar.gz from http://sysbio.rnet.missouri.edu/dncon4_db_tools/features/DEEPCOV.tar.gz")
+            sys.exit(1)
+
+    extract_flag = input("Would you want to extract the training database ? It will take 15 hr to extract, and cost another 700GB disk space. (No/Yes)")
+    if 'Y' in extract_flag or 'y' in extract_flag:
+        os.system("tar zxvf DEEPCOV.tar.gz")
+        print("Extract DEEPCOV.tar.gz done!")
+        if os.path.exists("DEEPCOV.tar.gz"):
+            os.system("rm DEEPCOV.tar.gz")
