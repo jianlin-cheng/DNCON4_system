@@ -154,8 +154,6 @@ def download_nr(db_tools_dir,tools_dir,identity):
         os.system(tools_dir+"/blast-2.2.26/bin/formatdb -i nr"+identity+" -o T -t nr"+identity+" -n nr"+identity)
         os.system("chmod -R 755 nr"+identity+"*")
     else:
-        if os.path.exists("nr"+identity+"-2016.tar.gz"):
-            os.system("rm nr"+identity+"-2016.tar.gz")
         os.system("wget http://sysbio.rnet.missouri.edu/dncon4_db_tools/databases/nr"+identity+"-2016.tar.gz")
         if os.path.exists("nr"+identity+"-2016.tar.gz"):
             print("\tnr"+identity+"-2016.tar.gz is found, start extracting files")
@@ -166,6 +164,8 @@ def download_nr(db_tools_dir,tools_dir,identity):
         os.system(tools_dir+"/blast-2.2.26/bin/formatdb -i nr"+identity+" -o T -t nr"+identity+" -n nr"+identity)
         os.system("chmod -R 755 nr"+identity+"*")
         print("Downloading and formatting nr"+identity+"....Done")
+        if os.path.exists("nr"+identity+"-2016.tar.gz"):
+            os.system("rm nr"+identity+"-2016.tar.gz")
 
 def download_uniref90(db_tools_dir,tools_dir,identity):
     identity = str(identity)
@@ -176,8 +176,6 @@ def download_uniref90(db_tools_dir,tools_dir,identity):
     if os.path.exists("uniref"+identity+".pal") and os.path.exists("uniref"+identity+".ssi"):
         print("\tuniref"+identity+" is found, skip!")
     else:
-        if os.path.exists("uniref"+identity+"_04_2018.tar.gz"):
-            os.system("rm uniref"+identity+"_04_2018.tar.gz")
         os.system("wget http://sysbio.rnet.missouri.edu/dncon4_db_tools/databases/uniref90_04_2018.tar.gz")
         if os.path.exists("uniref"+identity+"_04_2018.tar.gz"):
             print("\tuniref"+identity+" is found, start extracting files")
@@ -197,6 +195,8 @@ def download_uniref90(db_tools_dir,tools_dir,identity):
             os.system(tools_dir+"/blast-2.2.26/bin/formatdb -i uniref"+identity+" -o T -t uniref"+identity+" -n uniref"+identity)
             os.system("chmod -R 755 uniref"+identity+"*")
         print("Downloading and formatting uniref"+identity+"....Done")
+        if os.path.exists("uniref"+identity+"_04_2018.tar.gz"):
+            os.system("rm uniref"+identity+"_04_2018.tar.gz")
 
 def download_uniref90filt(db_tools_dir):
     uniref_dir = db_tools_dir+"/databases/uniref"
@@ -204,8 +204,6 @@ def download_uniref90filt(db_tools_dir):
         print("\tuniref90pfilt is found, skip!")
     else:
         os.chdir(db_tools_dir+"/databases")
-        if os.path.exists("uniref.tar.gz"):
-            os.system("rm uniref.tar.gz")
         os.system("wget http://sysbio.rnet.missouri.edu/bdm_download/dncon2-tool/databases/uniref.tar.gz")
         if os.path.exists("uniref.tar.gz"):
             print("\tuniref90filt is found, start extracting files")
@@ -214,6 +212,8 @@ def download_uniref90filt(db_tools_dir):
             sys.exit(1)
         os.system("tar zxvf uniref.tar.gz")
         print("Downloading and formatting uniref90filt....Done")
+        if os.path.exists("uniref.tar.gz"):
+            os.system("rm uniref.tar.gz")
 
 def download_metaclust(db_tools_dir,tools_dir):
     metaclust_dir = db_tools_dir+"/databases/Metaclust50"
@@ -223,8 +223,6 @@ def download_metaclust(db_tools_dir,tools_dir):
     if os.path.exists("metaclust_50") and os.path.exists("metaclust_50"+".ssi"):
         print("\tmetaclust_50"+" is found, skip!")
     else:
-        if os.path.exists("metaclust_2018_01.tar.gz"):
-            os.system("rm metaclust_2018_01.tar.gz")
         os.system("wget http://sysbio.rnet.missouri.edu/dncon4_db_tools/databases/metaclust_2018_01.tar.gz")
         if os.path.exists("metaclust_2018_01.tar.gz"):
             print("\tmetaclust_50 is found, start extracting files")
@@ -237,6 +235,8 @@ def download_metaclust(db_tools_dir,tools_dir):
             print("Failed to index "+db_tools_dir+"/databases/Metaclust50")
             sys.exit(1)
         print("Downloading "+db_tools_dir+"/databases/Metaclust50"+"....Done")
+        if os.path.exists("metaclust_2018_01.tar.gz"):
+            os.system("rm metaclust_2018_01.tar.gz")
 
 def direct_download(tool, address, tools_dir):  ####Tools don't need to be configured after downloading and configuring
     os.chdir(tools_dir)
@@ -354,6 +354,7 @@ if __name__ == '__main__':
     os.chdir(db_tools_dir)
     database_dir = db_tools_dir+"/databases"
     tools_dir = db_tools_dir+"/tools"
+    feat_dir = db_tools_dir+"/features"
     install_dir = db_tools_dir+"/installation"
 
 
@@ -368,6 +369,10 @@ if __name__ == '__main__':
     if not os.path.exists(install_dir):
         os.makedirs(install_dir)
         os.system("chmod -R 755 "+install_dir)
+
+    if not os.path.exists(feat_dir):
+        os.makedirs(feat_dir)
+        os.system("chmod -R 755 "+feat_dir)
 
     ####### 1) tools compilation
     #install boost
@@ -433,7 +438,7 @@ if __name__ == '__main__':
         os.system("mv "+install_dir+"/hmmer-3.1b2-linux-intel-x86_64.running "+install_dir+"/hmmer-3.1b2-linux-intel-x86_64.done")
         print(install_dir+"/hmmer-3.1b2-linux-intel-x86_64 installed")
 
-    ### (2) Download databases
+    ### (2) Download databases and training features
     os.chdir(database_dir)
 
     #### Download NR90_2016
@@ -451,8 +456,6 @@ if __name__ == '__main__':
     print("Download Metaclust50\n");
     download_metaclust(db_tools_dir,tools_dir)
 
-
-    ### (3) Download basic tools
     #### Download uniclust30_2017_10
     if os.path.exists(install_dir+"/uniclust30_2017_10_hhsuite.done"):
         print(install_dir+"/uniclust30_2017_10_hhsuite installed....skip")
@@ -463,7 +466,23 @@ if __name__ == '__main__':
         direct_download(tool, address, database_dir)
         os.system("mv "+install_dir+"/uniclust30_2017_10_hhsuite.running "+install_dir+"/uniclust30_2017_10_hhsuite.done")
         print(install_dir+"/uniclust30_2017_10_hhsuite installed")
+        if os.path.exists(databases_dir+"/"+tool):
+            os.system("rm "+databases_dir+"/"+tool)
 
+    #### Download features
+    if os.path.exists(install_dir+"/features.done"):
+        print(install_dir+"/features downloaded....skip")
+    else:
+        os.system("touch "+install_dir+"/features.running")
+        tool = "CASP13.tar.gz"
+        address = "http://sysbio.rnet.missouri.edu/dncon4_db_tools/features/CASP13.tar.gz"
+        direct_download(tool, address, feat_dir)
+        os.system("mv "+install_dir+"/features.running "+install_dir+"/features.done")
+        print(install_dir+"/features downloaded")
+        if os.path.exists(feat_dir+"/"+tool):
+            os.system("rm "+feat_dir+"/"+tool)
+
+    ### (3) Download basic tools
     #### Downlaod SCRATCH
     if os.path.exists(install_dir+"/SCRATCH-1D_1.1.done"):
         print(install_dir+"/SCRATCH-1D_1.1 installed....skip")
