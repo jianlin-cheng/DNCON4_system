@@ -15,3 +15,6 @@ dncon4_evalu_individual=/predictors/individual
 
 ## path of pred_individual script
 dncon4_pred_individual=/predictors/individual
+
+## path of feature_generate script
+dncon4_feature_generate=/features

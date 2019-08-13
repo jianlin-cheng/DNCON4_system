@@ -216,10 +216,13 @@ else{
 print "\n\n";
 print "Verify coevolution-based contact predictions ..\n";
 if (not -s "ccmpred/$id.ccmpred"){
-	confess "Warning! ccmpred/$id.ccmpred file is empty!\n";
+	print "Warning! ccmpred/$id.ccmpred file is empty!\n";
+	system_cmd("touch ccmpred/$id.ccmpred");
 }
+
 if (not -s "freecontact/$id.freecontact.rr"){
-	confess "Warning! freecontact/$id.freecontact.rr file is empty!\n";
+	print "Warning! freecontact/$id.freecontact.rr file is empty!\n";
+	system_cmd("touch freecontact/$id.freecontact.rr");
 }
 
 ####################################################################################################

@@ -66,6 +66,7 @@ dncon4_evalu_ensemble=''
 dncon4_evalu_individual=''
 dncon4_pred_ensemble=''
 dncon4_pred_individual=''
+dncon4_feature_generate= ''
 if not os.path.exists(install_info_file):
     print("Can't find %s, please check!"%install_info_file)
     sys.exit(1)
@@ -101,6 +102,10 @@ else:
                 dncon4_pred_individual = line.strip('\n').split('=')[1]
                 if ' ' in dncon4_pred_individual:dncon4_pred_individual.replace(' ','')
                 dncon4_pred_individual = DNCON4_path +'/' + dncon4_pred_individual
+            elif 'feature_generate' in line:
+                dncon4_feature_generate = line.strip('\n').split('=')[1]
+                if ' ' in dncon4_feature_generate:dncon4_feature_generate.replace(' ','')
+                dncon4_feature_generate = DNCON4_path +'/' + dncon4_feature_generate
 
 print("### Find database folder %s"%dncon4_db_dir)
 print("configure training script...")
@@ -118,4 +123,7 @@ configure_file(dncon4_pred_ensemble, 'sh', 'DBTOOL_FLAG', 'db_tool_dir', dncon4_
 print("configure predict individual script...")
 configure_file(dncon4_pred_individual, 'sh', 'GLOBAL_FALG', 'global_dir', DNCON4_path)
 configure_file(dncon4_pred_individual, 'sh', 'DBTOOL_FLAG', 'db_tool_dir', dncon4_db_dir)
+print("configure feature generate script...")
+configure_file(dncon4_feature_generate, 'sh', 'GLOBAL_FALG', 'global_dir', DNCON4_path)
+configure_file(dncon4_feature_generate, 'sh', 'FEATURE_FLAG', 'feature_dir', dncon4_db_dir)
 
