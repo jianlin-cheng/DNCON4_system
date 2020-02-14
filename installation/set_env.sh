@@ -15,6 +15,7 @@ pip install numpy==1.15.2
 pip install matplotlib
 pip install scipy
 pip install numba
+pip install sklearn
 pip install --upgrade h5py
 ## on multicom use tf1.5, on lewis use tf1.9
 sysOS=`uname -n`
@@ -28,7 +29,7 @@ elif [[ $sysOS == $str2* ]];then
         pip install tensorflow-gpu==1.5.0
 else
         echo "Other Platform: $sysOS"
-        pip install tensorflow-gpu==1.5.0
+        pip install tensorflow==1.5.0
 fi
 pip install --upgrade pillow
 mkdir -p ~/.keras

@@ -1,7 +1,7 @@
 
 # -*- coding: utf-8 -*-
 """
-Created on Wed Feb 22 21:47:26 2017
+Created on Wed Feb 22 21:47:26 2019
 
 @author: Zhiye
 """
@@ -50,13 +50,60 @@ if dataset == 'CASP13':
     path_of_Y= database_path + '/features/CASP13/'  
     path_of_fasta = database_path + '/features/CASP13/fasta/'
     path_of_pdb = database_path + '/features/CASP13/pdb/'    
+    path_of_lists = '/mnt/data/zhiye/Python/DNCON4/data/CASP13/lists-test-train/'
+    path_of_index = '/mnt/data/zhiye/Python/DNCON4/data/CASP13/pdb_index/' 
+    path_of_X= '/mnt/data/zhiye/Python/DNCON4/data/CASP13/feats_fixed/'  # new pipline
+    path_of_Y= '/mnt/data/zhiye/Python/DNCON4/data/CASP13/feats_fixed/'  
+    path_of_fasta = '/mnt/data/zhiye/Python/DNCON4/data/CASP13/fasta/'
+    path_of_pdb = '/mnt/data/zhiye/Python/DNCON4/data/CASP13/pdb43/' 
+elif dataset == 'CASP13_MSA':
+    path_of_lists = GLOABL_Path + '/data/CASP13/lists-test-train/'
+    path_of_X= database_path + '/features/CASP13_MSA/'
+    path_of_Y= database_path + '/features/CASP13_MSA/'  
+    path_of_fasta = database_path + '/features/CASP13/fasta/'
+    path_of_pdb = database_path + '/features/CASP13/pdb/'    
+    path_of_lists = '/mnt/data/zhiye/Python/DNCON4/data/CASP13/lists-test-train/'
+    path_of_X= '/mnt/data/zhiye/Python/DNCON4/data/CASP13/feats_deepmsa/'  # new pipline
+    path_of_Y= '/mnt/data/zhiye/Python/DNCON4/data/CASP13/feats_deepmsa/'  
+    path_of_fasta = '/mnt/data/zhiye/Python/DNCON4/data/CASP13/fasta/'
+    path_of_pdb = '/mnt/data/zhiye/Python/DNCON4/data/CASP13/pdb43/' 
+elif dataset == 'DEEPMSA':
+    path_of_lists = GLOABL_Path + '/data/'+dataset+'/lists-test-train/'
+    path_of_X= database_path + '/features/' + dataset +'/'
+    path_of_Y= database_path + '/features/' + dataset +'/' 
+    path_of_fasta = database_path + '/features/' + dataset +'/fasta/'
+    path_of_pdb = database_path + '/features/' + dataset +'/pdb/'  
+elif dataset == 'CAMEO':
+    path_of_lists = GLOABL_Path + '/data/' + dataset+'/lists-test-train/'
+    path_of_X= database_path + '/features/' + dataset +'/'
+    path_of_Y= database_path + '/features/' + dataset +'/' 
+    path_of_fasta = database_path + '/features/' + dataset +'/fasta/'
+    path_of_pdb = database_path + '/features/' + dataset +'/pdb/'  
+elif dataset == 'CAMEO_MSA':
+    path_of_lists = GLOABL_Path + '/data/CAMEO/lists-test-train/'
+    path_of_X= database_path + '/features/' + dataset +'/'
+    path_of_Y= database_path + '/features/' + dataset +'/' 
+    path_of_fasta = database_path + '/features/' + dataset +'/fasta/'
+    path_of_pdb = database_path + '/features/' + dataset +'/pdb/' 
+elif dataset == 'CASP12':
+    path_of_lists = GLOABL_Path + '/data/' + dataset+'/lists-test-train/'
+    path_of_X= database_path + '/features/' + dataset +'/'
+    path_of_Y= database_path + '/features/' + dataset +'/' 
+    path_of_fasta = database_path + '/features/' + dataset +'/fasta/'
+    path_of_pdb = database_path + '/features/' + dataset +'/pdb/'
+elif dataset == 'CASP12_MSA':
+    path_of_lists = GLOABL_Path + '/data/CASP12/lists-test-train/'
+    path_of_X= database_path + '/features/' + dataset +'/'
+    path_of_Y= database_path + '/features/' + dataset +'/' 
+    path_of_fasta = database_path + '/features/' + dataset +'/fasta/'
+    path_of_pdb = database_path + '/features/' + dataset +'/pdb/'
 else:
-    print("This script can only test CASP13 dataset, other dataset will be added later.")
+    print("This script can test CASP13, DEEPMSA, CAMEO dataset, other dataset will be added later.")
     sys.exit(1)
 
 feature_list = 'other'# ['combine', 'combine_all2d', 'other', 'ensemble']  # combine will output three map and it combine, other just output one pred
 data_list_choose = 'test'# ['train', 'test', 'train_sub', 'all']
-Maximum_length = 640  # casp12 700
+Maximum_length = 100000  # casp12 700
 dist_string = "80"
 loss_function = 'binary_crossentropy'
 if_use_binsize = False #False True
@@ -86,15 +133,15 @@ if loss_function == 'weighted_BCE':
     path_of_Y_evalu = path_of_Y + '/bin_class/'
     if weight_p <= 1:
         weight_n = 1.0 - weight_p
-    loss_function = _weighted_binary_crossentropy(weight_p, weight_n)
+    loss_function = loss_function
 elif loss_function == 'weighted_CCE':
     predict_method = 'mul_class'
-    loss_function = _weighted_categorical_crossentropy(weight_p)
+    loss_function = loss_function
 elif loss_function == 'weighted_MSE':
     predict_method = 'real_dist'
     path_of_Y_train = path_of_Y + '/real_dist/'
     path_of_Y_evalu = path_of_Y + '/bin_class/'
-    loss_function = _weighted_mean_squared_error(1)
+    loss_function = loss_function
 elif loss_function == 'binary_crossentropy':
     predict_method = 'bin_class'
     path_of_Y_train = path_of_Y + '/bin_class/'
@@ -139,13 +186,20 @@ for index in range(iter_num):
     reject_fea_file = getFileName(reject_fea_path, '.txt')
 
     model_out= sub_cv_dir + '/' + getFileName(sub_cv_dir, '.json')[0]
-    model_weight_out_best = sub_cv_dir + '/' + getFileName(sub_cv_dir, '.h5')[0]
+    weights_name_list = getFileName(sub_cv_dir, '.h5')
+    model_name = None
+    for i in range(len(weights_name_list)):
+        if 'best' in weights_name_list[i]:
+            model_name = weights_name_list[i]
+        else:
+            continue
+    model_weight_out_best = sub_cv_dir + '/' + model_name
     model_weight_top10 = "%s/model_weights_top/" % (sub_cv_dir)
 
     # pred_history_out = "%s/predict%d.acc_history" % (out_dir, index) 
     # with open(pred_history_out, "a") as myfile:
     #     myfile.write(time.strftime('%Y-%m-%d %H:%M:%S\n',time.localtime(time.time())))
-    with CustomObjectScope({'InstanceNormalization': InstanceNormalization, 'tf':tf}):
+    with CustomObjectScope({'InstanceNormalization': InstanceNormalization, 'RowNormalization': RowNormalization, 'ColumNormalization': ColumNormalization, 'tf':tf}):
         json_string = open(model_out).read()
         DNCON4 = model_from_json(json_string)
 
@@ -154,6 +208,7 @@ for index in range(iter_num):
         DNCON4.load_weights(model_weight_out_best)
     else:
         print("Please check the best weights\n")
+        sys.exit(1)
 
     model_predict= "%s/pred_map%d/"%(out_dir, index)
     chkdirs(model_predict)
@@ -183,6 +238,7 @@ for index in range(iter_num):
                 if type(selected_list_2D_other) == bool:
                     continue
                 DNCON4_prediction_other = DNCON4.predict([selected_list_2D_other], batch_size= 1)  
+                # print(DNCON4_prediction_other.shape)
             elif len(reject_fea_file)>=2:
                 pred_temp = []
                 bool_flag = False
@@ -199,8 +255,10 @@ for index in range(iter_num):
 
               
             CMAP = DNCON4_prediction_other.reshape(Maximum_length, Maximum_length)
-            Map_UpTrans = np.triu(CMAP, 1).T
-            Map_UandL = np.triu(CMAP)
+            # Map_UpTrans = np.triu(CMAP, 1).T
+            # Map_UandL = np.triu(CMAP)
+            Map_UpTrans = (np.triu(CMAP, 1).T + np.tril(CMAP, -1))/2
+            Map_UandL = (np.triu(CMAP) + np.tril(CMAP).T)/2
             real_cmap_other = Map_UandL + Map_UpTrans
             other_cmap_file = "%s/%s.txt" % (model_predict, key)
             np.savetxt(other_cmap_file, real_cmap_other, fmt='%.4f')
@@ -215,7 +273,7 @@ for index in range(iter_num):
             real_cmap_other = np.zeros((Maximum_length, Maximum_length))
             weight_num = 0
             for weight in weights:
-                model_predict_epoch= "%s/ensemble_pred_map%d/"%(out_dir, weight_num)
+                model_predict_epoch= "%s/ensemble_pred_map%d/"%(model_predict, weight_num)
                 chkdirs(model_predict_epoch)
                 model_weight_out = model_weight_top10 + '/' + weight
                 weight_num += 1
@@ -225,14 +283,16 @@ for index in range(iter_num):
                 DNCON4_prediction_plm = DNCON4.predict([selected_list_2D_plm], batch_size= 1)  
 
                 CMAP = DNCON4_prediction_other.reshape(Maximum_length, Maximum_length)
-                Map_UpTrans = np.triu(CMAP, 1).T
-                Map_UandL = np.triu(CMAP)
+                # Map_UpTrans = np.triu(CMAP, 1).T
+                # Map_UandL = np.triu(CMAP)
+                Map_UpTrans = (np.triu(CMAP, 1).T + np.tril(CMAP, -1))/2
+                Map_UandL = (np.triu(CMAP) + np.tril(CMAP).T)/2
                 real_cmap_other_temp = Map_UandL + Map_UpTrans
 
                 real_cmap_other += real_cmap_other_temp
 
             real_cmap_other /= weight_num
-            sum_cmap_file = "%s/ensemble_pred_map/%s.txt" % (out_dir,key)
+            sum_cmap_file = "%s/ensemble_pred_map/%s.txt" % (model_predict,key)
             np.savetxt(sum_cmap_file, real_cmap_other, fmt='%.4f')
 
 ### use coneva to evaluate
@@ -256,9 +316,15 @@ if iter_num == 1: # this is single model predictor
         os.system('rm -f '+id+'.raw')
     if only_predict_flag == False:
         print("Use coneva to evaluated. It may take 1 or 2 minutes.....\n")
+        emoji_flag = False
         for key in selected_list:
-            # print(key+" evaluated")
-            print('(｡･ω･｡)ﾉ♡ ', end='', flush=True)
+            # print(key+" evaluated")print
+            if emoji_flag:
+                emoji_flag=False
+                print('\r', '\\(￣︶￣*\\))  \\(￣︶￣*\\))  \\(￣︶￣*\\))  \\(￣︶￣*\\))  \\(￣︶￣*\\))', end='', flush=True)
+            else:
+                emoji_flag=True
+                print('\r', ' ((/*￣︶￣)/  ((/*￣︶￣)/  ((/*￣︶￣)/  ((/*￣︶￣)/  ((/*￣︶￣)/', end='', flush=True)
             pdb_name = get_all_file_contain_str(path_of_pdb, key)
             for i in range(len(pdb_name)):
                 pdb_file = path_of_pdb + pdb_name[i]
@@ -280,6 +346,7 @@ if iter_num == 1: # this is single model predictor
                 arr = line.split()
                 print(arr[0])  
                 with open(final_acc_reprot, "a") as myfile:
+                    myfile.write(' ')
                     myfile.write(arr[0])
                     myfile.write('\n')
             if(".rr (precision)" in line):
@@ -346,9 +413,15 @@ elif iter_num == 4: # this is multiple model predictor, now modele number is 4
         os.system('rm -f '+id+'.raw')
     if only_predict_flag == False:
         print("Use coneva to evaluated. It may take 1 or 2 minutes.....\n")
+        emoji_flag = False
         for key in selected_list:
-            # print(key+" evaluated")
-            print('(｡･ω･｡)ﾉ♡ ', end='', flush=True)
+            # print(key+" evaluated")print
+            if emoji_flag:
+                emoji_flag=False
+                print('\r', '\\(￣︶￣*\\))  \\(￣︶￣*\\))  \\(￣︶￣*\\))  \\(￣︶￣*\\))  \\(￣︶￣*\\))', end='', flush=True)
+            else:
+                emoji_flag=True
+                print('\r', ' ((/*￣︶￣)/  ((/*￣︶￣)/  ((/*￣︶￣)/  ((/*￣︶￣)/  ((/*￣︶￣)/', end='', flush=True)
             pdb_name = get_all_file_contain_str(path_of_pdb, key)
             for i in range(len(pdb_name)):
                 pdb_file = path_of_pdb + pdb_name[i]
@@ -370,6 +443,7 @@ elif iter_num == 4: # this is multiple model predictor, now modele number is 4
                 arr = line.split()
                 print(arr[0])  
                 with open(final_acc_reprot, "a") as myfile:
+                    myfile.write(' ')
                     myfile.write(arr[0])
                     myfile.write('\n')
             if(".rr (precision)" in line):

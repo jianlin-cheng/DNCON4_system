@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Feb 22 21:41:28 2017
+Created on Wed Feb 22 21:41:28 2019
 
-@author: Jie Hou
+@author: Zhiye
 """
 
 from collections import defaultdict
@@ -72,6 +72,10 @@ def _in_relu(input):
     norm = InstanceNormalization(axis=-1)(input)
     return Activation("relu")(norm)
 
+def _in_elu(input):
+    norm = InstanceNormalization(axis=-1)(input)
+    return Activation("elu")(norm)
+
 def _bn_relu_conv2D(filters,  nb_row, nb_col, strides=(1, 1), use_bias=True, kernel_initializer = "he_normal",  kernel_regularizer=None, dilation_rate=(1,1)):
     def f(input):
         act = _bn_relu(input)
@@ -83,6 +87,14 @@ def _bn_relu_conv2D(filters,  nb_row, nb_col, strides=(1, 1), use_bias=True, ker
 def _in_relu_conv2D(filters,  nb_row, nb_col, strides=(1, 1), use_bias=True, kernel_initializer = "he_normal",  kernel_regularizer=None, dilation_rate=(1,1)):
     def f(input):
         act = _in_relu(input)
+        conv = Conv2D(filters=filters, kernel_size=(nb_row, nb_col), strides=strides,use_bias=use_bias,
+                             kernel_initializer=kernel_initializer, padding="same", kernel_regularizer=kernel_regularizer, dilation_rate = dilation_rate)(act)
+        return conv
+    return f
+
+def _in_elu_conv2D(filters,  nb_row, nb_col, strides=(1, 1), use_bias=True, kernel_initializer = "he_normal",  kernel_regularizer=None, dilation_rate=(1,1)):
+    def f(input):
+        act = _in_elu(input)
         conv = Conv2D(filters=filters, kernel_size=(nb_row, nb_col), strides=strides,use_bias=use_bias,
                              kernel_initializer=kernel_initializer, padding="same", kernel_regularizer=kernel_regularizer, dilation_rate = dilation_rate)(act)
         return conv
@@ -105,6 +117,39 @@ def _conv_in_relu2D(filters,  nb_row, nb_col, strides=(1, 1), use_bias=True, ker
         return Activation("relu")(norm)
     return f
 
+
+def _conv_rcin_relu2D(filters,  nb_row, nb_col, strides=(1, 1), use_bias=True, kernel_initializer = "he_normal",  kernel_regularizer=None, dilation_rate=(1,1)):
+    def f(input):
+        conv = Conv2D(filters=filters, kernel_size=(nb_row, nb_col), strides=strides,use_bias=use_bias,
+                             kernel_initializer=kernel_initializer, padding="same", kernel_regularizer=kernel_regularizer, dilation_rate = dilation_rate)(input)
+        norm1 = InstanceNormalization(axis=-1)(conv)
+        norm2 = RowNormalization(axis=-1)(conv)
+        norm3 = ColumNormalization(axis=-1)(conv)
+        norm  = concatenate([norm1, norm2, norm3])
+        return Activation("relu")(norm)
+    return f
+
+def _conv_in_dropout_relu2D(filters,  nb_row, nb_col, strides=(1, 1), use_bias=True, kernel_initializer = "he_normal",  kernel_regularizer=None,dropout_rate=0.2):
+    def f(input):
+        conv = Conv2D(filters=filters, kernel_size=(nb_row, nb_col), strides=strides,use_bias=use_bias,
+                             kernel_initializer=kernel_initializer, padding="same", kernel_regularizer=kernel_regularizer)(input)
+        norm = InstanceNormalization(axis=-1)(conv)
+        drop = Dropout(dropout_rate)(norm)
+        return Activation("relu")(drop)
+    return f
+
+def _conv_rcin_dropout_relu2D(filters,  nb_row, nb_col, strides=(1, 1), use_bias=True, kernel_initializer = "he_normal",  kernel_regularizer=None,dropout_rate=0.2):
+    def f(input):
+        conv = Conv2D(filters=filters, kernel_size=(nb_row, nb_col), strides=strides,use_bias=use_bias,
+                             kernel_initializer=kernel_initializer, padding="same", kernel_regularizer=kernel_regularizer)(input)
+        norm1 = InstanceNormalization(axis=-1)(conv)
+        norm2 = RowNormalization(axis=-1)(conv)
+        norm3 = ColumNormalization(axis=-1)(conv)
+        norm  = concatenate([norm1, norm2, norm3])
+        drop = Dropout(dropout_rate)(norm)
+        return Activation("relu")(drop)
+    return f
+
 def _conv_relu1D(filters, kernel_size, strides, use_bias=True, kernel_initializer = "he_normal"):
     def f(input):
         conv = Conv1D(filters=filters, kernel_size=kernel_size, strides=strides,use_bias=use_bias,
@@ -119,15 +164,6 @@ def _conv_relu2D(filters, nb_row, nb_col, strides=(1, 1), use_bias=True, kernel_
                              kernel_initializer=kernel_initializer, padding="same", dilation_rate=dilation_rate)(input)
         # norm = BatchNormalization(axis=1)(conv)
         return Activation("relu")(conv)
-    return f
-
-def _conv_in_dropout_relu2D(filters,  nb_row, nb_col, strides=(1, 1), use_bias=True, kernel_initializer = "he_normal",  kernel_regularizer=None,dropout_rate=0.2):
-    def f(input):
-        conv = Conv2D(filters=filters, kernel_size=(nb_row, nb_col), strides=strides,use_bias=use_bias,
-                             kernel_initializer=kernel_initializer, padding="same", kernel_regularizer=kernel_regularizer)(input)
-        norm = InstanceNormalization(axis=-1)(conv)
-        drop = Dropout(dropout_rate)(norm)
-        return Activation("relu")(drop)
     return f
 
 def _in_sigmoid(input):
@@ -289,6 +325,47 @@ class InstanceNormalization(Layer):
         mean, var = tf.nn.moments(inputs, axes=[1,2], keep_dims=True)
         return K.batch_normalization(inputs, mean, var, self.beta, self.gamma, self.epsilon)
 
+class RowNormalization(Layer):
+    def __init__(self, axis=-1, epsilon=1e-5, **kwargs):
+        super(RowNormalization, self).__init__(**kwargs)
+        self.axis = axis
+        self.epsilon = epsilon
+
+    def build(self, input_shape):
+        dim = input_shape[self.axis]
+        if dim is None:
+            raise ValueError('Axis '+str(self.axis)+' of input tensor should have a defined dimension but the layer received an input with shape '+str(input_shape)+ '.')
+        shape = (dim,)
+
+        self.gamma = self.add_weight(shape=shape, name='gamma', initializer=initializers.random_normal(1.0, 0.02))
+        self.beta = self.add_weight(shape=shape, name='beta', initializer='zeros')
+        self.built = True
+
+    def call(self, inputs, training=None):
+        mean, var = tf.nn.moments(inputs, axes=[1], keep_dims=True)
+        return K.batch_normalization(inputs, mean, var, self.beta, self.gamma, self.epsilon)
+
+class ColumNormalization(Layer):
+    def __init__(self, axis=-1, epsilon=1e-5, **kwargs):
+        super(ColumNormalization, self).__init__(**kwargs)
+        self.axis = axis
+        self.epsilon = epsilon
+
+    def build(self, input_shape):
+        dim = input_shape[self.axis]
+        if dim is None:
+            raise ValueError('Axis '+str(self.axis)+' of input tensor should have a defined dimension but the layer received an input with shape '+str(input_shape)+ '.')
+        shape = (dim,)
+
+        self.gamma = self.add_weight(shape=shape, name='gamma', initializer=initializers.random_normal(1.0, 0.02))
+        self.beta = self.add_weight(shape=shape, name='beta', initializer='zeros')
+        self.built = True
+
+    def call(self, inputs, training=None):
+        mean, var = tf.nn.moments(inputs, axes=[2], keep_dims=True)
+        return K.batch_normalization(inputs, mean, var, self.beta, self.gamma, self.epsilon)
+
+
 def _attention_layer(input_dim):
     def f(input):
         attention_probs = Dense(input_dim, activation='softmax')(input)
@@ -368,25 +445,6 @@ def basic_block(filters, init_strides=(1, 1), is_first_block_of_first_layer=Fals
         return _shortcut(input, residual)
     return f
 
-def basic_block_pre(filters, init_strides=(1, 1), is_first_block_of_first_layer=False, use_SE=False):
-    def f(input):
-        residual = input
-        conv1 = _conv_in_dropout_relu2D(filters=filters, nb_row=3, nb_col=3,strides=init_strides, dropout_rate=0.2)(input)#dropout_rate=0.2
-        conv2 = _conv_in_dropout_relu2D(filters=filters, nb_row=3, nb_col=3,strides=init_strides, dropout_rate=0.2)(conv1)
-        if use_SE == True:
-            conv2 = squeeze_excite_block(conv2)
-        return _shortcut(residual, conv2)
-    return f
-
-def basic_block_other(filters, init_strides=(1, 1), is_first_block_of_first_layer=False, use_SE=False):
-    def f(input):
-        residual = input
-        conv1 = _conv_in_dropout_relu2D(filters=filters, nb_row=3, nb_col=3,strides=init_strides)(input)#
-        conv2 = _conv_in_dropout_relu2D(filters=filters, nb_row=3, nb_col=3,strides=init_strides)(conv1)
-        if use_SE == True:
-            conv2 = squeeze_excite_block(conv2)
-        return _shortcut(residual, conv2)
-    return f
 
 def bottleneck(filters, init_strides=(1, 1), is_first_block_of_first_layer=False, use_SE=False):
     def f(input):
@@ -494,6 +552,26 @@ def DeepResnet_with_paras_2D(kernel_size,feature_2D_num, filters,nb_layers,opt, 
     DNCON4_RES.summary()
     return DNCON4_RES
 
+def basic_block_pre(filters, init_strides=(1, 1), is_first_block_of_first_layer=False, use_SE=False):
+    def f(input):
+        residual = input
+        conv1 = _conv_in_dropout_relu2D(filters=filters, nb_row=3, nb_col=3,strides=init_strides, dropout_rate=0.2)(input)#dropout_rate=0.2
+        conv2 = _conv_in_dropout_relu2D(filters=filters, nb_row=3, nb_col=3,strides=init_strides, dropout_rate=0.2)(conv1)
+        if use_SE == True:
+            conv2 = squeeze_excite_block(conv2)
+        return _shortcut(residual, conv2)
+    return f
+
+def basic_block_other(filters, init_strides=(1, 1), is_first_block_of_first_layer=False, use_SE=False):
+    def f(input):
+        residual = input
+        conv1 = _conv_in_dropout_relu2D(filters=filters, nb_row=3, nb_col=3,strides=init_strides)(input)#
+        conv2 = _conv_in_dropout_relu2D(filters=filters, nb_row=3, nb_col=3,strides=init_strides)(conv1)
+        if use_SE == True:
+            conv2 = squeeze_excite_block(conv2)
+        return _shortcut(residual, conv2)
+    return f
+
 def DeepResnet_with_paras_2D_Pre(kernel_size,feature_2D_num, filters,nb_layers,opt, initializer = "he_normal", loss_function = "binary_crossentropy"):
 
     contact_feature_num_2D=feature_2D_num
@@ -547,21 +625,122 @@ def DeepResnet_with_paras_2D_other(kernel_size,feature_2D_num, filters,nb_layers
     DNCON4_2D_convs = []
 
     DNCON4_2D_conv = DNCON4_2D_input
+    DNCON4_2D_conv = InstanceNormalization(axis=-1)(DNCON4_2D_conv)
     DNCON4_2D_conv = _conv_in_relu2D(filters=64, nb_row=1, nb_col=1, strides=(1, 1))(DNCON4_2D_conv)
     block = DNCON4_2D_conv
     filters = 64
     if nb_layers == 46:
         repetitions = [3, 6, 10, 3]
         for i, r in enumerate(repetitions):
-            block = _residual_block(basic_block_other, filters=filters, repetitions=r, is_first_layer=(i == 0))(block)
+            block = _residual_block(basic_block_other, filters=filters, repetitions=r)(block)
     elif nb_layers == 152:
         repetitions = [3, 8, 36, 3]
         for i, r in enumerate(repetitions):
-            block = _residual_block(basic_block_other, filters=filters, repetitions=r, is_first_layer=(i == 0))(block)
+            block = _residual_block(basic_block_other, filters=filters, repetitions=r)(block)
     else: # default is 34 layer res
         repetitions = [3, 4, 6, 3]
         for i, r in enumerate(repetitions):
-            block = _residual_block(basic_block_other, filters=filters, repetitions=r, is_first_layer=(i == 0))(block)
+            block = _residual_block(basic_block_other, filters=filters, repetitions=r)(block)
+    # Last activation
+    DNCON4_2D_conv = Conv2D(filters=1, kernel_size=(3, 3), strides=(1, 1), padding="same",kernel_initializer="he_normal")(block)
+    DNCON4_2D_conv = Activation("sigmoid")(DNCON4_2D_conv)
+
+    if loss_function == 'binary_crossentropy':
+        loss = loss_function
+        
+    DNCON4_2D_out = DNCON4_2D_conv
+    DNCON4_RES = Model(inputs=contact_input, outputs=DNCON4_2D_out)
+    # categorical_crossentropy
+    DNCON4_RES.compile(loss=loss, metrics=['accuracy'], optimizer=opt)
+    DNCON4_RES.summary()
+    return DNCON4_RES
+
+def basic_block_other_RC(filters, init_strides=(1, 1), is_first_block_of_first_layer=False, use_SE=False):
+    def f(input):
+        residual = input
+        conv1 = _conv_rcin_dropout_relu2D(filters=filters, nb_row=3, nb_col=3,strides=init_strides)(input)
+        conv2 = _conv_rcin_dropout_relu2D(filters=filters, nb_row=3, nb_col=3,strides=init_strides)(conv1)
+        if use_SE == True:
+            conv2 = squeeze_excite_block(conv2)
+        return _shortcut(residual, conv2)
+    return f
+
+def basic_block_pre_RC(filters, init_strides=(1, 1), is_first_block_of_first_layer=False, use_SE=False):
+    def f(input):
+        residual = input
+        conv1 = _conv_rcin_dropout_relu2D(filters=filters, nb_row=3, nb_col=3,strides=init_strides, dropout_rate=0.2)(input)
+        conv2 = _conv_rcin_dropout_relu2D(filters=filters, nb_row=3, nb_col=3,strides=init_strides, dropout_rate=0.2)(conv1)
+        if use_SE == True:
+            conv2 = squeeze_excite_block(conv2)
+        return _shortcut(residual, conv2)
+    return f
+
+def DeepResnetRC_with_paras_2D_other(kernel_size,feature_2D_num,use_bias,hidden_type,filters,nb_layers,opt, initializer = "he_normal", loss_function = "binary_crossentropy", weight_p = 1):
+    contact_feature_num_2D=feature_2D_num
+    contact_input_shape=(None,None,contact_feature_num_2D)
+    contact_input = Input(shape=contact_input_shape)
+    
+    _handle_dim_ordering()
+    DNCON4_2D_input = contact_input
+    
+    DNCON4_2D_convs = []
+
+    DNCON4_2D_conv = DNCON4_2D_input
+    DNCON4_2D_conv = InstanceNormalization(axis=-1)(DNCON4_2D_conv)
+
+    DNCON4_2D_conv = _conv_rcin_relu2D(filters=64, nb_row=1, nb_col=1, strides=(1, 1))(DNCON4_2D_conv)
+    block = DNCON4_2D_conv
+    filters = 64
+    # repetitions = [3, 8, 36, 3]
+    if nb_layers == 34:
+        repetitions = [3, 4, 6, 3]
+        for i, r in enumerate(repetitions):
+            block = _residual_block(basic_block_other_RC, filters=filters, repetitions=r, use_SE=True)(block)
+    elif nb_layers == 46:
+        repetitions = [3, 6, 10, 3]
+        for i, r in enumerate(repetitions):
+            block = _residual_block(basic_block_other_RC, filters=filters, repetitions=r, is_first_layer=(i == 0), use_SE=True)(block)
+    # Last activation
+    DNCON4_2D_conv = Conv2D(filters=1, kernel_size=(3, 3), strides=(1, 1), padding="same",kernel_initializer="he_normal")(block)
+    DNCON4_2D_conv = Activation("sigmoid")(DNCON4_2D_conv)
+
+    if loss_function == 'binary_crossentropy':
+        loss = loss_function
+        
+    DNCON4_2D_out = DNCON4_2D_conv
+    DNCON4_RES = Model(inputs=contact_input, outputs=DNCON4_2D_out)
+    # categorical_crossentropy
+    DNCON4_RES.compile(loss=loss, metrics=['accuracy'], optimizer=opt)
+    DNCON4_RES.summary()
+    return DNCON4_RES
+
+def DeepResnetRC_with_paras_2D_Pre(kernel_size,feature_2D_num, filters,nb_layers,opt, initializer = "he_normal", loss_function = "binary_crossentropy"):
+
+    contact_feature_num_2D=feature_2D_num
+    contact_input_shape=(None,None,contact_feature_num_2D)
+    contact_input = Input(shape=contact_input_shape)
+    
+    _handle_dim_ordering()
+    DNCON4_2D_input = contact_input
+    
+    DNCON4_2D_convs = []
+
+    DNCON4_2D_conv = DNCON4_2D_input
+    DNCON4_2D_conv = _conv_rcin_relu2D(filters=64, nb_row=1, nb_col=1, strides=(1, 1))(DNCON4_2D_conv)
+    block = DNCON4_2D_conv
+    filters = 64
+    if nb_layers == 46:
+        repetitions = [3, 6, 10, 3]
+        for i, r in enumerate(repetitions):
+            block = _residual_block(basic_block_pre_RC, filters=filters, repetitions=r, is_first_layer=(i == 0))(block)
+    elif nb_layers == 35:
+        repetitions = [3, 4, 6, 3]
+        for i, r in enumerate(repetitions):
+            block = _residual_block(basic_block_pre_RC, filters=filters, repetitions=r, is_first_layer=(i == 0), use_SE=True)(block)
+    else: # default is 34 layer res
+        repetitions = [3, 4, 6, 3]
+        for i, r in enumerate(repetitions):
+            block = _residual_block(basic_block_pre_RC, filters=filters, repetitions=r, is_first_layer=(i == 0), use_SE=True)(block)
     # Last activation
     DNCON4_2D_conv = Conv2D(filters=1, kernel_size=(3, 3), strides=(1, 1), padding="same",kernel_initializer="he_normal")(block)
     DNCON4_2D_conv = Activation("sigmoid")(DNCON4_2D_conv)
@@ -620,6 +799,36 @@ def _in_relu_conv_K(**conv_params):
 
     def f(x):
         activation = _in_relu_K(x, bn_name=bn_name, relu_name=relu_name)
+        return Conv2D(filters=filters, kernel_size=kernel_size,
+                      strides=strides, padding=padding,
+                      dilation_rate=dilation_rate,
+                      kernel_initializer=kernel_initializer,
+                      name=conv_name)(activation)
+                      # kernel_regularizer=kernel_regularizer,
+
+    return f
+
+def _rcin_relu_K(x, bn_name=None, relu_name=None):
+    norm1 = InstanceNormalization(axis=-1, name=bn_name)(x)
+    norm2 = RowNormalization(axis=-1, name=bn_name)(x)
+    norm3 = ColumNormalization(axis=-1, name=bn_name)(x)
+    norm  = concatenate([norm1, norm2, norm3])
+    return Activation("relu", name=relu_name)(norm)
+
+def _rcin_relu_conv_K(**conv_params):
+    filters = conv_params["filters"]
+    kernel_size = conv_params["kernel_size"]
+    strides = conv_params.setdefault("strides", (1, 1))
+    dilation_rate = conv_params.setdefault("dilation_rate", (1, 1))
+    conv_name = conv_params.setdefault("conv_name", None)
+    bn_name = conv_params.setdefault("bn_name", None)
+    relu_name = conv_params.setdefault("relu_name", None)
+    kernel_initializer = conv_params.setdefault("kernel_initializer", "he_normal")
+    padding = conv_params.setdefault("padding", "same")
+    kernel_regularizer = conv_params.setdefault("kernel_regularizer", regularizers.l2(1.e-4))
+
+    def f(x):
+        activation = _rcin_relu_K(x, bn_name=bn_name, relu_name=relu_name)
         return Conv2D(filters=filters, kernel_size=kernel_size,
                       strides=strides, padding=padding,
                       dilation_rate=dilation_rate,
@@ -693,8 +902,8 @@ def basic_block_K(filters, stage, block, transition_strides=(1, 1), dilation_rat
                        dilation_rate=dilation_rate,
                        padding="same",
                        kernel_initializer="he_normal",
+                       kernel_regularizer=regularizers.l2(1e-4),
                        name=conv_name_base + '2a')(input_features)
-                       # kernel_regularizer=regularizers.l2(1e-4),
         else:
             x = residual_unit(filters=filters, kernel_size=(3, 3),
                               strides=(1, 1),
@@ -814,6 +1023,174 @@ def DilatedRes_with_paras_2D(kernel_size,feature_2D_num, filters,nb_layers,opt, 
     elif loss_function == 'binary_crossentropy':
         DNCON4_2D_conv = _conv_bn_sigmoid2D(filters=1, nb_row=1, nb_col=1, strides=(1, 1), kernel_initializer=initializer)(DNCON4_2D_conv)
         loss = loss_function
+        
+    DNCON4_2D_out = DNCON4_2D_conv
+    DNCON4_RES = Model(inputs=contact_input, outputs=DNCON4_2D_out)
+    DNCON4_RES.compile(loss=loss, metrics=['accuracy'], optimizer=opt)
+    DNCON4_RES.summary()
+    return DNCON4_RES
+
+def DilatedResRC_with_paras_2D(kernel_size,feature_2D_num,use_bias,hidden_type,filters,nb_layers,opt, initializer = "he_normal", loss_function = "weighted_BCE", weight_p=1.0, weight_n=1.0):
+    contact_feature_num_2D=feature_2D_num
+    contact_input_shape=(None,None,contact_feature_num_2D)
+    contact_input = Input(shape=contact_input_shape)
+    
+    _handle_dim_ordering()
+    ######################### now merge new data to new architecture
+    DNCON4_2D_input = contact_input
+    DNCON4_2D_conv = DNCON4_2D_input
+    DNCON4_2D_conv1 = InstanceNormalization(axis=-1)(DNCON4_2D_conv)
+    DNCON4_2D_conv2 = RowNormalization(axis=-1)(DNCON4_2D_conv)
+    DNCON4_2D_conv3 = ColumNormalization(axis=-1)(DNCON4_2D_conv)
+    DNCON4_2D_conv  = concatenate([DNCON4_2D_conv1, DNCON4_2D_conv2, DNCON4_2D_conv3])
+
+    DNCON4_2D_conv = Activation('relu')(DNCON4_2D_conv)
+    DNCON4_2D_conv = Conv2D(128, 1, padding = 'same')(DNCON4_2D_conv)
+
+    # DNCON4_2D_conv = Dense(64)(DNCON4_2D_conv)
+    DNCON4_2D_conv = MaxoutAct(DNCON4_2D_conv, filters=4, kernel_size=(1,1), output_dim=64, padding='same', activation = "relu")
+
+    DNCON4_2D_conv = _conv_bn_relu_K(filters=filters, kernel_size=7, strides=1)(DNCON4_2D_conv)
+
+    # DNCON4_2D_conv = Conv2D(filters=filters, kernel_size=(3, 3), strides=(1,1),use_bias=True, kernel_initializer=initializer, padding="same")(DNCON4_2D_conv)
+    block = DNCON4_2D_conv
+    filters = filters
+    residual_unit = _rcin_relu_conv_K
+    dropout = None
+    transition_dilation_rate = [(1, 1),(2, 2),(5, 5),(7, 7)]
+
+    if nb_layers == 34:
+        repetitions=[3, 4, 6, 3]
+        for i, r in enumerate(repetitions):
+            transition_dilation_rates = transition_dilation_rate * r
+            transition_strides = [(1, 1)] * r  
+
+            block = _residual_block_K(basic_block_K, filters=filters,
+                                    stage=i, blocks=r,
+                                    is_first_layer=(i == 0),
+                                    dropout=dropout,
+                                    transition_dilation_rates=transition_dilation_rates,
+                                    transition_strides=transition_strides,
+                                    residual_unit=residual_unit, use_SE = True)(block)
+    elif nb_layers == 101:
+        repetitions=[3, 4, 10, 3]
+        for i, r in enumerate(repetitions):
+            transition_dilation_rates = transition_dilation_rate * r
+            transition_strides = [(1, 1)] * r  
+
+            block = _residual_block_K(bottle_neck_K, filters=filters,
+                                    stage=i, blocks=r,
+                                    is_first_layer=(i == 0),
+                                    dropout=dropout,
+                                    transition_dilation_rates=transition_dilation_rates,
+                                    transition_strides=transition_strides,
+                                    residual_unit=residual_unit, use_SE = True)(block)
+    elif nb_layers == 152:
+        repetitions=[3, 8, 36, 3]
+        for i, r in enumerate(repetitions):
+            transition_dilation_rates = transition_dilation_rate * r
+            transition_strides = [(1, 1)] * r  
+
+            block = _residual_block_K(bottle_neck_K, filters=filters,
+                                    stage=i, blocks=r,
+                                    is_first_layer=(i == 0),
+                                    dropout=dropout,
+                                    transition_dilation_rates=transition_dilation_rates,
+                                    transition_strides=transition_strides,
+                                    residual_unit=residual_unit, use_SE = True)(block)
+    # Last activation
+    block = _rcin_relu_K(block)
+    DNCON4_2D_conv = block
+
+    if loss_function == 'weighted_BCE':
+        DNCON4_2D_conv = _conv_bn_sigmoid2D(filters=1, nb_row=1, nb_col=1, strides=(1, 1), kernel_initializer=initializer, dilation_rate=(1, 1))(DNCON4_2D_conv)
+        loss = _weighted_binary_crossentropy(weight_p, weight_n)
+    elif loss_function == 'weighted_MSE':
+        DNCON4_2D_conv = _conv_in_relu2D(filters=1, nb_row=1, nb_col=1, strides=(1, 1), kernel_initializer=initializer)(DNCON4_2D_conv)        
+        loss = _weighted_mean_squared_error(weight_p)
+    elif loss_function == 'binary_crossentropy':
+        # DNCON4_2D_conv = Conv2D(filters=1, kernel_size = 1, padding = 'same', kernel_initializer=initializer)(DNCON4_2D_conv)
+        # DNCON4_2D_conv = Activation('sigmoid')(DNCON4_2D_conv)
+        DNCON4_2D_conv = _conv_bn_sigmoid2D(filters=1, nb_row=1, nb_col=1, strides=(1, 1), kernel_initializer=initializer)(DNCON4_2D_conv)
+        loss = loss_function
+        
+    DNCON4_2D_out = DNCON4_2D_conv
+    DNCON4_RES = Model(inputs=contact_input, outputs=DNCON4_2D_out)
+    DNCON4_RES.compile(loss=loss, metrics=['accuracy'], optimizer=opt)
+    DNCON4_RES.summary()
+    return DNCON4_RES
+
+def _dilated_residual_block(block_function, filters, repetitions, is_first_layer=False, dilation_rate=(1,1), use_SE = False):
+    def f(input):
+        for i in range(repetitions):
+            init_strides = (1, 1)
+            if i == 0 and not is_first_layer:
+                # init_strides = (2, 2)
+                init_strides = (1, 1)
+            input = block_function(filters=filters, init_strides=init_strides,
+                                   is_first_block_of_first_layer=(is_first_layer and i == 0),  dilation_rate=dilation_rate[i], use_SE = use_SE)(input)
+        return input
+
+    return f
+
+def dilated_bottleneck_rc(filters, init_strides=(1, 1), is_first_block_of_first_layer=False, dilation_rate=(1,1), use_SE = False):
+    def f(input):
+        if is_first_block_of_first_layer:
+            # don't repeat bn->relu since we just did bn->relu->maxpool
+            conv_1_1 = Conv2D(filters=filters, kernel_size=(1, 1),
+                              strides=init_strides,
+                              padding="same",
+                              kernel_initializer="he_normal",
+                              kernel_regularizer=regularizers.l2(1e-4))(input)
+        else:
+            conv_1_1 = _rcin_relu_K(input) 
+            conv_1_1 = Conv2D(filters=filters, kernel_size=(1, 1), strides=init_strides,padding="same",kernel_initializer="he_normal")(conv_1_1)
+
+        conv_3_3 = _rcin_relu_K(conv_1_1) 
+        conv_3_3 = Conv2D(filters=filters, kernel_size=(3, 3), strides=init_strides, padding="same", kernel_initializer="he_normal")(conv_3_3)
+        conv_7_1 = Conv2D(filters=filters, kernel_size=(7, 1), strides=init_strides, padding="same", kernel_initializer="he_normal")(conv_3_3)
+        conv_1_7 = Conv2D(filters=filters, kernel_size=(1, 7), strides=init_strides, padding="same", kernel_initializer="he_normal")(conv_3_3)
+        conv_3_3 = concatenate([conv_3_3, conv_7_1, conv_1_7])
+        # conv_3_3 = _in_elu_conv2D(filters=filters, nb_row=3, nb_col=3, dilation_rate=dilation_rate)(conv_1_1)
+        # residual = _in_elu_conv2D(filters=filters * 2, nb_row=1, nb_col=1)(conv_3_3)
+        residual = _rcin_relu_K(conv_3_3) 
+        residual = Conv2D(filters=filters, kernel_size=(1, 1), strides=init_strides, padding="same", kernel_initializer="he_normal")(residual)
+        if use_SE == True:
+            residual = squeeze_excite_block(residual)
+        return _shortcut(input, residual)
+    return f
+
+def GoogleResRC_with_paras_2D(fsz, feature_2D_num, filters, nb_blocks, opt, initializer = "he_normal", loss_function = "binary_crossentropy", weight_p=1.0, weight_n=1.0):
+    _handle_dim_ordering()
+    contact_feature_num_2D=feature_2D_num
+    contact_input_shape=(None,None,contact_feature_num_2D)
+    contact_input = Input(shape=contact_input_shape)
+    
+    DNCON4_2D_input = contact_input
+    DNCON4_2D_conv = DNCON4_2D_input
+    DNCON4_2D_conv = InstanceNormalization(axis=-1)(DNCON4_2D_conv)
+    DNCON4_2D_conv = Conv2D(128, 1, padding = 'same')(DNCON4_2D_conv)
+    # DNCON4_2D_conv = Dense(64)(DNCON4_2D_conv)
+    DNCON4_2D_conv = MaxoutAct(DNCON4_2D_conv, filters=4, kernel_size=(1,1), output_dim=64, padding='same', activation = "elu")
+
+    # ######This is original residual
+    # DNCON4_2D_conv = _conv_in_relu2D(filters=64, nb_row=7, nb_col=7, strides=(1, 1))(DNCON4_2D_conv)
+
+    # DNCON4_2D_conv = Conv2D(filters=filters, kernel_size=(3, 3), strides=(1,1),use_bias=True, kernel_initializer=initializer, padding="same")(DNCON4_2D_conv)
+    block = DNCON4_2D_conv
+    dilated_num = [1, 2, 4, 8, 1] * 4
+    # repetitions = [3, 4, 6, 3]
+    repetitions = [20]
+    for i, r in enumerate(repetitions):
+        block = _dilated_residual_block(dilated_bottleneck_rc, filters=filters, repetitions=r, is_first_layer=(i == 0), dilation_rate =dilated_num, use_SE = True)(block)
+        block = Dropout(0.2)(block)
+    # Last activation
+    block = _rcin_relu_K(block)
+    DNCON4_2D_conv = block
+    # DNCON4_2D_conv = _attention_layer(filters)(DNCON4_2D_conv)
+
+    DNCON4_2D_conv = _conv_in_sigmoid2D(filters=1, nb_row=1, nb_col=1, strides=(1, 1), kernel_initializer=initializer)(DNCON4_2D_conv)
+    loss = loss_function
         
     DNCON4_2D_out = DNCON4_2D_conv
     DNCON4_RES = Model(inputs=contact_input, outputs=DNCON4_2D_out)

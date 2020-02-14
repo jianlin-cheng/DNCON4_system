@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Feb 22 21:47:26 2017
+Created on Wed Feb 22 21:47:26 2019
 
 @author: Zhiye
 """
@@ -68,14 +68,14 @@ class SequenceData(Sequence):
             self.dataset_list = build_dataset_dictionaries_test(self.path_of_lists)
         else:
             self.dataset_list = build_dataset_dictionaries_train(self.path_of_lists)
-        training_dict = subset_pdb_dict(self.dataset_list, 0, 700, 7000, 'random') #can be random ordered   
+        training_dict = subset_pdb_dict(self.dataset_list, 0, 700, 20000, 'random') #can be random ordered   
         self.training_list = list(training_dict.keys())
         self.training_lens = list(training_dict.values())
         self.all_data_num = len(training_dict)
         return self.all_data_num
 
     def on_epoch_end(self):
-        training_dict = subset_pdb_dict(self.dataset_list, 0, 700, 7000, 'random') #can be random ordered   
+        training_dict = subset_pdb_dict(self.dataset_list, 0, 700, 20000, 'random') #can be random ordered   
         self.training_list = list(training_dict.keys())
         self.training_lens = list(training_dict.values())
 
@@ -196,7 +196,7 @@ class SequenceData(Sequence):
         return batch_X, batch_Y
 
 def generate_data_from_file(path_of_lists, path_of_X, path_of_Y, min_seq_sep,dist_string, batch_size, reject_fea_file='None', 
-    child_list_index=0, list_sep_flag=False, dataset_select='train', if_use_binsize=False, predict_method='bin_class', Maximum_length = 500):
+    child_list_index=0, list_sep_flag=False, dataset_select='train', feature_2D_num = 441, if_use_binsize=False, predict_method='bin_class', Maximum_length = 500):
     accept_list = []
     if reject_fea_file != 'None':
         with open(reject_fea_file) as f:
@@ -213,7 +213,7 @@ def generate_data_from_file(path_of_lists, path_of_X, path_of_Y, min_seq_sep,dis
         dataset_list = build_dataset_dictionaries_train(path_of_lists)
 
     if (list_sep_flag == False):
-        training_dict = subset_pdb_dict(dataset_list, 0, Maximum_length, 7000, 'random') #can be random ordered   
+        training_dict = subset_pdb_dict(dataset_list, 0, Maximum_length, 20000, 'random') #can be random ordered   
         training_list = list(training_dict.keys())
         training_lens = list(training_dict.values())
         all_data_num = len(training_dict)
@@ -221,7 +221,7 @@ def generate_data_from_file(path_of_lists, path_of_X, path_of_Y, min_seq_sep,dis
         # print('crop_list_num=',all_data_num)
         # print('crop_loopcount=',loopcount)
     else:
-        training_dict = subset_pdb_dict(dataset_list, 0, Maximum_length, 7000, 'ordered') #can be random ordered
+        training_dict = subset_pdb_dict(dataset_list, 0, Maximum_length, 20000, 'ordered') #can be random ordered
         all_training_list = list(training_dict.keys())
         all_training_lens = list(training_dict.values())
         if ((child_list_index + 1) * 15 > len(training_dict)):
@@ -238,7 +238,7 @@ def generate_data_from_file(path_of_lists, path_of_X, path_of_Y, min_seq_sep,dis
     index = 0
     while(True):
         if index >= loopcount:
-            raining_dict = subset_pdb_dict(dataset_list, 0, Maximum_length, 7000, 'random') #can be random ordered   
+            raining_dict = subset_pdb_dict(dataset_list, 0, Maximum_length, 20000, 'random') #can be random ordered   
             training_list = list(training_dict.keys())
             training_lens = list(training_dict.values())
             index = 0
@@ -259,8 +259,8 @@ def generate_data_from_file(path_of_lists, path_of_X, path_of_Y, min_seq_sep,dis
             pdb_len = batch_list_len[i]
             notxt_flag = True
             featurefile =path_of_X + '/other/' + 'X-'  + pdb_name + '.txt'
-            if ((len(accept_list) == 1 and ('# cov' not in accept_list and '# plm' not in accept_list and '# pre' not in accept_list and '# netout' not in accept_list)) or 
-                  (len(accept_list) == 2 and ('# cov' not in accept_list or '# plm' not in accept_list or '# pre' not in accept_list or '# netout' not in accept_list)) or (len(accept_list) > 2)):
+            if ((len(accept_list) == 1 and ('# cov' not in accept_list and '# plm' not in accept_list and '# pre' not in accept_list and '# spa' not in accept_list and '# netout' not in accept_list)) or 
+                  (len(accept_list) == 2 and ('# cov' not in accept_list or '# plm' not in accept_list or '# pre' not in accept_list or '# spa' not in accept_list or '# netout' not in accept_list)) or (len(accept_list) > 2)):
                 notxt_flag = False
                 if not os.path.isfile(featurefile):
                     print("feature file not exists: ",featurefile, " pass!")
@@ -283,7 +283,12 @@ def generate_data_from_file(path_of_lists, path_of_X, path_of_Y, min_seq_sep,dis
             pre = path_of_X + '/pre/' + pdb_name + '.pre'
             if '# pre' in accept_list:
                 if not os.path.isfile(pre):
-                    # print("pre matrix file not exists: ",pre, " pass!")
+                    print("pre matrix file not exists: ",pre, " pass!")
+                    continue
+            spa = path_of_X + '/spa/' + pdb_name + '.spa'
+            if '# spa' in accept_list:
+                if not os.path.isfile(spa):
+                    print("spa matrix file not exists: ",spa, " pass!")
                     continue
             netout = path_of_X + '/net_out/' + pdb_name + '.npy'
             if '# netout' in accept_list:      
@@ -312,7 +317,7 @@ def generate_data_from_file(path_of_lists, path_of_X, path_of_Y, min_seq_sep,dis
                         print("target file not exists: ",targetfile, " pass!")
                         continue
 
-            (featuredata, feature_index_all_dict) = getX_2D_format(featurefile, cov, plm, plmc, pre, netout, accept_list, pdb_len, notxt_flag)
+            (featuredata, feature_index_all_dict) = getX_2D_format(featurefile, cov, plm, plmc, pre, spa, netout, accept_list, pdb_len, notxt_flag)
             if featuredata == False or feature_index_all_dict == False:
                 print("Bad alignment, Please check!\n")
                 continue
@@ -328,6 +333,9 @@ def generate_data_from_file(path_of_lists, path_of_X, path_of_Y, min_seq_sep,dis
             fea_len = feature_2D_all[0].shape[0]
 
             F = len(feature_2D_all)
+            if F != feature_2D_num:
+                print("Target %s has wrong feature shape! Continue!" % pdb_name)
+                continue
             X = np.zeros((max_pdb_lens, max_pdb_lens, F))
             for m in range(0, F):
                 X[0:fea_len, 0:fea_len, m] = feature_2D_all[m]
@@ -395,13 +403,13 @@ def generate_data_from_file_mix(path_of_lists, path_of_X, path_of_Y, min_seq_sep
         dataset_list = build_dataset_dictionaries_train(path_of_lists)
 
     if (list_sep_flag == False):
-        training_dict = subset_pdb_dict(dataset_list, 0, Maximum_length, 7000, 'random') #can be random ordered   
+        training_dict = subset_pdb_dict(dataset_list, 0, Maximum_length, 20000, 'random') #can be random ordered   
         training_list = list(training_dict.keys())
         training_lens = list(training_dict.values())
         all_data_num = len(training_dict)
         loopcount = all_data_num // int(batch_size)
     else:
-        training_dict = subset_pdb_dict(dataset_list, 0, Maximum_length, 7000, 'ordered') #can be random ordered
+        training_dict = subset_pdb_dict(dataset_list, 0, Maximum_length, 20000, 'ordered') #can be random ordered
         all_training_list = list(training_dict.keys())
         all_training_lens = list(training_dict.values())
         if ((child_list_index + 1) * 15 > len(training_dict)):
@@ -418,7 +426,7 @@ def generate_data_from_file_mix(path_of_lists, path_of_X, path_of_Y, min_seq_sep
     index = 0
     while(True):
         if index >= loopcount:
-            raining_dict = subset_pdb_dict(dataset_list, 0, Maximum_length, 7000, 'random') #can be random ordered   
+            raining_dict = subset_pdb_dict(dataset_list, 0, Maximum_length, 20000, 'random') #can be random ordered   
             training_list = list(training_dict.keys())
             training_lens = list(training_dict.values())
             index = 0
@@ -585,13 +593,13 @@ def generate_data_from_file_mix_general(path_of_lists, path_of_X, path_of_Y, min
     else:
         dataset_list = build_dataset_dictionaries_train(path_of_lists)
     if (list_sep_flag == False):
-        training_dict = subset_pdb_dict(dataset_list, 0, Maximum_length, 7000, 'random') #can be random ordered   
+        training_dict = subset_pdb_dict(dataset_list, 0, Maximum_length, 20000, 'random') #can be random ordered   
         training_list = list(training_dict.keys())
         training_lens = list(training_dict.values())
         all_data_num = len(training_dict)
         loopcount = all_data_num // int(batch_size)
     else:
-        training_dict = subset_pdb_dict(dataset_list, 0, Maximum_length, 7000, 'ordered') #can be random ordered
+        training_dict = subset_pdb_dict(dataset_list, 0, Maximum_length, 20000, 'ordered') #can be random ordered
         all_training_list = list(training_dict.keys())
         all_training_lens = list(training_dict.values())
         if ((child_list_index + 1) * 15 > len(training_dict)):
@@ -608,7 +616,7 @@ def generate_data_from_file_mix_general(path_of_lists, path_of_X, path_of_Y, min
     index = 0
     while(True):
         if index >= loopcount:
-            raining_dict = subset_pdb_dict(dataset_list, 0, Maximum_length, 7000, 'random') #can be random ordered   
+            raining_dict = subset_pdb_dict(dataset_list, 0, Maximum_length, 20000, 'random') #can be random ordered   
             training_list = list(training_dict.keys())
             training_lens = list(training_dict.values())
             index = 0
@@ -762,7 +770,7 @@ def DNCON4_1d2dconv_train_win_filter_layer_opt_fast_2D_generator(feature_num,CV_
     model_weight_out = "%s/model-train-weight-%s.h5" % (CV_dir,model_prefix)
     model_weight_out_best = "%s/model-train-weight-%s-best-val.h5" % (CV_dir,model_prefix)
 
-    opt = Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=0.00001)#0.001  decay=0.0
+    opt = Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=0.0000)#0.001  decay=0.0
     if model_prefix == 'DNCON4_CONV':
         DNCON4 = DeepConv_with_paras_2D(win_array,feature_2D_num, nb_filters,nb_layers,opt,initializer,loss_function)
     elif model_prefix == 'DNCON4_RES':
@@ -775,9 +783,11 @@ def DNCON4_1d2dconv_train_win_filter_layer_opt_fast_2D_generator(feature_num,CV_
         DNCON4 = WeightLearn_with_paras_2D(win_array,feature_2D_num, nb_filters,nb_layers,opt,initializer,loss_function)
     elif model_prefix == 'DNCON4_DIARES':
         DNCON4 = DilatedRes_with_paras_2D(win_array,feature_2D_num, nb_filters,nb_layers,opt,initializer,loss_function)
+    elif model_prefix == 'DNCON4_GRESRC':
+        DNCON4 = GoogleResRC_with_paras_2D(win_array, feature_2D_num, nb_filters, nb_layers, opt, initializer, loss_function)
     else:
         DNCON4 = DeepConv_with_paras_2D(win_array,feature_2D_num, nb_filters,nb_layers,opt)
-
+    
     model_json = DNCON4.to_json()
     print("Saved model to disk")
     with open(model_out, "w") as json_file:
@@ -798,29 +808,19 @@ def DNCON4_1d2dconv_train_win_filter_layer_opt_fast_2D_generator(feature_num,CV_
     
         chkdirs(train_acc_history_out)     
         with open(train_acc_history_out, "a") as myfile:
-          myfile.write("Epoch_outside\tEpoch_inside\tavg_TP_counts_l5\tavg_TP_counts_l2\tavg_TP_counts_1l\tAvg_Accuracy_l5\tAvg_Accuracy_l2\tAvg_Accuracy_1l\tGloable_MSE\tWeighted_MSE\n")
+          myfile.write("Interval_len\tEpoch_outside\tEpoch_inside\tAvg_Accuracy_l5\tAvg_Accuracy_l2\tAvg_Accuracy_1l\tGloable_MSE\tWeighted_MSE\n")
           
         chkdirs(val_acc_history_out)     
         with open(val_acc_history_out, "a") as myfile:
-          myfile.write("Epoch_outside\tEpoch_inside\tavg_TP_counts_l5\tavg_TP_counts_l2\tavg_TP_counts_1l\tAvg_Accuracy_l5\tAvg_Accuracy_l2\tAvg_Accuracy_1l\tGloable_MSE\tWeighted_MSE\n")
+          myfile.write("Epoch\tprec_l5\tprec_l2\tprec_1l\tmcc_l5\tmcc_l2\tmcc_1l\trecall_l5\trecall_l2\trecall_1l\tf1_l5\tf1_l2\tf1_1l\n")
         
         chkdirs(best_val_acc_out)     
         with open(best_val_acc_out, "a") as myfile:
-          myfile.write("Seq_Name\tSeq_Length\tavg_TP_counts_l5\tavg_TP_counts_l2\tavg_TP_counts_1l\tAvg_Accuracy_l5\tAvg_Accuracy_l2\tAvg_Accuracy_1l\n")
+          myfile.write("Seq_Name\tSeq_Length\tAvg_Accuracy_l5\tAvg_Accuracy_l2\tAvg_Accuracy_1l\n")
 
     #predict_method has three value : bin_class, mul_class, real_dist
     predict_method = 'bin_class'
-    if loss_function == 'weighted_BCE':
-        predict_method = 'bin_class'
-        path_of_Y_train = path_of_Y + '/bin_class/'
-        path_of_Y_evalu = path_of_Y + '/bin_class/'
-        if weight_p <= 1:
-            weight_n = 1.0 - weight_p
-        loss_function = _weighted_binary_crossentropy(weight_p, weight_n)
-    elif loss_function == 'weighted_CCE':
-        predict_method = 'mul_class'
-        loss_function = _weighted_categorical_crossentropy(weight_p)
-    elif loss_function == 'weighted_MSE':
+    if loss_function == 'weighted_MSE':
         predict_method = 'real_dist'
         path_of_Y_train = path_of_Y + '/real_dist/'
         path_of_Y_evalu = path_of_Y + '/bin_class/'
@@ -848,16 +848,19 @@ def DNCON4_1d2dconv_train_win_filter_layer_opt_fast_2D_generator(feature_num,CV_
     chkdirs(model_val_acc)
 
     tr_l = build_dataset_dictionaries_train(path_of_lists)
-    tr_l_dict = subset_pdb_dict(tr_l, 0, Maximum_length, 7000, 'ordered')
+    tr_l_dict = subset_pdb_dict(tr_l, 0, Maximum_length, 20000, 'ordered')
     te_l = build_dataset_dictionaries_test(path_of_lists)
+    te_l_dict = subset_pdb_dict(te_l, 0, Maximum_length, 20000, 'ordered')
     all_l = te_l.copy()
     train_data_num = len(tr_l_dict)
     child_list_num = int(train_data_num/15)# 15 is the inter
     print('Total Number of Training dataset = ',str(len(tr_l_dict)))
+    print('Total Number of Validation dataset = ',str(len(te_l_dict)))
 
     # callbacks=[reduce_lr]
     train_avg_acc_l5_best = 0 
     val_avg_acc_l5_best = 0
+    val_avg_acc_l2_best = 0
     min_seq_sep = 5
     lr_decay = False
     train_loss_last = 1e32
@@ -884,33 +887,22 @@ def DNCON4_1d2dconv_train_win_filter_layer_opt_fast_2D_generator(feature_num,CV_
                 print("\n############ Running epoch ", epoch)
                 if epoch == 0 and rerun_flag == 0:
                     first_inepoch = 5
-                    history = DNCON4.fit_generator(generate_data_from_file(path_of_lists, path_of_X, path_of_Y_train, min_seq_sep, dist_string, batch_size_train, reject_fea_file, if_use_binsize=if_use_binsize, predict_method=predict_method, Maximum_length = Maximum_length), 
+                    history = DNCON4.fit_generator(generate_data_from_file(path_of_lists, path_of_X, path_of_Y_train, min_seq_sep, dist_string, batch_size_train, reject_fea_file, feature_2D_num= feature_2D_num, if_use_binsize=if_use_binsize, predict_method=predict_method, Maximum_length = Maximum_length), 
                     steps_per_epoch = len(tr_l_dict)//batch_size_train, epochs = first_inepoch, max_queue_size=20, workers=2, use_multiprocessing=False)         
                     train_loss_list.append(history.history['loss'][first_inepoch-1])
                 else: 
-                    history = DNCON4.fit_generator(generate_data_from_file(path_of_lists, path_of_X, path_of_Y_train, min_seq_sep, dist_string, batch_size_train, reject_fea_file, if_use_binsize=if_use_binsize, predict_method=predict_method, Maximum_length = Maximum_length), 
-                        steps_per_epoch = len(tr_l_dict)//batch_size_train, epochs = 1, max_queue_size=20, workers=2, use_multiprocessing=False)         
-                    train_loss_list.append(history.history['loss'][0])
-            elif len(reject_fea_file) == 2:
-                print("\n############ Running epoch ", epoch)
-                if epoch == 0 and rerun_flag == 0:
-                    first_inepoch = 5
-                    history = DNCON4.fit_generator(generate_data_from_file_mix(path_of_lists, path_of_X, path_of_Y_train, min_seq_sep, dist_string, batch_size_train, reject_fea_file, if_use_binsize=if_use_binsize, predict_method=predict_method, Maximum_length = Maximum_length), 
-                    steps_per_epoch = len(tr_l_dict)//batch_size_train, epochs = first_inepoch, max_queue_size=20, workers=2, use_multiprocessing=False)         
-                    train_loss_list.append(history.history['loss'][first_inepoch-1])
-                else: 
-                    history = DNCON4.fit_generator(generate_data_from_file_mix(path_of_lists, path_of_X, path_of_Y_train, min_seq_sep, dist_string, batch_size_train, reject_fea_file, if_use_binsize=if_use_binsize, predict_method=predict_method, Maximum_length = Maximum_length), 
+                    history = DNCON4.fit_generator(generate_data_from_file(path_of_lists, path_of_X, path_of_Y_train, min_seq_sep, dist_string, batch_size_train, reject_fea_file, feature_2D_num= feature_2D_num, if_use_binsize=if_use_binsize, predict_method=predict_method, Maximum_length = Maximum_length), 
                         steps_per_epoch = len(tr_l_dict)//batch_size_train, epochs = 1, max_queue_size=20, workers=2, use_multiprocessing=False)         
                     train_loss_list.append(history.history['loss'][0])
             elif len(reject_fea_file) > 2:
                 print("\n############ Running epoch ", epoch)
                 if epoch == 0 and rerun_flag == 0:
                     first_inepoch = 5
-                    history = DNCON4.fit_generator(generate_data_from_file_mix_general(path_of_lists, path_of_X, path_of_Y_train, min_seq_sep, dist_string, batch_size_train, reject_fea_file, if_use_binsize=if_use_binsize, predict_method=predict_method, Maximum_length = Maximum_length), 
+                    history = DNCON4.fit_generator(generate_data_from_file_mix_general(path_of_lists, path_of_X, path_of_Y_train, min_seq_sep, dist_string, batch_size_train, reject_fea_file, feature_2D_num= feature_2D_num, if_use_binsize=if_use_binsize, predict_method=predict_method, Maximum_length = Maximum_length), 
                     steps_per_epoch = len(tr_l_dict)//batch_size_train, epochs = first_inepoch, max_queue_size=20, workers=2, use_multiprocessing=False)         
                     train_loss_list.append(history.history['loss'][first_inepoch-1])
                 else: 
-                    history = DNCON4.fit_generator(generate_data_from_file_mix_general(path_of_lists, path_of_X, path_of_Y_train, min_seq_sep, dist_string, batch_size_train, reject_fea_file, if_use_binsize=if_use_binsize, predict_method=predict_method, Maximum_length = Maximum_length), 
+                    history = DNCON4.fit_generator(generate_data_from_file_mix_general(path_of_lists, path_of_X, path_of_Y_train, min_seq_sep, dist_string, batch_size_train, reject_fea_file, feature_2D_num= feature_2D_num, if_use_binsize=if_use_binsize, predict_method=predict_method, Maximum_length = Maximum_length), 
                         steps_per_epoch = len(tr_l_dict)//batch_size_train, epochs = 1, max_queue_size=20, workers=2, use_multiprocessing=False)         
                     train_loss_list.append(history.history['loss'][0])
         else:
@@ -934,20 +926,23 @@ def DNCON4_1d2dconv_train_win_filter_layer_opt_fast_2D_generator(feature_num,CV_
         print("Now evaluate for epoch ",epoch)
         val_acc_out_inepoch = "%s/validation_epoch%i.acc_history" % (model_val_acc, epoch) 
         sys.stdout.flush()
-        selected_list = subset_pdb_dict(te_l,   0, Maximum_length, 7000, 'ordered')  ## here can be optimized to automatically get maxL from selected dataset
-        print('Loading data sets ..',end='')
+        selected_list = subset_pdb_dict(te_l,   0, Maximum_length, 20000, 'ordered')  ## here can be optimized to automatically get maxL from selected dataset
 
         testdata_len_range=50
         step_num = 0
-        out_avg_pc_l5 = 0.0
-        out_avg_pc_l2 = 0.0
-        out_avg_pc_1l = 0.0
-        out_avg_acc_l5 = 0.0
-        out_avg_acc_l2 = 0.0
-        out_avg_acc_1l = 0.0
-        out_gloable_mse = 0.0
-        out_weighted_mse = 0.0
-        print("  ID         L PcL/5 PcL/2  Pc1L    AccL/5    AccL/2      AccL")
+        out_avg_prec_l5 = 0.0
+        out_avg_prec_l2 = 0.0
+        out_avg_prec_1l = 0.0
+        out_avg_mcc_l5 = 0.0
+        out_avg_mcc_l2 = 0.0
+        out_avg_mcc_1l = 0.0
+        out_avg_recall_l5 = 0.0
+        out_avg_recall_l2 = 0.0
+        out_avg_recall_1l = 0.0
+        out_avg_f1_l5 = 0.0
+        out_avg_f1_l2 = 0.0
+        out_avg_f1_1l = 0.0
+        print(("SeqName\tSeqLen\tFea\tprec_l5\tprec_l2\tprec_1l\tmcc_l5\tmcc_l2\tmcc_1l\trecall_l5\trecall_l2\trecall_1l\tf1_l5\tf1_l2\tf1_1l\n"))
         for key in selected_list:
             value = selected_list[key]
             p1 = {key: value}
@@ -955,54 +950,41 @@ def DNCON4_1d2dconv_train_win_filter_layer_opt_fast_2D_generator(feature_num,CV_
                 length = Maximum_length
             else:
                 length = value
-            print(len(p1))
             if len(p1) < 1:
                 continue
+            # print("start predict")
             if len(reject_fea_file)!=2:
                 selected_list_2D = get_x_2D_from_this_list(p1, path_of_X, length,dist_string, reject_fea_file, value)
                 if type(selected_list_2D) == bool:
                     continue
+                # print("selected_list_2D.shape: ",selected_list_2D.shape)
+                # print('Loading label sets..')
                 selected_list_label = get_y_from_this_list(p1, path_of_Y_evalu, 0, length, dist_string)# dist_string 80
                 DNCON4.load_weights(model_weight_out)
 
                 DNCON4_prediction = DNCON4.predict([selected_list_2D], batch_size= 1)
-            elif len(reject_fea_file)==2:
-                temp1 = get_x_2D_from_this_list(p1, path_of_X, length,dist_string, reject_fea_file[0], value)
-                temp2 = get_x_2D_from_this_list(p1, path_of_X, length,dist_string, reject_fea_file[1], value)
-                if type(temp1) == bool or type(temp2) == bool:
-                    continue
-                selected_list_label = get_y_from_this_list(p1, path_of_Y_evalu, 0, length, dist_string)# dist_string 80
-                DNCON4.load_weights(model_weight_out)
-
-                DNCON4_prediction = DNCON4.predict([temp1, temp2], batch_size= 1)
-            elif len(reject_fea_file)==3:
-                temp1 = get_x_2D_from_this_list(p1, path_of_X, length,dist_string, reject_fea_file[0], value)
-                temp2 = get_x_2D_from_this_list(p1, path_of_X, length,dist_string, reject_fea_file[1], value)
-                temp3 = get_x_2D_from_this_list(p1, path_of_X, length,dist_string, reject_fea_file[2], value)
-                if type(temp1) == bool or type(temp2) == bool or type(temp2) == bool:
-                    continue
-                selected_list_label = get_y_from_this_list(p1, path_of_Y_evalu, 0, length, dist_string)# dist_string 80
-                DNCON4.load_weights(model_weight_out)
-
-                DNCON4_prediction = DNCON4.predict([temp1, temp2, temp3], batch_size= 1)
-            elif len(reject_fea_file)>=4:
+            elif len(reject_fea_file)>=2:
                 pred_temp = []
                 bool_flag = False
                 for fea_num in range(len(reject_fea_file)):
                     temp = get_x_2D_from_this_list(p1, path_of_X, length,dist_string, reject_fea_file[fea_num], value)
+                    # print("selected_list_2D.shape: ",temp.shape)
                     if type(temp) == bool:
                         bool_flag= True
                     pred_temp.append(temp)
                 if bool_flag == True:
                     continue
                 else:
+                    # print('Loading label sets..')
                     selected_list_label = get_y_from_this_list(p1, path_of_Y_evalu, 0, length, dist_string)# dist_string 80
                     DNCON4.load_weights(model_weight_out)
                     DNCON4_prediction = DNCON4.predict(pred_temp, batch_size= 1)
 
             CMAP = DNCON4_prediction.reshape(length, length)
-            Map_UpTrans = np.triu(CMAP, 1).T
-            Map_UandL = np.triu(CMAP)
+            # Map_UpTrans = np.triu(CMAP, 1).T
+            # Map_UandL = np.triu(CMAP)
+            Map_UpTrans = (np.triu(CMAP, 1).T + np.tril(CMAP, -1))/2
+            Map_UandL = (np.triu(CMAP) + np.tril(CMAP).T)/2
             real_cmap = Map_UandL + Map_UpTrans
 
             DNCON4_prediction = real_cmap.reshape(len(p1), length*length)
@@ -1015,41 +997,54 @@ def DNCON4_1d2dconv_train_win_filter_layer_opt_fast_2D_generator(feature_num,CV_
                 # to binary
                 DNCON4_prediction = DNCON4_prediction * (DNCON4_prediction <= 8) 
 
-            (list_acc_l5, list_acc_l2, list_acc_1l,avg_pc_l5,avg_pc_l2,avg_pc_1l,avg_acc_l5,avg_acc_l2,avg_acc_1l) = evaluate_prediction_4(p1, DNCON4_prediction, selected_list_label, 24)
-            val_acc_history_content = "%s\t%6s%6s%6s%6s    %.4f    %.4f    %.4f" % (key,value,avg_pc_l5,avg_pc_l2,avg_pc_1l,avg_acc_l5,avg_acc_l2,avg_acc_1l)
+            (avg_prec_l5, avg_prec_l2, avg_prec_1l, avg_mcc_l5, avg_mcc_l2, avg_mcc_1l, avg_recall_l5, avg_recall_l2, avg_recall_1l, avg_f1_l5, avg_f1_l2, avg_f1_1l) = evaluate_prediction_4(p1, DNCON4_prediction, selected_list_label, 24)
+            val_acc_history_content = "%s\t%i\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f" % (key,value, avg_prec_l5,avg_prec_l2,avg_prec_1l, 
+                    avg_mcc_l5, avg_mcc_l2, avg_mcc_1l, avg_recall_l5, avg_recall_l2, avg_recall_1l, avg_f1_l5, avg_f1_l2, avg_f1_1l)
             print(val_acc_history_content)
             with open(val_acc_out_inepoch, "a") as myfile:
                 myfile.write(val_acc_history_content)
 
-            out_gloable_mse += global_mse
-            out_weighted_mse += weighted_mse 
-            out_avg_pc_l5 += avg_pc_l5 * len(p1)
-            out_avg_pc_l2 += avg_pc_l2 * len(p1)
-            out_avg_pc_1l += avg_pc_1l * len(p1)
-            out_avg_acc_l5 += avg_acc_l5 * len(p1)
-            out_avg_acc_l2 += avg_acc_l2 * len(p1)
-            out_avg_acc_1l += avg_acc_1l * len(p1)
+ 
+            out_avg_prec_l5 += avg_prec_l5 * len(p1)
+            out_avg_prec_l2 += avg_prec_l2 * len(p1)
+            out_avg_prec_1l += avg_prec_1l * len(p1)
+            out_avg_mcc_l5 += avg_mcc_l5 * len(p1)
+            out_avg_mcc_l2 += avg_mcc_l2 * len(p1)
+            out_avg_mcc_1l += avg_mcc_1l * len(p1)
+            out_avg_recall_l5 += avg_recall_l5 * len(p1)
+            out_avg_recall_l2 += avg_recall_l2 * len(p1)
+            out_avg_recall_1l += avg_recall_1l * len(p1)
+            out_avg_f1_l5 += avg_f1_l5 * len(p1)
+            out_avg_f1_l2 += avg_f1_l2 * len(p1)
+            out_avg_f1_1l += avg_f1_1l * len(p1)
             
             step_num += 1
         print ('step_num=', step_num)
         all_num = len(selected_list)
-        out_gloable_mse /= all_num
-        out_weighted_mse /= all_num
-        out_avg_pc_l5 /= all_num
-        out_avg_pc_l2 /= all_num
-        out_avg_pc_1l /= all_num
-        out_avg_acc_l5 /= all_num
-        out_avg_acc_l2 /= all_num
-        out_avg_acc_1l /= all_num
-        val_acc_history_content = "%i\t%i\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\n" % (epoch,epoch_inside,out_avg_pc_l5,out_avg_pc_l2,out_avg_pc_1l,
-            out_avg_acc_l5,out_avg_acc_l2,out_avg_acc_1l, out_gloable_mse, train_loss_list[-1])
+        out_avg_prec_l5 /= all_num
+        out_avg_prec_l2 /= all_num
+        out_avg_prec_1l /= all_num
+        out_avg_mcc_l5 /= all_num
+        out_avg_mcc_l2 /= all_num
+        out_avg_mcc_1l /= all_num
+        out_avg_recall_l5 /= all_num
+        out_avg_recall_l2 /= all_num
+        out_avg_recall_1l /= all_num
+        out_avg_f1_l5 /= all_num
+        out_avg_f1_l2 /= all_num
+        out_avg_f1_1l /= all_num
+        val_acc_history_content = "%i\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f" % (epoch, out_avg_prec_l5,out_avg_prec_l2,out_avg_prec_1l, 
+                    out_avg_mcc_l5, out_avg_mcc_l2, out_avg_mcc_1l, out_avg_recall_l5, out_avg_recall_l2, out_avg_recall_1l, out_avg_f1_l5, out_avg_f1_l2, out_avg_f1_1l)
+        # val_acc_history_content = "%i\t%i\t%i\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\n" % (interval_len,epoch,epoch_inside,out_avg_pc_l5,out_avg_pc_l2,out_avg_pc_1l,
+        #     out_avg_acc_l5,out_avg_acc_l2,out_avg_acc_1l, out_gloable_mse, train_loss_list[-1])
         with open(val_acc_history_out, "a") as myfile:
                     myfile.write(val_acc_history_content)  
+                    myfile.write('\n')
 
         print('The validation accuracy is ',val_acc_history_content)
-        if out_avg_acc_l5 >= val_avg_acc_l5_best:
-            val_avg_acc_l5_best = out_avg_acc_l5 
-            score_imed = "Accuracy L5 of Val: %.4f\t\n" % (val_avg_acc_l5_best)
+        if out_avg_prec_l2 >= val_avg_acc_l2_best:
+            val_avg_acc_l2_best = out_avg_prec_l2 
+            score_imed = "Accuracy L2 of Val: %.4f\t\n" % (val_avg_acc_l2_best)
             print("Saved best weight to disk, ", score_imed)
             DNCON4.save_weights(model_weight_out_best)
 
@@ -1060,80 +1055,9 @@ def DNCON4_1d2dconv_train_win_filter_layer_opt_fast_2D_generator(feature_num,CV_
             if (epoch % 20 == 0):
                 K.set_value(DNCON4.optimizer.lr, current_lr * 0.1)
                 print("Decreasing learning rate to {} ...".format(current_lr * 0.1))
-                # DNCON4.load_weights(model_weight_out_best)
-            # if (train_loss < train_loss_last and current_lr < 0.01):
-            #     K.set_value(DNCON4.optimizer.lr, current_lr * 1.1)
-            #     print("Increasing learning rate to {} ...".format(current_lr * 1.1))
-            # else:
-            #     K.set_value(DNCON4.optimizer.lr, current_lr * 0.8)
-            #     print("Decreasing learning rate to {} ...".format(current_lr * 0.8))
+
         train_loss_last = train_loss
-
-        if epoch == epoch_outside-1:
-            for key in selected_list:
-                print('saving cmap of %s\n'%(key))
-                value = selected_list[key]
-                p1={key:value}
-                if if_use_binsize:
-                    length = Maximum_length
-                else:
-                    length = value
-                print("start predict")
-                if len(reject_fea_file)!=2:
-                    selected_list_2D = get_x_2D_from_this_list(p1, path_of_X, length,dist_string, reject_fea_file, value)
-                    if type(selected_list_2D) == bool:
-                        continue
-                    print("selected_list_2D.shape: ",selected_list_2D.shape)
-                    print('Loading label sets..')
-                    selected_list_label = get_y_from_this_list(p1, path_of_Y_evalu, 0, length, dist_string)# dist_string 80
-                    DNCON4.load_weights(model_weight_out)
-
-                    DNCON4_prediction = DNCON4.predict([selected_list_2D], batch_size= 1)
-                elif len(reject_fea_file)==2:
-                    temp1 = get_x_2D_from_this_list(p1, path_of_X, length,dist_string, reject_fea_file[0], value)
-                    temp2 = get_x_2D_from_this_list(p1, path_of_X, length,dist_string, reject_fea_file[1], value)
-                    if type(temp1) == bool or type(temp2) == bool:
-                        continue
-                    print("selected_list_2D.shape: ",temp1.shape)
-                    print("selected_list_2D.shape: ",temp2.shape)
-                    print('Loading label sets..')
-                    selected_list_label = get_y_from_this_list(p1, path_of_Y_evalu, 0, length, dist_string)# dist_string 80
-                    DNCON4.load_weights(model_weight_out)
-
-                    DNCON4_prediction = DNCON4.predict([temp1, temp2], batch_size= 1)
-
-                CMAP = DNCON4_prediction.reshape(length, length)
-                Map_UpTrans = np.triu(CMAP, 1).T
-                Map_UandL = np.triu(CMAP)
-                real_cmap = Map_UandL + Map_UpTrans
-
-                global_mse = 0.0
-                weighted_mse = 0.0
-                if predict_method == 'real_dist':
-                    selected_list_label_dist = get_y_from_this_list(p1, path_of_Y_train, 0, length, dist_string, lable_type = 'real')# dist_string 80
-                    global_mse, weighted_mse = evaluate_prediction_dist_4(DNCON4_prediction, selected_list_label_dist)
-                    # to binary
-                    DNCON4_prediction = DNCON4_prediction * (DNCON4_prediction <= 8) 
-
-                DNCON4_pred = DNCON4_prediction.reshape(len(p1), length*length)
-                (list_acc_l5, list_acc_l2, list_acc_1l,avg_pc_l5,avg_pc_l2,avg_pc_1l,avg_acc_l5,avg_acc_l2,avg_acc_1l) = evaluate_prediction_4(p1, DNCON4_pred, selected_list_label, 24)
-                val_acc_history_content = "%s\t%i\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\n" % (key,value,avg_pc_l5,avg_pc_l2,avg_pc_1l,avg_acc_l5,avg_acc_l2,avg_acc_1l)
-                print('The best validation accuracy is ',val_acc_history_content)
-                with open(best_val_acc_out, "a") as myfile:
-                    myfile.write(val_acc_history_content)  
-                DNCON4_prediction = DNCON4_prediction.reshape (length, length)
-                # cmap_file = "%s/%s.txt" % (model_predict,key)
-                # np.savetxt(cmap_file, DNCON4_CNN_prediction, fmt='%.4f')
-                cmap_file = "%s/%s.txt" % (model_predict,key)
-                np.savetxt(cmap_file, real_cmap, fmt='%.4f')
-                # history_loss_file = CV_dir+"/train_loss.history"
-
-
         print("Train loss history:", train_loss_list)
-        # print("Validation loss history:", evalu_loss_list)
-        #clear memory
-        # K.clear_session()
-        # tf.reset_default_graph()
     #select top10 models
     epochs = []
     accL5s = []
@@ -1165,8 +1089,8 @@ def DNCON4_1d2dconv_train_win_filter_layer_opt_fast_2D_generator(feature_num,CV_
         dst_file = os.path.join(model_weights_top,model_weight)
         shutil.copyfile(src_file,dst_file)
         print("Copy %s to model_weights_top"%epoch_top[index])
-    print("Training finished, best validation acc = ",val_avg_acc_l5_best)
-    return val_avg_acc_l5_best
+    print("Training finished, best validation acc = ",val_avg_acc_l2_best)
+    return val_avg_acc_l2_best
 
 def DNCON4_train_2D_generator(feature_num,CV_dir,feature_dir, model_prefix, epoch_outside,epoch_inside,epoch_rerun,win_array,
     nb_filters,nb_layers,opt,batch_size_train,path_of_lists, path_of_Y, path_of_X, Maximum_length,dist_string, reject_fea_path = 'None',
@@ -1258,7 +1182,7 @@ def DNCON4_train_2D_generator(feature_num,CV_dir,feature_dir, model_prefix, epoc
     chkdirs(res_model_val_acc)
 
     tr_l = build_dataset_dictionaries_train(path_of_lists)
-    tr_l_dict = subset_pdb_dict(tr_l, 0, Maximum_length, 7000, 'ordered')
+    tr_l_dict = subset_pdb_dict(tr_l, 0, Maximum_length, 20000, 'ordered')
     te_l = build_dataset_dictionaries_test(path_of_lists)
     all_l = te_l.copy()
     train_data_num = len(tr_l_dict)
@@ -1327,7 +1251,7 @@ def DNCON4_train_2D_generator(feature_num,CV_dir,feature_dir, model_prefix, epoc
         print("Now evaluate for epoch ",epoch)
         val_acc_out_inepoch = "%s/validation_epoch%i.acc_history" % (res_model_val_acc, epoch) 
         sys.stdout.flush()
-        selected_list = subset_pdb_dict(te_l,   0, Maximum_length, 7000, 'ordered')  ## here can be optimized to automatically get maxL from selected dataset
+        selected_list = subset_pdb_dict(te_l,   0, Maximum_length, 20000, 'ordered')  ## here can be optimized to automatically get maxL from selected dataset
         print('Loading data sets ..',end='')
 
         step_num = 0

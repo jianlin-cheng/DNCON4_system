@@ -11,6 +11,7 @@ import random
 import keras.backend as K
 import itertools
 from operator import itemgetter
+from sklearn.metrics import recall_score, f1_score, confusion_matrix, matthews_corrcoef, precision_score
 
 epsilon = K.epsilon()
 # from Data_loading import getX_1D_2D,getX_2D_format
@@ -178,8 +179,8 @@ def load_sample_data_2D(data_list, path_of_X, path_of_Y,seq_end, min_seq_sep,dis
     print(pdb_name, "..",end='')
     
     featurefile =path_of_X + '/other/' + 'X-'  + pdb_name + '.txt'
-    if ((len(accept_list) == 1 and ('# cov' not in accept_list and '# plm' not in accept_list and '# plmc' not in accept_list and '# pre' not in accept_list and '# netout' not in accept_list)) or 
-          (len(accept_list) == 2 and ('# cov' not in accept_list or '# plm' not in accept_list or '# plmc' not in accept_list or '# pre' not in accept_list or '# netout' not in accept_list)) or (len(accept_list) > 2)):
+    if ((len(accept_list) == 1 and ('# cov' not in accept_list and '# plm' not in accept_list and '# plmc' not in accept_list and '# pre' not in accept_list and '# spa' not in accept_list and '# netout' not in accept_list)) or 
+          (len(accept_list) == 2 and ('# cov' not in accept_list or '# plm' not in accept_list or '# plmc' not in accept_list or '# pre' not in accept_list or '# spa' not in accept_list or '# netout' not in accept_list)) or (len(accept_list) > 2)):
       notxt_flag = False
       if not os.path.isfile(featurefile):
                   print("feature file not exists: ",featurefile, " pass!")
@@ -204,6 +205,11 @@ def load_sample_data_2D(data_list, path_of_X, path_of_Y,seq_end, min_seq_sep,dis
       if not os.path.isfile(pre):
                   print("pre matrix file not exists: ",pre, " pass!")
                   continue 
+    spa = path_of_X + '/spa/' + pdb_name + '.spa'
+    if '# spa' in accept_list:
+      if not os.path.isfile(spa):
+                  print("spa matrix file not exists: ",spa, " pass!")
+                  continue 
     netout = path_of_X + '/net_out/' + pdb_name + '.npy'
     if '# netout' in accept_list:      
       if not os.path.isfile(netout):
@@ -211,7 +217,7 @@ def load_sample_data_2D(data_list, path_of_X, path_of_Y,seq_end, min_seq_sep,dis
                   continue  
 
     ### load the data
-    (featuredata,feature_index_all_dict) = getX_2D_format(featurefile, cov, plm, plmc, pre, netout, accept_list, pdb_lens, notxt_flag)
+    (featuredata,feature_index_all_dict) = getX_2D_format(featurefile, cov, plm, plmc, pre, spa, netout, accept_list, pdb_lens, notxt_flag)
     # print("\n######",len(featuredata))
 
     feature_num = len(featuredata)
@@ -269,14 +275,21 @@ def get_y_from_this_list(selected_ids, path, min_seq_sep, l_max, y_dist, lable_t
   for pdb in selected_ids:
     sample_pdb = pdb
     break
-
   if lable_type == 'bin':
-    y = getY(path + 'Y' + y_dist + '-' + sample_pdb + '.txt', min_seq_sep, l_max)
+    y_file = path + 'Y' + y_dist + '-' + sample_pdb + '.txt'
+    if not os.path.isfile(y_file):
+      print("%s not exits!" % y_file)
+      return False
+    y = getY(y_file, min_seq_sep, l_max)
   elif lable_type == 'real':
-    y = getY(path + sample_pdb + '.txt', 0, l_max)
+    y_file = path + sample_pdb + '.txt'
+    if not os.path.isfile(y_file):
+      print("%s not exits!" % y_file)
+      return False
+    y = getY(y_file, 0, l_max)
   if (l_max * l_max != len(y)):
     print ('Error!! y does not have L * L feature values!!')
-    sys.exit()
+    return False
   Y = np.zeros((xcount, l_max * l_max))
   i = 0
   if lable_type == 'bin':
@@ -302,6 +315,8 @@ def getY(true_file, min_seq_sep, l_max):
       break
   Y = np.zeros((l_max, l_max))
   i = 0
+  if L > l_max:
+    return Y
   with open(true_file) as f:
     for line in f:
       if line.startswith('#'):
@@ -321,6 +336,7 @@ def getY(true_file, min_seq_sep, l_max):
         Y[p][q] = 0
   Y = Y.flatten()
   return Y
+
 
 def getY_4(true_file, min_seq_sep, l_max):
   # calcualte the length of the protein (the first feature)
@@ -630,7 +646,7 @@ def get_x_1D_2D_from_this_list(selected_ids, feature_dir, l_max,dist_string, rej
       pdb_indx = pdb_indx + 1
   return (X_1D,X_2D)
 
-def getX_2D_format(feature_file, cov, plm, plmc, pre, netout, accept_list, pdb_len = 0, notxt_flag = True, logfile = None):
+def getX_2D_format(feature_file, cov, plm, plmc, pre, spa, netout, accept_list, pdb_len = 0, notxt_flag = True, logfile = None):
   # calcualte the length of the protein (the first feature)
   if logfile != None:
     chkdirs(logfile)
@@ -861,6 +877,33 @@ def getX_2D_format(feature_file, cov, plm, plmc, pre, netout, accept_list, pdb_l
               sys.exit()
           else:
               feature_all_dict[feature_index] = feature2D
+  if '# spa' in accept_list:  
+      spa_rawdata = np.fromfile(spa, dtype=np.float32)
+      length = int(math.sqrt(spa_rawdata.shape[0]/21/21))
+      if length != L:
+          print("spa Bad Alignment, want %d get %d, pls check! %s" %(L, length, spa))
+          if logfile != None:
+            with open(logfile, "a") as myfile:
+              myfile.write("spa Bad Alignment, pls check! %s\n" %(spa))
+            return False, False
+          else:
+            return False, False
+            # sys.exit()
+      inputs_spa = spa_rawdata.reshape(1,441,L,L)
+      for i in range(441):
+          feature2D = inputs_spa[0][i]
+          feature_namenew = '# spa Maximization '+str(i+1)+ ' 2D'
+          feature_index +=1
+          if feature_index in feature_index_all_dict:
+              print("Duplicate feature name ",feature_namenew, " in file ",feature_file)
+              sys.exit()
+          else:
+              feature_index_all_dict[feature_index] = feature_namenew
+          if feature_index in feature_all_dict:
+              print("Duplicate feature name ",feature_namenew, " in file ",feature_file)
+              sys.exit()
+          else:
+              feature_all_dict[feature_index] = feature2D
   if '# netout' in accept_list:
       netout_raw=np.load(netout)
       length = netout_raw.shape[0]
@@ -1013,10 +1056,11 @@ def get_x_2D_from_this_list(selected_ids, feature_dir, l_max,dist_string, reject
   plm =feature_dir + '/plm/'  + sample_pdb + '.plm'
   plmc =feature_dir + '/plmc/'  + sample_pdb + '.plmc'
   pre =feature_dir + '/pre/'  + sample_pdb + '.pre'
+  spa =feature_dir + '/spa/'  + sample_pdb + '.spa'
   netout = feature_dir + '/net_out/' + sample_pdb + '.npy'
   # print(featurefile)
-  if ((len(accept_list) == 1 and ('# cov' not in accept_list and '# plm' not in accept_list and '# plmc' not in accept_list and '# pre' not in accept_list and '# netout' not in accept_list)) or 
-        (len(accept_list) == 2 and ('# cov' not in accept_list or '# plm' not in accept_list or '# plmc' not in accept_list or '# pre' not in accept_list or '# netout' not in accept_list)) or (len(accept_list) > 2)):
+  if ((len(accept_list) == 1 and ('# cov' not in accept_list and '# plm' not in accept_list and '# plmc' not in accept_list and '# pre' not in accept_list and '# spa' not in accept_list and '# netout' not in accept_list)) or 
+        (len(accept_list) == 2 and ('# cov' not in accept_list or '# plm' not in accept_list or '# plmc' not in accept_list or '# pre' not in accept_list or '# spa' not in accept_list or '# netout' not in accept_list)) or (len(accept_list) > 2)):
     notxt_flag = False
     # print
     if not os.path.isfile(featurefile):
@@ -1038,12 +1082,16 @@ def get_x_2D_from_this_list(selected_ids, feature_dir, l_max,dist_string, reject
     if not os.path.isfile(pre):
                 print("pre matrix file not exists: ",pre, " pass!")
                 return False
+  if '# spa' in accept_list:
+    if not os.path.isfile(spa):
+                print("spa matrix file not exists: ",spa, " pass!")
+                return False
   if '# netout' in accept_list:      
     if not os.path.isfile(netout):
                 print("netout matrix file not exists: ",netout, " pass!")
                 return False
 
-  (featuredata,feature_index_all_dict) = getX_2D_format(featurefile, cov, plm, plmc, pre, netout, accept_list, pdb_len, notxt_flag)  
+  (featuredata,feature_index_all_dict) = getX_2D_format(featurefile, cov, plm, plmc, pre, spa, netout, accept_list, pdb_len, notxt_flag)  
 
   
   ### merge 1D data to L*m
@@ -1071,8 +1119,8 @@ def get_x_2D_from_this_list(selected_ids, feature_dir, l_max,dist_string, reject
       # print(pdb_name, "..",end='')
 
       featurefile =feature_dir + '/other/' + 'X-'  + sample_pdb + '.txt'
-      if ((len(accept_list) == 1 and ('# cov' not in accept_list and '# plm' not in accept_list and '# plmc' not in accept_list and '# pre' not in accept_list and '# netout' not in accept_list)) or 
-        (len(accept_list) == 2 and ('# cov' not in accept_list or '# plm' not in accept_list or '# plmc' not in accept_list or '# pre' not in accept_list or '# netout' not in accept_list)) or (len(accept_list) > 2)):
+      if ((len(accept_list) == 1 and ('# cov' not in accept_list and '# plm' not in accept_list and '# plmc' not in accept_list and '# pre' not in accept_list and '# spa' not in accept_list and '# netout' not in accept_list)) or 
+        (len(accept_list) == 2 and ('# cov' not in accept_list or '# plm' not in accept_list or '# plmc' not in accept_list or '# pre' not in accept_list or '# spa' not in accept_list or '# netout' not in accept_list)) or (len(accept_list) > 2)):
         notxt_flag = False
         if not os.path.isfile(featurefile):
                     print("feature file not exists: ",featurefile, " pass!")
@@ -1097,13 +1145,18 @@ def get_x_2D_from_this_list(selected_ids, feature_dir, l_max,dist_string, reject
         if not os.path.isfile(pre):
                     print("pre matrix file not exists: ",pre, " pass!")
                     continue 
+      spa = feature_dir + '/spa/' + pdb_name + '.spa'   
+      if '# spa' in accept_list:
+        if not os.path.isfile(spa):
+                    print("spa matrix file not exists: ",spa, " pass!")
+                    continue 
       netout = feature_dir + '/net_out/' + pdb_name + '.npy'
       if '# netout' in accept_list:      
         if not os.path.isfile(netout):
                     print("netout matrix file not exists: ",netout, " pass!")
                     continue 
       ### load the data
-      (featuredata,feature_index_all_dict) = getX_2D_format(featurefile, cov, plm, plmc, pre, netout, accept_list, pdb_len, notxt_flag)     
+      (featuredata,feature_index_all_dict) = getX_2D_format(featurefile, cov, plm, plmc, pre, spa, netout, accept_list, pdb_len, notxt_flag)     
       ### merge 1D data to L*m
       ### merge 2D data to  L*L*n
       feature_2D_all=[]
@@ -1164,10 +1217,11 @@ def get_x_2D_from_this_list_pred(selected_ids, feature_dir, l_max,dist_string, r
   plm =feature_dir + '/' + sample_pdb + '.plm'
   plmc =feature_dir + '/' + sample_pdb + '.plmc'
   pre =feature_dir + '/' + sample_pdb + '.pre'
+  spa =feature_dir + '/'  + sample_pdb + '.spa'
   netout = feature_dir + '/' + sample_pdb + '.npy'
   # print(featurefile)
-  if ((len(accept_list) == 1 and ('# cov' not in accept_list and '# plm' not in accept_list and '# plmc' not in accept_list and '# pre' not in accept_list and '# netout' not in accept_list)) or 
-        (len(accept_list) == 2 and ('# cov' not in accept_list or '# plm' not in accept_list or '# plmc' not in accept_list or '# pre' not in accept_list or '# netout' not in accept_list)) or (len(accept_list) > 2)):
+  if ((len(accept_list) == 1 and ('# cov' not in accept_list and '# plm' not in accept_list and '# plmc' not in accept_list and '# pre' not in accept_list and '# spa' not in accept_list and '# netout' not in accept_list)) or 
+        (len(accept_list) == 2 and ('# cov' not in accept_list or '# plm' not in accept_list or '# plmc' not in accept_list or '# pre' not in accept_list or '# spa' not in accept_list or '# netout' not in accept_list)) or (len(accept_list) > 2)):
     notxt_flag = False
     # print
     if not os.path.isfile(featurefile):
@@ -1189,12 +1243,16 @@ def get_x_2D_from_this_list_pred(selected_ids, feature_dir, l_max,dist_string, r
     if not os.path.isfile(pre):
                 print("pre matrix file not exists: ",pre, " pass!")
                 return False
+  if '# spa' in accept_list:
+    if not os.path.isfile(spa):
+                print("spa matrix file not exists: ",spa, " pass!")
+                return False
   if '# netout' in accept_list:      
     if not os.path.isfile(netout):
                 print("netout matrix file not exists: ",netout, " pass!")
                 return False
 
-  (featuredata,feature_index_all_dict) = getX_2D_format(featurefile, cov, plm, plmc, pre, netout, accept_list, pdb_len, notxt_flag)  
+  (featuredata,feature_index_all_dict) = getX_2D_format(featurefile, cov, plm, plmc, pre, spa, netout, accept_list, pdb_len, notxt_flag)    
 
   
   ### merge 1D data to L*m
@@ -1222,8 +1280,8 @@ def get_x_2D_from_this_list_pred(selected_ids, feature_dir, l_max,dist_string, r
       # print(pdb_name, "..",end='')
 
       featurefile =feature_dir + '/' + 'X-'  + sample_pdb + '.txt'
-      if ((len(accept_list) == 1 and ('# cov' not in accept_list and '# plm' not in accept_list and '# plmc' not in accept_list and '# pre' not in accept_list and '# netout' not in accept_list)) or 
-        (len(accept_list) == 2 and ('# cov' not in accept_list or '# plm' not in accept_list or '# plmc' not in accept_list or '# pre' not in accept_list or '# netout' not in accept_list)) or (len(accept_list) > 2)):
+      if ((len(accept_list) == 1 and ('# cov' not in accept_list and '# plm' not in accept_list and '# plmc' not in accept_list and '# pre' not in accept_list and '# spa' not in accept_list and '# netout' not in accept_list)) or 
+        (len(accept_list) == 2 and ('# cov' not in accept_list or '# plm' not in accept_list or '# plmc' not in accept_list or '# pre' not in accept_list or '# spa' not in accept_list or '# netout' not in accept_list)) or (len(accept_list) > 2)):
         notxt_flag = False
         if not os.path.isfile(featurefile):
                     print("feature file not exists: ",featurefile, " pass!")
@@ -1248,13 +1306,18 @@ def get_x_2D_from_this_list_pred(selected_ids, feature_dir, l_max,dist_string, r
         if not os.path.isfile(pre):
                     print("pre matrix file not exists: ",pre, " pass!")
                     continue 
+      spa = feature_dir + '/' + pdb_name + '.spa'   
+      if '# spa' in accept_list:
+        if not os.path.isfile(spa):
+                    print("spa matrix file not exists: ",spa, " pass!")
+                    continue 
       netout = feature_dir + '/' + pdb_name + '.npy'
       if '# netout' in accept_list:      
         if not os.path.isfile(netout):
                     print("netout matrix file not exists: ",netout, " pass!")
                     continue 
       ### load the data
-      (featuredata,feature_index_all_dict) = getX_2D_format(featurefile, cov, plm, plmc, pre, netout, accept_list, pdb_len, notxt_flag)     
+      (featuredata,feature_index_all_dict) = getX_2D_format(featurefile, cov, plm, plmc, pre, spa, netout, accept_list, pdb_len, notxt_flag)   
       ### merge 1D data to L*m
       ### merge 2D data to  L*L*n
       feature_2D_all=[]
@@ -1319,8 +1382,8 @@ def evaluate_prediction_4 (dict_l, P, Y, min_seq_sep):
   P3L5 = ceil_top_xL_to_one_4(dict_l, P2, Y, 0.2)
   P3L2 = ceil_top_xL_to_one_4(dict_l, P2, Y, 0.5)
   P31L = ceil_top_xL_to_one_4(dict_l, P2, Y, 1)
-  (list_acc_l5, list_acc_l2, list_acc_1l,avg_pc_l5,avg_pc_l2,avg_pc_1l,avg_acc_l5,avg_acc_l2,avg_acc_1l) = print_detailed_evaluations_4(dict_l, P3L5, P3L2, P31L, Y)
-  return (list_acc_l5, list_acc_l2, list_acc_1l,avg_pc_l5,avg_pc_l2,avg_pc_1l,avg_acc_l5,avg_acc_l2,avg_acc_1l)
+  avg_prec_l5, avg_prec_l2, avg_prec_1l, avg_mcc_l5, avg_mcc_l2, avg_mcc_1l, avg_recall_l5, avg_recall_l2, avg_recall_1l, avg_f1_l5, avg_f1_l2, avg_f1_1l = print_detailed_evaluations_4(dict_l, P3L5, P3L2, P31L, P2, Y)
+  return (avg_prec_l5, avg_prec_l2, avg_prec_1l, avg_mcc_l5, avg_mcc_l2, avg_mcc_1l, avg_recall_l5, avg_recall_l2, avg_recall_1l, avg_f1_l5, avg_f1_l2, avg_f1_1l)
 
 def evaluate_prediction_dist_4(y_pred, y_true):
   
@@ -1421,52 +1484,66 @@ def print_detailed_evaluations(dict_l, dict_n, dict_e, PL5, PL2, PL, Y):
   print ("")
   return (list_acc_l5, list_acc_l2, list_acc_1l,avg_pc_l5,avg_pc_l2,avg_pc_1l,avg_acc_l5,avg_acc_l2,avg_acc_1l)
 
-def print_detailed_evaluations_4(dict_l, PL5, PL2, PL, Y):
+def print_detailed_evaluations_4(dict_l, PL5, PL2, PL, P, Y):
   datacount = len(dict_l)
-  # print("  ID    PDB      L     Nc    L/5  PcL/5  PcL/2   Pc1L    AccL/5    AccL/2      AccL")
-  avg_nc  = 0    # average true Nc
-  avg_pc_l5  = 0 # average predicted correct L/5
-  avg_pc_l2  = 0 # average predicted correct L/2
-  avg_pc_1l  = 0 # average predicted correct 1L
-  avg_acc_l5 = 0.0
-  avg_acc_l2 = 0.0
-  avg_acc_1l = 0.0
-  list_acc_l5 = []
-  list_acc_l2 = []
-  list_acc_1l = []
+
+  avg_prec_l5 = 0.0
+  avg_prec_l2 = 0.0
+  avg_prec_1l = 0.0
+  avg_recall_l5 = 0.0
+  avg_recall_l2 = 0.0
+  avg_recall_1l = 0.0
+  avg_f1_l5 = 0.0
+  avg_f1_l2 = 0.0
+  avg_f1_1l = 0.0
+  avg_mcc_l5 = 0.0
+  avg_mcc_l2 = 0.0
+  avg_mcc_1l = 0.0
   i = -1
   for pdb in sorted(dict_l):
-    i = i + 1
-    nc = int(Y[i].sum())
-    #L = dict_l[pdb]
-    L = int(math.sqrt(len(Y[i])))
-    L5 = int(L/5)
-    L2 = int(L/2)
-    pc_l5 = np.logical_and(Y[i], PL5[i, :]).sum()
-    pc_l2 = np.logical_and(Y[i], PL2[i, :]).sum()
-    pc_1l = np.logical_and(Y[i], PL[i, :]).sum()
-    acc_l5 = float(pc_l5) / (float(L5) + epsilon)
-    acc_l2 = float(pc_l2) / (float(L2) + epsilon)
-    acc_1l = float(pc_1l) / (float(L) + epsilon)
-    list_acc_l5.append(acc_l5)
-    list_acc_l2.append(acc_l2)
-    list_acc_1l.append(acc_1l)
-    # print(" %3s %6s %6s %6s %6s %6s %6s %6s    %.4f    %.4f    %.4f" % (i, pdb, L, nc, L5, pc_l5, pc_l2, pc_1l, acc_l5, acc_l2, acc_1l))
-    avg_nc = avg_nc + nc
-    avg_pc_l5 = avg_pc_l5 + pc_l5
-    avg_pc_l2 = avg_pc_l2 + pc_l2
-    avg_pc_1l = avg_pc_1l + pc_1l
-    avg_acc_l5 = avg_acc_l5 + acc_l5
-    avg_acc_l2 = avg_acc_l2 + acc_l2
-    avg_acc_1l = avg_acc_1l + acc_1l
-  avg_nc = int(avg_nc/datacount)
-  avg_pc_l5 = int(avg_pc_l5/datacount)
-  avg_pc_l2 = int(avg_pc_l2/datacount)
-  avg_pc_1l = int(avg_pc_1l/datacount)
-  avg_acc_l5 = avg_acc_l5/datacount
-  avg_acc_l2 = avg_acc_l2/datacount
-  avg_acc_1l = avg_acc_1l/datacount
-  # print("   Avg                           %6s        %6s %6s %6s    %.4f    %.4f    %.4f" % (avg_nc, avg_pc_l5, avg_pc_l2, avg_pc_1l, avg_acc_l5, avg_acc_l2, avg_acc_1l))
+    mcc_l5    = matthews_corrcoef(Y[i], PL5[i, :])
+    mcc_l2    = matthews_corrcoef(Y[i], PL2[i, :])
+    mcc_1l    = matthews_corrcoef(Y[i], PL[i, :])
+    prec_l5   = precision_score(Y[i], PL5[i, :])
+    prec_l2   = precision_score(Y[i], PL2[i, :])
+    prec_1l   = precision_score(Y[i], PL[i, :])
+    recall_l5 = recall_score(Y[i], PL5[i, :])
+    recall_l2 = recall_score(Y[i], PL2[i, :])
+    recall_1l = recall_score(Y[i], PL[i, :])
+    F1_l5     = f1_score(Y[i], PL5[i, :])
+    F1_l2     = f1_score(Y[i], PL2[i, :])
+    F1_1l     = f1_score(Y[i], PL[i, :])
+    # pc_l5 = np.logical_and(Y[i], PL5[i, :]).sum()
+    # pc_l2 = np.logical_and(Y[i], PL2[i, :]).sum()
+    # pc_1l = np.logical_and(Y[i], PL[i, :]).sum()
+    # prec_l5 = float(pc_l5) / (float(L5) + epsilon)
+    # prec_l2 = float(pc_l2) / (float(L2) + epsilon)
+    # prec_1l = float(pc_1l) / (float(L) + epsilon)
+    avg_mcc_l5 += mcc_l5
+    avg_mcc_l2 += mcc_l2
+    avg_mcc_1l += mcc_1l
+    avg_prec_l5 += prec_l5
+    avg_prec_l2 += prec_l2
+    avg_prec_1l += prec_1l
+    avg_recall_l5 += recall_l5
+    avg_recall_l2 += recall_l2
+    avg_recall_1l += recall_1l
+    avg_f1_l5 += F1_l5
+    avg_f1_l2 += F1_l2
+    avg_f1_1l += F1_1l
+  avg_mcc_l5 /= datacount
+  avg_mcc_l2 /= datacount
+  avg_mcc_1l /= datacount
+  avg_prec_l5 /= datacount
+  avg_prec_l2 /= datacount
+  avg_prec_1l /= datacount
+  avg_recall_l5 /= datacount
+  avg_recall_l2 /= datacount
+  avg_recall_1l /= datacount
+  avg_f1_l5 /= datacount
+  avg_f1_l2 /= datacount
+  avg_f1_1l /= datacount
+  # print("   Avg                           %6s        %6s %6s %6s    %.4f    %.4f    %.4f" % (avg_nc, avg_pc_l5, avg_pc_l2, avg_pc_1l, avg_prec_l5, avg_prec_l2, avg_prec_1l))
   # print ("")
-  return (list_acc_l5, list_acc_l2, list_acc_1l,avg_pc_l5,avg_pc_l2,avg_pc_1l,avg_acc_l5,avg_acc_l2,avg_acc_1l)
+  return (avg_prec_l5, avg_prec_l2, avg_prec_1l, avg_mcc_l5, avg_mcc_l2, avg_mcc_1l, avg_recall_l5, avg_recall_l2, avg_recall_1l, avg_f1_l5, avg_f1_l2, avg_f1_1l)
 

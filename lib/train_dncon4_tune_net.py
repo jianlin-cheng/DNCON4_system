@@ -70,8 +70,8 @@ dist_string = '80'
 
 path_of_lists   = GLOBAL_PATH+'/data/'+dataset+'/lists-test-train/'
 reject_fea_file = GLOBAL_PATH+'/lib/feature_txt/feature_to_use_'+fea_file+'.txt'
-path_of_Y       = feature_dir + '/features/' + dataset + '/'
-path_of_X       = feature_dir + '/features/' + dataset + '/'
+path_of_Y       = feature_dir #feature_dir + '/features/' + dataset + '/'
+path_of_X       = feature_dir #'/home/zhiye/Downloads/Deepcov/' #feature_dir + '/features/' + dataset + '/'
 
 if not os.path.exists(path_of_X):
   print("Can not find folder of features: "+ path_of_X +", please check and run configure.py to download or extract it!")
@@ -86,7 +86,7 @@ elif nb_layers > 50:
   else:
     Maximum_length=500 
 else:
-  Maximum_length=500 
+  Maximum_length=370 
 
 sample_datafile=path_of_lists + '/sample.lst'
 train_datafile=path_of_lists + '/train.lst'

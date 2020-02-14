@@ -4,3 +4,5 @@
 **/outputs/
 env/
 models/custom/
+predictors/results/
+predictors/individual/results/

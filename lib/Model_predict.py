@@ -1,7 +1,7 @@
 
 # -*- coding: utf-8 -*-
 """
-Created on Wed Feb 22 21:47:26 2017
+Created on Wed Feb 22 21:47:26 2019
 
 @author: Zhiye
 """
@@ -70,59 +70,63 @@ if not os.path.exists(outdir):
     os.makedirs(outdir)
     print("Create output folder path:"+outdir)
 
-#step1: generate alignment
-if os.path.exists(outdir+"/alignment/"+target+".aln") and os.path.getsize(outdir+"/alignment/"+target+".aln") > 0:
-    print("alignment generated.....skip")
+if os.path.exists(outdir+"/X-"+target+".txt") and os.path.exists(outdir+"/"+target+".cov") and os.path.exists(outdir+"/"+target+".plm") and os.path.exists(outdir+"/"+target+".pre"):
+    print("All features exists, skip!")
 else:
-    os.system(db_tool_dir+"/tools/DeepAlign1.0/hhjack_hhmsearch3.sh "+fasta+" "+outdir+"/alignment "+db_tool_dir+"/tools/ "+db_tool_dir+"/databases/")
+
+    #step1: generate alignment
     if os.path.exists(outdir+"/alignment/"+target+".aln") and os.path.getsize(outdir+"/alignment/"+target+".aln") > 0:
-        print("alignment generated successfully....")
+        print("alignment generated.....skip")
     else:
-        print("alignment generation failed....")
+        os.system(db_tool_dir+"/tools/DeepAlign1.0/hhjack_hhmsearch3.sh "+fasta+" "+outdir+"/alignment "+db_tool_dir+"/tools/ "+db_tool_dir+"/databases/")
+        if os.path.exists(outdir+"/alignment/"+target+".aln") and os.path.getsize(outdir+"/alignment/"+target+".aln") > 0:
+            print("alignment generated successfully....")
+        else:
+            print("alignment generation failed....")
 
-#step2: generate other features
-if os.path.exists(outdir+"/X-"+target+".txt") and os.path.getsize(outdir+"/X-"+target+".txt") > 0:
-    print("DNCON2 features generated.....skip")
-else:
-    os.system("perl "+script_path+"/generate-other.pl "+db_tool_dir+" "+fasta+" "+outdir)
+    #step2: generate other features
     if os.path.exists(outdir+"/X-"+target+".txt") and os.path.getsize(outdir+"/X-"+target+".txt") > 0:
-        print("DNCON2 features generated successfully....")
+        print("DNCON2 features generated.....skip")
     else:
-        print("DNCON2 features generation failed....")
+        os.system("perl "+script_path+"/generate-other.pl "+db_tool_dir+" "+fasta+" "+outdir)
+        if os.path.exists(outdir+"/X-"+target+".txt") and os.path.getsize(outdir+"/X-"+target+".txt") > 0:
+            print("DNCON2 features generated successfully....")
+        else:
+            print("DNCON2 features generation failed....")
 
-#step3: generate cov
-if os.path.exists(outdir+"/"+target+".cov") and os.path.getsize(outdir+"/"+target+".cov") > 0:
-    print("cov generated.....skip")
-else:
-    os.system(script_path+"/cov21stats "+outdir+"/alignment/"+target+".aln "+outdir+"/"+target+".cov")
+    #step3: generate cov
     if os.path.exists(outdir+"/"+target+".cov") and os.path.getsize(outdir+"/"+target+".cov") > 0:
-        print("cov generated successfully....")
+        print("cov generated.....skip")
     else:
-        print("cov generation failed....")
+        os.system(script_path+"/cov21stats "+outdir+"/alignment/"+target+".aln "+outdir+"/"+target+".cov")
+        if os.path.exists(outdir+"/"+target+".cov") and os.path.getsize(outdir+"/"+target+".cov") > 0:
+            print("cov generated successfully....")
+        else:
+            print("cov generation failed....")
 
-#step4: generate plm
-if os.path.exists(outdir+"/ccmpred/"+target+".plm") and os.path.getsize(outdir+"/ccmpred/"+target+".plm") > 0:
-    print("plm generated.....skip")
-    os.system("mv "+outdir+"/ccmpred/"+target+".plm "+outdir)
-elif os.path.exists(outdir+"/"+target+".plm") and os.path.getsize(outdir+"/"+target+".plm") > 0:
-    print("plm generated.....skip")
-else:
-    print("plm generation failed....")
+    #step4: generate plm
+    if os.path.exists(outdir+"/ccmpred/"+target+".plm") and os.path.getsize(outdir+"/ccmpred/"+target+".plm") > 0:
+        print("plm generated.....skip")
+        os.system("mv "+outdir+"/ccmpred/"+target+".plm "+outdir)
+    elif os.path.exists(outdir+"/"+target+".plm") and os.path.getsize(outdir+"/"+target+".plm") > 0:
+        print("plm generated.....skip")
+    else:
+        print("plm generation failed....")
 
-#step5: generate pre
-if os.path.exists(outdir+"/"+target+".pre") and os.path.getsize(outdir+"/"+target+".pre") > 0:
-    print("pre generated.....skip")
-else:
-    os.system(script_path+"/calNf_ly "+outdir+"/alignment/"+target+".aln 0.8 > "+outdir+"/"+target+".weight")
-    os.system("python -W ignore "+script_path+"/generate_pre.py "+outdir+"/alignment/"+target+".aln "+outdir+"/"+target)
-    os.system("rm "+outdir+"/"+target+".weight")
+    #step5: generate pre
     if os.path.exists(outdir+"/"+target+".pre") and os.path.getsize(outdir+"/"+target+".pre") > 0:
-        print("pre generated successfully....")
+        print("pre generated.....skip")
     else:
-        print("pre generation failed....")
+        os.system(script_path+"/calNf_ly "+outdir+"/alignment/"+target+".aln 0.8 > "+outdir+"/"+target+".weight")
+        os.system("python -W ignore "+script_path+"/generate_pre.py "+outdir+"/alignment/"+target+".aln "+outdir+"/"+target)
+        os.system("rm "+outdir+"/"+target+".weight")
+        if os.path.exists(outdir+"/"+target+".pre") and os.path.getsize(outdir+"/"+target+".pre") > 0:
+            print("pre generated successfully....")
+        else:
+            print("pre generation failed....")
 ##########
 
-gpu_schedul_strategy("local", allow_growth=True)
+# gpu_schedul_strategy("local", allow_growth=True)
 
 def chkdirs(fn):
     dn = os.path.dirname(fn)
@@ -167,14 +171,21 @@ for index in range(iter_num):
     reject_fea_path = sub_cv_dir + '/'
     reject_fea_file = getFileName(reject_fea_path, '.txt')
 
-    model_out= sub_cv_dir + '/' + getFileName(sub_cv_dir, '.json')[0]
-    model_weight_out_best = sub_cv_dir + '/' + getFileName(sub_cv_dir, '.h5')[0]
+    model_out= sub_cv_dir + '/' + getFileName(sub_cv_dir, '.json')[0]    
+    weights_name_list = getFileName(sub_cv_dir, '.h5')
+    model_name = None
+    for i in range(len(weights_name_list)):
+        if 'best' in weights_name_list[i]:
+            model_name = weights_name_list[i]
+        else:
+            continue
+    model_weight_out_best = sub_cv_dir + '/' + model_name
     model_weight_top10 = "%s/model_weights_top/" % (sub_cv_dir)
 
     # pred_history_out = "%s/predict%d.acc_history" % (outdir, index) 
     # with open(pred_history_out, "a") as myfile:
     #     myfile.write(time.strftime('%Y-%m-%d %H:%M:%S\n',time.localtime(time.time())))
-    with CustomObjectScope({'InstanceNormalization': InstanceNormalization, 'tf':tf}):
+    with CustomObjectScope({'InstanceNormalization': InstanceNormalization, 'RowNormalization': RowNormalization, 'ColumNormalization': ColumNormalization, 'tf':tf}):
         json_string = open(model_out).read()
         DNCON4 = model_from_json(json_string)
 
@@ -228,8 +239,10 @@ for index in range(iter_num):
 
               
             CMAP = DNCON4_prediction_other.reshape(Maximum_length, Maximum_length)
-            Map_UpTrans = np.triu(CMAP, 1).T
-            Map_UandL = np.triu(CMAP)
+            # Map_UpTrans = np.triu(CMAP, 1).T
+            # Map_UandL = np.triu(CMAP)
+            Map_UpTrans = (np.triu(CMAP, 1).T + np.tril(CMAP, -1))/2
+            Map_UandL = (np.triu(CMAP) + np.tril(CMAP).T)/2
             real_cmap_other = Map_UandL + Map_UpTrans
             other_cmap_file = "%s/%s.txt" % (model_predict, key)
             np.savetxt(other_cmap_file, real_cmap_other, fmt='%.4f')
@@ -254,8 +267,10 @@ for index in range(iter_num):
                 DNCON4_prediction_plm = DNCON4.predict([selected_list_2D_plm], batch_size= 1)  
 
                 CMAP = DNCON4_prediction_other.reshape(Maximum_length, Maximum_length)
-                Map_UpTrans = np.triu(CMAP, 1).T
-                Map_UandL = np.triu(CMAP)
+                # Map_UpTrans = np.triu(CMAP, 1).T
+                # Map_UandL = np.triu(CMAP)
+                Map_UpTrans = (np.triu(CMAP, 1).T + np.tril(CMAP, -1))/2
+                Map_UandL = (np.triu(CMAP) + np.tril(CMAP).T)/2
                 real_cmap_other_temp = Map_UandL + Map_UpTrans
 
                 real_cmap_other += real_cmap_other_temp
