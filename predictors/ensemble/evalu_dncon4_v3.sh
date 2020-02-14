@@ -6,14 +6,14 @@ temp_dir=$(pwd)
 global_dir=/mnt/data/zhiye/Python/DNCON4_system
 ## ENV_FLAG
 # source $global_dir/env/dncon4_virenv/bin/activate
-models_dir[0]=$global_dir/models/pretrain/dncon4_v3/1.dres152_deepcov_cov_ccmpred_pearson_pssm/
-models_dir[1]=$global_dir/models/pretrain/dncon4_v3/2.dres152_deepcov_plm_pearson_pssm/
-models_dir[2]=$global_dir/models/pretrain/dncon4_v3/3.res152_deepcov_pre_freecontact/
-models_dir[3]=$global_dir/models/pretrain/dncon4_v3/4.res152_deepcov_other/
-output_dir=$global_dir/predictors/results/CASP13_MSA_dncon4_v3/
+models_dir[0]=$global_dir/models/pretrain/dncon4_v3rc_msa_AG/1.dres152_deepcov_cov_ccmpred_pearson_pssm/
+models_dir[1]=$global_dir/models/pretrain/dncon4_v3rc_msa_AG/2.dres152_deepcov_plm_pearson_pssm/
+models_dir[2]=$global_dir/models/pretrain/dncon4_v3rc_msa_AG/3.res152_deepcov_pre_freecontact/
+models_dir[3]=$global_dir/models/pretrain/dncon4_v3rc_msa_AG/4.res152_deepcov_other/
+output_dir=$global_dir/predictors/results/CASP13_DM_MSA_dncon4_v3rc_msa_AG/
 ## FEATURE_FLAG
 feature_dir=/mnt/data/zhiye/Python/DNCON4_db_tools/
 printf "$global_dir\n"
 
 #################CV_dir output_dir dataset database_path
-python $global_dir/lib/Model_evaluate.py ${models_dir[@]} $output_dir 'CASP13_MSA' $feature_dir
+python $global_dir/lib/Model_evaluate.py ${models_dir[@]} $output_dir 'CASP13_DM_MSA' $feature_dir

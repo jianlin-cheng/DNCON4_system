@@ -24,16 +24,18 @@ import keras.backend as K
 import tensorflow as tf
 
 
-if len(sys.argv) == 8:
+if len(sys.argv) == 9:
     db_tool_dir = os.path.abspath(sys.argv[1])
     fasta = os.path.abspath(sys.argv[2])
     CV_dir = [sys.argv[3], sys.argv[4], sys.argv[5], sys.argv[6]] # ensemble use four model average
     outdir = os.path.abspath(sys.argv[7])
-elif len(sys.argv) == 5:
+    option = str(sys.argv[8])
+elif len(sys.argv) == 6:
     db_tool_dir = os.path.abspath(sys.argv[1])
     fasta = os.path.abspath(sys.argv[2])
     CV_dir = [sys.argv[3]] # ensemble use four model average
     outdir = os.path.abspath(sys.argv[4])
+    option = str(sys.argv[5])
 else:
   print('please input the right parameters\n')
   # print("dncon4.py [db_tool_dir] [fasta_file] [model_dir] [outdir]")
@@ -78,11 +80,15 @@ else:
     if os.path.exists(outdir+"/alignment/"+target+".aln") and os.path.getsize(outdir+"/alignment/"+target+".aln") > 0:
         print("alignment generated.....skip")
     else:
-        os.system(db_tool_dir+"/tools/DeepAlign1.0/hhjack_hhmsearch3.sh "+fasta+" "+outdir+"/alignment "+db_tool_dir+"/tools/ "+db_tool_dir+"/databases/")
-        if os.path.exists(outdir+"/alignment/"+target+".aln") and os.path.getsize(outdir+"/alignment/"+target+".aln") > 0:
-            print("alignment generated successfully....")
+        if option == 'ALN':
+            os.system(db_tool_dir+"/tools/DeepAlign1.0/hhjack_hhmsearch3.sh "+fasta+" "+outdir+"/alignment "+db_tool_dir+"/tools/ "+db_tool_dir+"/databases/")
+        elif option == 'MSA':
+            os.system("python "+db_tool_dir+"/tools/DeepMSA/scripts/build_MSA.py "+fasta+" -hhblitsdb="+db_tool_dir+"/databases/uniclust30_2017_10/uniclust30_2017_10 -jackhmmerdb="
+                +db_tool_dir+"/databases/unirefEBI_04_2018/ebi_uniref100 -hmmsearchdb="+db_tool_dir+"/databases/Metaclust50/metaclust_50 -tmpdir="+outdir+"/alignment/tmp -outdir="
+                +outdir+"/alignment -ncpu=8 -overwrite=0")
         else:
-            print("alignment generation failed....")
+            print("Default set DeepAln pipline!\n")
+            os.system(db_tool_dir+"/tools/DeepAlign1.0/hhjack_hhmsearch3.sh "+fasta+" "+outdir+"/alignment "+db_tool_dir+"/tools/ "+db_tool_dir+"/databases/")
 
     #step2: generate other features
     if os.path.exists(outdir+"/X-"+target+".txt") and os.path.getsize(outdir+"/X-"+target+".txt") > 0:

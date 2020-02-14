@@ -5,7 +5,6 @@ def configure_file(filepath, filetype, flag, keyword, db_dir):
     os.chdir(filepath)
     for filename in glob.glob(filepath + '/*.' + filetype):
         temp_in = filename
-        print(temp_in)
         temp_out = temp_in+'.tmp'
         f = open(temp_in, 'r')
         tar_flag = False
@@ -20,12 +19,17 @@ def configure_file(filepath, filetype, flag, keyword, db_dir):
                 change_flag = True
                 line_old = line.strip('\n')
                 fix_str = line.strip('\n').split('=')[0]
-                line_new = fix_str + '=' + db_dir
+                if '\'' in line:
+                    fix_str2 = line.strip('\n').split('\'')[-1]
+                    line_new = fix_str + '=' + db_dir + '\'' + fix_str2
+                else:
+                    line_new = fix_str + '=' + db_dir
                 # print(line_old)
                 # print(line_new)
         f.close()
         #replace target line
         if change_flag:
+            print(temp_in)
             change_flag = False
             f1 = open(temp_in)
             con = f1.read()
@@ -75,6 +79,10 @@ else:
                 if 'none' in dncon4_db_dir:
                 	print("Database path hasn't set, please run setup.py!")
                 	sys.exit(1)
+            elif 'run_file' in line:
+                dncon4_run_file = line.strip('\n').split('=')[1]
+                if ' ' in dncon4_run_file:dncon4_run_file.replace(' ','')
+                dncon4_run_file = dncon4_path +'/' + DeepDist_run_file
             elif 'train_script' in line:
                 dncon4_train_script = line.strip('\n').split('=')[1]
                 if ' ' in dncon4_train_script:dncon4_train_script.replace(' ','')
@@ -101,6 +109,9 @@ else:
                 dncon4_feature_generate = DNCON4_path +'/' + dncon4_feature_generate
 
 print("### Find database folder %s"%dncon4_db_dir)
+print("configure run file...")
+configure_file(dncon4_run_file, 'py', 'GLOBAL_FALG', 'global_dir', dncon4_path)
+configure_file(dncon4_run_file, 'py', 'DBTOOL_FLAG', 'db_tool_dir', dncon4_db_dir)
 print("configure training script...")
 configure_file(dncon4_train_script, 'sh', 'GLOBAL_FALG', 'global_dir', DNCON4_path)
 configure_file(dncon4_train_script, 'sh', 'FEATURE_FLAG', 'feature_dir', dncon4_db_dir)

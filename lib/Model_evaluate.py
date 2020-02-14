@@ -38,7 +38,7 @@ else:
   sys.exit(1)
 
 print("Model dir:", CV_dir)
-only_predict_flag = False # if do not have lable set True
+only_predict_flag = True # if do not have lable set True
 lib_path = sys.path[0]
 GLOABL_Path = os.path.dirname(sys.path[0]) ##.split('DNCON4')[0]+'DNCON4/'
 print("Find gloabl path :", GLOABL_Path)
@@ -67,6 +67,18 @@ elif dataset == 'CASP13_MSA':
     path_of_Y= '/mnt/data/zhiye/Python/DNCON4/data/CASP13/feats_deepmsa/'  
     path_of_fasta = '/mnt/data/zhiye/Python/DNCON4/data/CASP13/fasta/'
     path_of_pdb = '/mnt/data/zhiye/Python/DNCON4/data/CASP13/pdb43/' 
+elif dataset == 'CASP13_DM':
+    path_of_lists = database_path + '/features/'+dataset+'/lists-test-train/'
+    path_of_X= database_path + '/features/' + dataset +'/ALN/'
+    path_of_Y= database_path + '/features/' + dataset +'/ALN/' 
+    path_of_fasta = database_path + '/features/' + dataset +'/ALN/fasta/'
+    path_of_pdb = database_path + '/features/' + dataset +'/ALN/pdb/'     
+elif dataset == 'CASP13_DM_MSA':
+    path_of_lists = database_path + '/features/CASP13_DM/lists-test-train/'
+    path_of_X= database_path + '/features/CASP13_DM/MSA/'
+    path_of_Y= database_path + '/features/CASP13_DM/MSA/' 
+    path_of_fasta = database_path + '/features/CASP13_DM/MSA/fasta/'
+    path_of_pdb = database_path + '/features/CASP13_DM/MSA/pdb/' 
 elif dataset == 'DEEPMSA':
     path_of_lists = GLOABL_Path + '/data/'+dataset+'/lists-test-train/'
     path_of_X= database_path + '/features/' + dataset +'/'
